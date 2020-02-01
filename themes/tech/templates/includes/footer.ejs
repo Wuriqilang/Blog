@@ -1,0 +1,23 @@
+<footer class="footer">
+  <div class="main">
+    <a href="<%= themeConfig.domain %>">
+      <img class="avatar" src="<%= themeConfig.domain %>/images/avatar.png?v=<%= site.utils.now %>" alt="<%= themeConfig.siteName %>">
+    </a>
+    <div class="footer__social">
+      <% ['github', 'twitter', 'weibo', 'zhihu', 'facebook', 'telegram', 'dribbble', 'instagram', 'behance', 'qq'].forEach((item) => { %>
+        <% if (site.customConfig[item]) { %>
+          <a href="<%= site.customConfig[item] %>" target="_blank"><i class="remixicon-<%= item %>-line"></i></a>
+        <% } %>
+      <% }) %>
+    </div>
+    <p class="footer__sosumi">
+      <%- themeConfig.footerInfo %>
+    </p>
+    <a class="footer-rss" href="<%= themeConfig.domain %>/atom.xml">RSS</a>
+  </div>
+</footer>
+
+<script src="<%= themeConfig.domain %>/media/prism.js"></script>
+<script>
+  Prism.highlightAll()
+</script>

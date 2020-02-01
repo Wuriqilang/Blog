@@ -1,0 +1,34 @@
+{
+  "config": {
+    "archivesPageSize": 50,
+    "archivesPath": "archives",
+    "dateFormat": "YYYY-MM-DD",
+    "feedCount": 10,
+    "feedFullText": true,
+    "footerInfo": "Powered by <a href=\"https://github.com/wuriqilang\" target=\"_blank\">Wuriqilang</a>",
+    "postPageSize": 15,
+    "postPath": "post",
+    "postUrlFormat": "SLUG",
+    "showFeatureImage": true,
+    "siteDescription": "<p>一名专注于智能制造的程序员</p>",
+    "siteName": "Wuriqilang",
+    "tagPath": "tag",
+    "tagUrlFormat": "SHORT_ID",
+    "themeName": "tech"
+  },
+  "customConfig": {
+    "behance": "",
+    "customCss": ".yue figure img{padding:0 5%}\n.hentry{padding-top:100px}\n.info{background-image:url(http://doc.xr1228.com/post-images/title2.jpg);height:415px;}\n.info_title{font-size:60px;color:#000033}\n.info_nav a{color:#000033}\nbody{max-width:1920px;margin-left:auto;margin-right:auto}",
+    "dribbble": "",
+    "facebook": "",
+    "ga": "",
+    "github": "",
+    "headerBgColor": "#339af0",
+    "instagram": "",
+    "qq": "",
+    "telegram": "",
+    "twitter": "",
+    "weibo": "",
+    "zhihu": ""
+  }
+}

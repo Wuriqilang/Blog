@@ -1,0 +1,68 @@
+<html>
+  <head>
+    <%- include('./includes/head', { siteTitle: `${post.title} | ${themeConfig.siteName}` }) %>
+  </head>
+  <body>
+    <div class="site-nav <%- (themeConfig.showFeatureImage && post.feature) ? 'no-cover' : 'no-cover' %>">
+      <%- include('./includes/header') %>
+    </div>
+    <article role="main" class="hentry <%- (themeConfig.showFeatureImage && post.feature) ? '' : '' %>">
+      <!-- <% if (themeConfig.showFeatureImage && post.feature) { %>
+        <div class="entry-cover <%- (themeConfig.showFeatureImage && post.feature) ? 'js-cover' : '' %>" data-src="<%= post.feature %>" data-width="900" data-height="423" style="background-image:url(<%= post.feature %>); height: 80vw;">
+          <h1 class="post-title"><%= post.title %></h1>
+        </div>
+      <% } %> -->
+      <h1 class="entry-title" itemprop="headline"><%= post.title %></h1>
+      <div class="entry-meta">
+        <time class="updated" datetime="<%= post.date %>"><%= post.dateFormat %></time>
+        <span class="author vcard">
+          <%= post.stats.text %>
+        </span>
+      </div>
+      <div class="post-content yue">
+        <%- post.content %>
+      </div>
+      <div class="entry-block">
+        <div class="entry-tags">
+          <% post.tags.forEach(function(tag) { %>
+            <a href="<%= tag.link %>">
+              <%= tag.name %>
+            </a>
+          <% }); %>
+        </div>
+      </div>
+    </article>
+    <% if (post.prevPost && !post.hideInList) { %>
+      <section class="post-section prev-post">
+        <div class="inner">
+          <h3>前一篇</h3>
+          <a href="<%= post.prevPost.link %>">
+            <strong><%= post.prevPost.title %></strong>
+          </a>
+        </div>
+      </section>
+    <% } %>
+    <% if (post.nextPost && !post.hideInList) { %>
+      <section class="post-section prev-post">
+        <div class="inner">
+          <h3>后一篇</h3>
+          <a href="<%= post.nextPost.link %>">
+            <strong><%= post.nextPost.title %></strong>
+          </a>
+        </div>
+      </section>
+    <% } %>
+
+    <% if (typeof commentSetting !== 'undefined' && commentSetting.showComment) { %>
+      <% if (commentSetting.commentPlatform === 'gitalk') { %>
+        <%- include('./includes/gitalk') %>
+      <% } %>
+
+      <% if (commentSetting.commentPlatform === 'disqus') { %>
+        <%- include('./includes/disqus') %>
+      <% } %>
+    <% } %>
+
+    <%- include('./includes/footer') %>
+  </body>
+</html>

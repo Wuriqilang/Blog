@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <%- include('./includes/head', { siteTitle: themeConfig.siteName }) %>
+  </head>
+  <body>
+    <div class="<%- site.isHomepage ? 'homepage' : ''%>">
+      <%- include('./includes/header') %>
+    </div>
+    <div class="info _site">
+      <div class="inner">
+        <div class="info_main">
+          <% if (site.isHomepage) { %>
+            <h1 class="info_title"><a href="<%= themeConfig.domain %>"><%= themeConfig.siteName %></a></h1>
+            <h2 class="info_subtitle"><%- themeConfig.siteDescription %></h2>
+            <nav class="info_nav">
+              <% menus.forEach(function(menu) { %>
+                <% if (menu.openType === 'External') { %>
+                  <a href="<%= menu.link %>" target="_blank"><%= menu.name %></a>
+                <% } else { %>
+                  <a href="<%= menu.link %>"><%= menu.name %></a>
+                <% } %>
+              <% }); %>
+            </nav>
+          <% } else { %>
+            <h1 class="info_title"><i class="remixicon-article-line"></i> 文 章</h1>
+          <% } %>
+        </div>
+      </div>
+    </div>
+    <div class="main">
+      <div class="inner">
+        <%- include('./includes/post-list') %>
+
+        <% if (pagination.next && site.isHomepage) { %>
+          <div class="navigation">
+            <a href="<%= pagination.next %>" style="padding-right: 0.5em;">阅读更多 <i class="remixicon-arrow-right-line"></i></a>
+          </div>
+        <% } else { %>
+          <%- include('./includes/pagination') %>
+        <% } %>
+      </div>
+    </div>
+
+    <%- include('./includes/footer') %>
+  </body>
+</html>

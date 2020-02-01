@@ -1,0 +1,24 @@
+<div class="head">
+  <div class="inner">
+    <a class="site-name" href="<%= themeConfig.domain %>">
+        <span><%= themeConfig.siteName %></span>
+    </a>
+    <label class="burger" for="burger"></label>
+    <input id="burger" type="checkbox">
+    <button class="burger">
+      <div>
+        <span></span>
+        <span></span>
+      </div>
+    </button>
+    <nav class="info_nav">
+      <% menus.forEach(function(menu) { %>
+        <% if (menu.openType === 'External') { %>
+          <a href="<%= menu.link %>" target="_blank"><%= menu.name %></a>
+        <% } else { %>
+          <a href="<%= menu.link %>"><%= menu.name %></a>
+        <% } %>
+      <% }); %>
+    </nav>
+  </div>
+</div>

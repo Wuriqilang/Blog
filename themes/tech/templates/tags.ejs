@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <%- include('./includes/head', { siteTitle: themeConfig.siteName }) %>
+  </head>
+  <body>
+    <%- include('./includes/header') %>
+    <div class="info _site">
+      <div class="inner">
+        <div class="info_main">
+          <h1 class="info_title"><i class="remixicon-price-tag-3-line"></i> 目前共计 <%- tags.length %> 个标签</h1>
+        </div>
+      </div>
+    </div>
+    <div class="main">
+      <div class="inner">
+        <div class="tags">
+          <% tags.forEach((tag, index) => { %>
+            <a class="tag" href="<%= tag.link %>">
+              <div class="tag-name"><%= tag.name %></div>
+              <div class="tag-count"><%= tag.count %></div>
+              <i class="remixicon-price-tag-3-line icon"></i>
+            </a>
+          <% }); %>
+        </div>
+      </div>
+    </div>
+    <%- include('./includes/footer') %>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <%- include('./includes/head', { siteTitle: themeConfig.siteName }) %>
+  </head>
+  <body>
+    <%- include('./includes/header') %>
+    <div class="info _site">
+      <div class="inner">
+        <div class="info_main">
+          <h1 class="info_title"><i class="remixicon-price-tag-3-line"></i> <%= tag.name %></h1>
+        </div>
+      </div>
+    </div>
+    <div class="main">
+      <div class="inner">
+        <%- include('./includes/post-list') %>
+
+        <%- include('./includes/pagination') %>
+      </div>
+    </div>
+    <%- include('./includes/footer') %>
+  </body>
+</html>

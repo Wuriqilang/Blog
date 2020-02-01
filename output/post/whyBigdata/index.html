@@ -1,0 +1,189 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>大数据的基本概念 | Wuriqilang</title>
+<meta name="description" content="<p>一名专注于智能制造的程序员</p>" />
+<link rel="shortcut icon" href="http://doc.xr1228.com//favicon.ico?v=1580139538021">
+<link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<link rel="stylesheet" href="http://doc.xr1228.com//styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="大数据的基本概念 | Wuriqilang - Atom Feed" href="http://doc.xr1228.com//atom.xml">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+  </head>
+  <body>
+    <div class="site-nav no-cover">
+      <div class="head">
+  <div class="inner">
+    <a class="site-name" href="http://doc.xr1228.com/">
+        <span>Wuriqilang</span>
+    </a>
+    <label class="burger" for="burger"></label>
+    <input id="burger" type="checkbox">
+    <button class="burger">
+      <div>
+        <span></span>
+        <span></span>
+      </div>
+    </button>
+    <nav class="info_nav">
+      
+        
+          <a href="/">首页</a>
+        
+      
+        
+          <a href="/tags">标签</a>
+        
+      
+        
+          <a href="/tag/python/">Python</a>
+        
+      
+        
+          <a href="/archives">归档</a>
+        
+      
+        
+          <a href="/tag/bigData/">工业与大数据</a>
+        
+      
+    </nav>
+  </div>
+</div>
+    </div>
+    <article role="main" class="hentry ">
+      <!-- 
+        <div class="entry-cover js-cover" data-src="http://doc.xr1228.com//post-images/whyBigdata.png" data-width="900" data-height="423" style="background-image:url(http://doc.xr1228.com//post-images/whyBigdata.png); height: 80vw;">
+          <h1 class="post-title">大数据的基本概念</h1>
+        </div>
+       -->
+      <h1 class="entry-title" itemprop="headline">大数据的基本概念</h1>
+      <div class="entry-meta">
+        <time class="updated" datetime="2020-01-22 15:10:52">2020-01-22</time>
+        <span class="author vcard">
+          3 min read
+        </span>
+      </div>
+      <div class="post-content yue">
+        <p>大数据这个词已经火热了很多年，似乎处处都存在着大数据的噱头，让我们回归本质，探讨一下大数据是什么？</p>
+<!-- more -->
+<h2 id="背景-为什么需要大数据">背景 为什么需要大数据？</h2>
+<ul>
+<li>我们比以往产生<strong>更多</strong>且<strong>更多样性</strong>的数据</li>
+<li>我们比以往<strong>更快的</strong>产生数据</li>
+<li>这些数据具有其价值性</li>
+</ul>
+<p>针对以上三个基本原因，我们必须通过处理这些数据来提取其中的价值。</p>
+<p>然而处理这些大量的数据面临两个问题：</p>
+<ul>
+<li>大规模数据的存储</li>
+<li>大规模数据的分析</li>
+</ul>
+<p>这里我们举一个<strong>例子</strong>：早期的网络环境就如同一条小河，依河而居的人们世代通过抓鱼维生。这个时期鱼的数量有限、种类单一。人们只需要把鱼抓起来放到冰箱，想吃的时候直接拿出来烤就可以了。</p>
+<figure data-type="image" tabindex="1"><img src="http://doc.xr1228.com//post-images/1579677299293.PNG" alt="" loading="lazy"></figure>
+<p>随着人类抓鱼的速度越来越快，抓鱼水平越来越高。人们抓到的鱼数量越来越大，种类越来越丰富。人们逐渐遇到了两个代表性的问题：</p>
+<ul>
+<li>冰箱放不下（存储不足）</li>
+<li>烹饪不过来（处理效率不足）</li>
+</ul>
+<p>如何解决这样的问题呢？</p>
+<ol>
+<li>冰箱放不下：</li>
+</ol>
+<p>解决冰箱放不下无非两个思路。①换一个大一点的冰箱（<strong>纵向扩展</strong>）②多买几个冰箱（横向扩展）<br>
+显然纵向扩展是难以实现的，存10000...条鱼需要多大的冰箱？<br>
+横向扩展相对容易实现，鱼多的时候多买一些冰箱，搞一个冷库（<strong>集群</strong>）然后大家一起去存放鱼（<strong>分布式存储</strong>）<br>
+然而随着冰箱越来越多（<strong>集群规模扩大</strong>），人们又单独做了一个账本（<strong>元数据</strong>），里面存储了每条鱼存放在冰箱什么位置的信息。</p>
+<ol start="2">
+<li>烹饪不过来：</li>
+</ol>
+<p>鱼越来越多，即使所有的鱼都能保存到冰箱中，但是只有一个厨师的话效率实在太低。<br>
+不如多找几个厨师，大家一起烤（分布式计算）</p>
+<h2 id=""></h2>
+<p>所以说，大数据技术本质上用于解决 海量数据提取、存储、处理的一套技术，分布式是其主要实现思路。</p>
+<h2 id="重要结论">重要结论</h2>
+<p><strong>学术界普遍认为大数据仍处于发展与创新的初始阶段</strong>。大量数据的存储并不是大数据技术的主要问题甚至不是重要问题，非结构化的数据的快速处理与分析利用才是大数据要解决的最主要问题。</p>
+<p><strong>大数据是相对的</strong>，大数据的概念也是不断变化的。（三十年前100M也是大数据）大数据是指用现有技术手段和软件难以快速处理的数据。今天的大数据主要强调数据的非结构性与实时处理的要求。</p>
+<p><strong>人是大数据中重要的环节，数据可视化是实现人的作用的主要工具</strong> 大数据强调人通过数据可视化对大数据运算结果的再次分析与知识提炼，以便进行进一步的数据挖掘。</p>
+<p>** 大数据的四个特点：**</p>
+<ul>
+<li>Volume 数据量大</li>
+<li>Velocity 速度快</li>
+<li>Variety 种类多样</li>
+<li>Value 价值密度低</li>
+</ul>
+
+      </div>
+      <div class="entry-block">
+        <div class="entry-tags">
+          
+            <a href="http://doc.xr1228.com/tag/bigData">
+              大数据
+            </a>
+          
+        </div>
+      </div>
+    </article>
+    
+      <section class="post-section prev-post">
+        <div class="inner">
+          <h3>前一篇</h3>
+          <a href="http://doc.xr1228.com/post/zhi-neng-zhi-zao-jian-shu">
+            <strong> 智能制造简述</strong>
+          </a>
+        </div>
+      </section>
+    
+    
+
+    
+
+    <footer class="footer">
+  <div class="main">
+    <a href="http://doc.xr1228.com/">
+      <img class="avatar" src="http://doc.xr1228.com//images/avatar.png?v=1580139538021" alt="Wuriqilang">
+    </a>
+    <div class="footer__social">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <p class="footer__sosumi">
+      Powered by <a href="https://github.com/wuriqilang" target="_blank">Wuriqilang</a>
+    </p>
+    <a class="footer-rss" href="http://doc.xr1228.com//atom.xml">RSS</a>
+  </div>
+</footer>
+
+<script src="http://doc.xr1228.com//media/prism.js"></script>
+<script>
+  Prism.highlightAll()
+</script>
+
+  </body>
+</html>

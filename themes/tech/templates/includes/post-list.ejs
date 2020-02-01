@@ -1,0 +1,15 @@
+<div class="items">
+  <% posts.forEach(function(post) { %>
+    <div class="item Article">
+      <% if (themeConfig.showFeatureImage && post.feature) { %>
+        <a class="item-image js-cover" data-src="<%= post.feature %>" href="<%= post.link %>" style="background-image:url('<%= post.feature %>');"></a>
+      <% } %>
+      <a class="item-main" href="<%= post.link %>">
+        <div class="item-meta">
+          <time datetime="<%= post.date %>"><%= post.dateFormat %></time>
+        </div>
+        <h2><%= post.title %></h2>
+      </a>
+    </div>
+  <% }); %>
+</div>
