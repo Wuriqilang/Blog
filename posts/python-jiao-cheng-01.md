@@ -1,5 +1,5 @@
 ---
-title: 'Python实用教程01  一句话表白 '
+title: '【编程只是一种工具】Python实用教程01  一句话表白 '
 date: 2020-01-22 21:49:28
 tags: [python]
 published: true

@@ -1,5 +1,5 @@
 ---
-title: 'Python实用教程   介绍'
+title: '【编程只是一种工具】Python实用教程   介绍'
 date: 2020-01-22 21:45:15
 tags: [python]
 published: true

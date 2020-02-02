@@ -1,0 +1,395 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>【工业与大数据】 虚拟化技术 | Wuriqilang</title>
+<meta name="description" content="<p>一名专注于智能制造的程序员</p>" />
+<link rel="shortcut icon" href="http://doc.xr1228.com//favicon.ico?v=1580616533446">
+<link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+<link rel="stylesheet" href="http://doc.xr1228.com//styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="【工业与大数据】 虚拟化技术 | Wuriqilang - Atom Feed" href="http://doc.xr1228.com//atom.xml">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+  </head>
+  <body>
+    <div class="site-nav no-cover">
+      <div class="head">
+  <div class="inner">
+    <a class="site-name" href="http://doc.xr1228.com/">
+        <span>Wuriqilang</span>
+    </a>
+    <label class="burger" for="burger"></label>
+    <input id="burger" type="checkbox">
+    <button class="burger">
+      <div>
+        <span></span>
+        <span></span>
+      </div>
+    </button>
+    <nav class="info_nav">
+      
+        
+          <a href="/">首页</a>
+        
+      
+        
+          <a href="/tags">标签</a>
+        
+      
+        
+          <a href="/tag/python/">Python</a>
+        
+      
+        
+          <a href="/archives">归档</a>
+        
+      
+        
+          <a href="/tag/bigData/">工业与大数据</a>
+        
+      
+    </nav>
+  </div>
+</div>
+    </div>
+    <article role="main" class="hentry ">
+      <!-- 
+        <div class="entry-cover js-cover" data-src="http://doc.xr1228.com//post-images/da-shu-ju-xu-ni-hua-ji-zhu.jpeg" data-width="900" data-height="423" style="background-image:url(http://doc.xr1228.com//post-images/da-shu-ju-xu-ni-hua-ji-zhu.jpeg); height: 80vw;">
+          <h1 class="post-title">【工业与大数据】 虚拟化技术</h1>
+        </div>
+       -->
+      <h1 class="entry-title" itemprop="headline">【工业与大数据】 虚拟化技术</h1>
+      <div class="entry-meta">
+        <time class="updated" datetime="2020-02-01 21:58:08">2020-02-01</time>
+        <span class="author vcard">
+          5 min read
+        </span>
+      </div>
+      <div class="post-content yue">
+        <h3 id="为什么要虚拟化">为什么要虚拟化？</h3>
+<p>传统的虚拟化的目的主要是为了分区与抽象</p>
+<ul>
+<li>分区 Partitioning
+<ul>
+<li>分享：打破一个大资源</li>
+<li>服务器</li>
+</ul>
+</li>
+<li>抽象 Abstraction
+<ul>
+<li>用一个指令集仿真另一个指令集（简而言之就是一种操作系统使用另外一种系统）</li>
+</ul>
+</li>
+</ul>
+<p>在云计算时代，虚拟化是为了资源池，安全，便于管理</p>
+<ul>
+<li>资源池
+<ul>
+<li>聚合：将多个资源结合起来</li>
+<li>合一：利于存储</li>
+<li>动态：快速分配（虚拟机）</li>
+</ul>
+</li>
+<li>隔离：保护消费者隔离其他租客
+<ul>
+<li>例如虚拟专用网（VPN）</li>
+</ul>
+</li>
+<li>便于管理
+<ul>
+<li>测试</li>
+<li>机动性</li>
+</ul>
+</li>
+</ul>
+<h3 id="数据中心虚拟化的三个重要内容">数据中心虚拟化的三个重要内容</h3>
+<ul>
+<li>计算虚拟化
+<ul>
+<li>主操作系统：运行在真实机器上</li>
+<li>客户操作系统：运行在主操作系统之上</li>
+<li>Hypervisor：支持运行在多个虚拟机上的软件
+<ul>
+<li>类型1:运行在真实机器上，例如 Xen、VMWARE、ESXi</li>
+<li>类型2:运行在主操作系统，例如 MS Virtual PC</li>
+<li>类型0:1和2兼有，例如 Linux KVM</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>存储虚拟化</li>
+<li>网络虚拟化</li>
+</ul>
+<h3 id="服务器虚拟化考虑的三个问题">服务器虚拟化考虑的三个问题</h3>
+<ul>
+<li>指令集的翻译 二进制翻译
+<ul>
+<li>如何快速执行</li>
+<li>如何执行需要更高权限的指令</li>
+</ul>
+</li>
+<li>I/O设备的仿真
+<ul>
+<li>如何让虚拟机操作系统访问不支持的硬件</li>
+<li>如何保护I/O性能</li>
+</ul>
+</li>
+<li>保护处理器的数据结构 <strong>影子</strong>处理器</li>
+</ul>
+<h3 id="虚拟化的核心问题内存的保护管理">虚拟化的核心问题：内存的保护管理</h3>
+<p><img src="http://doc.xr1228.com//post-images/1580566550776.png" alt="" loading="lazy"><br>
+计算机的内存映射是由MMU进行管理，当计算机虚拟化后运行在计算机上的多个系统对于MMU的控制方式是内存保护管理的重要问题。目前的解决方式：</p>
+<ul>
+<li>半虚拟化：修改虚拟机操作系统，能不做操作就不要作</li>
+<li>影子页表：
+<ul>
+<li>拒绝客户操作系统对实际页表条目的任何访问</li>
+<li>捕获访问请求，在软件中仿真</li>
+</ul>
+</li>
+<li>硬件支持的虚拟化：
+<ul>
+<li>二级地址转表（SLAT）
+<ul>
+<li>AMD AMD-V RVI</li>
+<li>Intel VT-x EPT</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>MMU是Memory Management Unit的缩写，中文名是内存管理单元，有时称作分页内存管理单元（英语：paged memory management unit，缩写为PMMU）。它是一种负责处理中央处理器（CPU）的内存访问请求的计算机硬件。它的功能包括虚拟地址到物理地址的转换（即虚拟内存管理）、内存保护、中央处理器高速缓存的控制。</p>
+</blockquote>
+<h3 id="网络虚拟化">网络虚拟化</h3>
+<h4 id="网络虚拟化的用途">网络虚拟化的用途</h4>
+<figure data-type="image" tabindex="1"><img src="http://doc.xr1228.com//post-images/1580567311758.png" alt="" loading="lazy"></figure>
+<h4 id="网络虚拟化的举例-vlan">网络虚拟化的举例 ： VLAN</h4>
+<p>最简单的目标：提供单一的二层网络</p>
+<ul>
+<li>端口分数不同的VLAN</li>
+<li>多个VLAN共享一个端口
+<ul>
+<li>Trunk模式</li>
+<li>VLAN标签（12bits）：特殊的包头</li>
+<li>最多支持4096 VLAN</li>
+</ul>
+</li>
+<li>VLAN的优劣与解决方案
+<ul>
+<li>优势：标准，支持广泛，硬件成本低</li>
+<li>劣势：只能支持4096个VLAN</li>
+<li>新的标准：VxLAN
+<ul>
+<li>通过三层隧道实现</li>
+<li>广播 -&gt; 组播</li>
+<li>Virtual Tunnel End Ppoints（VTEPs）负责打包和接包</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="现代网络虚拟化技术软件定义网络">现代网络虚拟化技术：软件定义网络</h4>
+<ul>
+<li>传统网络
+<ul>
+<li>控制面与数据面集成在同一个设备中</li>
+<li>不同网络设备之间通过协议决定如何转发</li>
+</ul>
+</li>
+<li>软件定义网络
+<ul>
+<li>控制面集中管理，放在服务器中</li>
+<li>举例：OpenFlow协议，每一层交换机通过Controller确定数据流向<br>
+<img src="http://doc.xr1228.com//post-images/1580614390079.png" alt="" loading="lazy"></li>
+<li>举例：Portland —— 大规模的虚拟二层网络的实现
+<ul>
+<li>大型2层网络的挑战
+<ul>
+<li>地址解析（ARP）：广播</li>
+<li>路由：广播</li>
+<li>转发：交换机要记住大量状态</li>
+<li>根源：MAC地址不连续</li>
+</ul>
+</li>
+<li>Portland实现
+<ul>
+<li>与位置相关的虚拟地址</li>
+<li>通过SDN的地址解析
+<ul>
+<li>网络截获所有ARP广播</li>
+<li>把无序的MAC地址改成与物理位置相关的地址</li>
+<li>转发数据包</li>
+<li>发给服务器之前，改回原来的MAC地址</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="存储虚拟化">存储虚拟化</h4>
+<ul>
+<li>存储的意义
+<ul>
+<li>独立于数据位置
+<ul>
+<li>扩展性强，容量大</li>
+<li>易于管理（磁盘可集中存储）</li>
+<li>提升磁盘使用率</li>
+</ul>
+</li>
+<li>独立与物理存储技术
+<ul>
+<li>易于升级</li>
+<li>可用性的优化（多路径访问、冗余）</li>
+<li>易于维护（在线的后台备份、恢复）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>存储虚拟化的三类接口
+<ul>
+<li>块接口
+<ul>
+<li>本例块存储</li>
+<li>远程块存储接口</li>
+</ul>
+</li>
+<li>文件接口
+<ul>
+<li>文件系统</li>
+<li>网络文件系统（NFS，CIFS，HDFS）</li>
+<li>VFS</li>
+</ul>
+</li>
+<li>对象存储接口
+<ul>
+<li>亚马逊S3（基于http协议的REST接口）</li>
+<li>OpenStack Swift</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>存储虚拟化的实现方式
+<ul>
+<li>SAN 存储区域网络
+<ul>
+<li>Storage Area Network</li>
+<li>存储服务器通过专用网络链接，例如光纤通道（FC）</li>
+</ul>
+</li>
+<li>NAS 网络附接存储
+<ul>
+<li>Network attached storage（NAS）</li>
+<li>存储服务器通过通用网络来访问，例如以太网</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="总结">总结</h3>
+<ul>
+<li>优势
+<ul>
+<li>统一、抽象的接口隐藏了复杂的物理硬件</li>
+<li>灵活，可以软件定义</li>
+<li>易于管理，更容易保证安全</li>
+</ul>
+</li>
+<li>问题
+<ul>
+<li>虚拟化有一定的资源开销</li>
+<li>通常没有实现性能的隔离</li>
+<li>过多层的抽象：如何调试 ？</li>
+</ul>
+</li>
+<li>发展趋势：软件定义数据中心？
+<ul>
+<li>网络功能虚拟化
+<ul>
+<li>防火墙、入侵检测系统虚拟化</li>
+</ul>
+</li>
+<li>资源的管理和调度</li>
+<li>其他资源的虚拟化：空调？供电？建筑？</li>
+<li>目标：性能+灵活性+管理</li>
+</ul>
+</li>
+</ul>
+
+      </div>
+      <div class="entry-block">
+        <div class="entry-tags">
+          
+            <a href="http://doc.xr1228.com/tag/bigData">
+              大数据
+            </a>
+          
+        </div>
+      </div>
+    </article>
+    
+    
+      <section class="post-section prev-post">
+        <div class="inner">
+          <h3>后一篇</h3>
+          <a href="http://doc.xr1228.com/post/yun-ji-suan-de-shang-ye-mo-shi">
+            <strong>【工业与大数据】云计算的商业模式</strong>
+          </a>
+        </div>
+      </section>
+    
+
+    
+
+    <footer class="footer">
+  <div class="main">
+    <a href="http://doc.xr1228.com/">
+      <img class="avatar" src="http://doc.xr1228.com//images/avatar.png?v=1580616533446" alt="Wuriqilang">
+    </a>
+    <div class="footer__social">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <p class="footer__sosumi">
+      Powered by <a href="https://github.com/wuriqilang" target="_blank">Wuriqilang</a>
+    </p>
+    <a class="footer-rss" href="http://doc.xr1228.com//atom.xml">RSS</a>
+  </div>
+</footer>
+
+<script src="http://doc.xr1228.com//media/prism.js"></script>
+<script>
+  Prism.highlightAll()
+</script>
+
+  </body>
+</html>

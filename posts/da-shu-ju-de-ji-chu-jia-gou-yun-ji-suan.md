@@ -1,7 +1,7 @@
 ---
-title: '大数据的基础架构 —— 云计算'
+title: '【工业与大数据】大数据的基础架构 —— 云计算'
 date: 2020-01-23 23:59:47
-tags: []
+tags: [大数据]
 published: true
 hideInList: false
 feature: /post-images/da-shu-ju-de-ji-chu-jia-gou-yun-ji-suan.png

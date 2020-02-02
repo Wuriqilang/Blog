@@ -1,5 +1,5 @@
 ---
-title: 'Python实用教程02  Python UI编程'
+title: '【编程只是工具】Python实用教程02  Python UI编程'
 date: 2020-01-22 21:51:17
 tags: [python]
 published: true

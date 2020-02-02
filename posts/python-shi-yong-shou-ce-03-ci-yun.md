@@ -1,5 +1,5 @@
 ---
-title: 'Python实用手册03 词云'
+title: '【编程只是工具】Python实用手册03 词云'
 date: 2020-01-22 21:53:45
 tags: [python]
 published: true

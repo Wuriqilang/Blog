@@ -1,7 +1,7 @@
 ---
-title: '云计算的商业模式'
+title: '【工业与大数据】云计算的商业模式'
 date: 2020-01-27 23:10:56
-tags: []
+tags: [大数据]
 published: true
 hideInList: false
 feature: /post-images/yun-ji-suan-de-shang-ye-mo-shi.png
