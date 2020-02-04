@@ -1,0 +1,367 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>【工业与大数据】分布式文件系统 - Wuriqilang</title>
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="http://localhost:4000/media/css/tailwind.css">
+<link rel="stylesheet" href="http://localhost:4000/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="【工业与大数据】分布式文件系统 - Wuriqilang - Atom Feed" href="http://localhost:4000/atom.xml">
+
+    
+
+  <meta name="description" content="文件系统基础
+
+文件系统概述
+为什么要有文件系统？
+需要介质保存一些永久的数据，停电后数据也可以长期保存
+文件系统的名字空间，名字空间的操作
+在文件数节点上进行操作
+文件系统中文件读写操作
+提供一些例如 open、read、write、cl..." />
+  <meta property="og:title" content="【工业与大数据】分布式文件系统 - Wuriqilang">
+  <meta property="og:description" content="文件系统基础
+
+文件系统概述
+为什么要有文件系统？
+需要介质保存一些永久的数据，停电后数据也可以长期保存
+文件系统的名字空间，名字空间的操作
+在文件数节点上进行操作
+文件系统中文件读写操作
+提供一些例如 open、read、write、cl..." />
+  <meta property="og:type" content="articles">
+  <meta property="og:url" content="http://localhost:4000/post/gong-ye-yu-da-shu-ju-fen-bu-shi-wen-jian-xi-tong" />
+  <meta property="og:image" content="http://localhost:4000/images/avatar.png">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200">
+  <meta name="twitter:title" content="【工业与大数据】分布式文件系统 - Wuriqilang">
+  <meta name="twitter:description" content="文件系统基础
+
+文件系统概述
+为什么要有文件系统？
+需要介质保存一些永久的数据，停电后数据也可以长期保存
+文件系统的名字空间，名字空间的操作
+在文件数节点上进行操作
+文件系统中文件读写操作
+提供一些例如 open、read、write、cl...">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="http://localhost:4000/post/gong-ye-yu-da-shu-ju-fen-bu-shi-wen-jian-xi-tong">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+ 
+  
+    <link rel="stylesheet" href="http://localhost:4000/media/css/prism-github.css">
+  
+
+  
+</head>
+
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+    <a href="http://localhost:4000" class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+      Wuriqilang
+    </a>
+    <div class="max-w-4xl w-full mx-auto">
+      <div class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+        <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+          【工业与大数据】分布式文件系统
+        </h1>
+        
+        <div class="mb-8 flex flex-wrap">
+          <div class="text-gray-400 text-sm mr-4">2020-02-02 · 2 min read</div>
+          
+        </div>
+        <div class="markdown mb-8" v-pre>
+          <h2 id="文件系统基础">文件系统基础</h2>
+</br>
+<h3 id="文件系统概述">文件系统概述</h3>
+<h4 id="为什么要有文件系统">为什么要有文件系统？</h4>
+<p>需要介质保存一些永久的数据，停电后数据也可以长期保存</p>
+<h4 id="文件系统的名字空间名字空间的操作">文件系统的名字空间，名字空间的操作</h4>
+<p>在文件数节点上进行操作</p>
+<h4 id="文件系统中文件读写操作">文件系统中文件读写操作</h4>
+<p>提供一些例如 open、read、write、close的操作函数</p>
+<ul>
+<li>open 操作：将文件 offset = 0，并记录文件操作信息</li>
+<li>close 操作：将文件从内存中删除</li>
+<li>read 操作：从offset=0位置读取size大小的数据。</li>
+</ul>
+<h3 id="文件系统的设计">文件系统的设计</h3>
+<h4 id="文件系统的下层接口">文件系统的下层接口</h4>
+<ul>
+<li>磁盘的读写接口，磁盘中的地址</li>
+</ul>
+<h4 id="文件系统的上层接口">文件系统的上层接口</h4>
+<ul>
+<li>文件树的组织</li>
+<li>文件数据的读写</li>
+</ul>
+<h4 id="文件系统最本质的功能将文件名字翻译定位到一个具体的磁盘位置进而可以完成文件的读写">文件系统最本质的功能：将文件名字翻译定位到一个具体的磁盘位置，进而可以完成文件的读写。</h4>
+</br>
+<h3 id="文件系统接口标准化">文件系统接口标准化</h3>
+<p>虚拟文件系统（VFS）是物理文件系统与服务之间的一个接口层，它对Linux的每一个文件系统的所有细节进行抽象，使得不同的文件系统在Linux核心以及系统中运行的其他进程看来，都是相同的。即调用VFS接口来调用不同的文件操作系统。<br>
+</br><br>
+</br></p>
+<h3 id="文件系统的磁盘数据结构">文件系统的磁盘数据结构</h3>
+<figure data-type="image" tabindex="1"><img src="http://localhost:4000/post-images/1580632535964.png" alt="" loading="lazy"></figure>
+<h3 id="文件系统的讨论">文件系统的讨论</h3>
+<ul>
+<li>
+<p>关于磁盘块大小的讨论</p>
+<ul>
+<li>一个文件起码占用1个文件块的空间（选择磁盘块越小浪费越小）</li>
+<li>每个磁盘块需要元数据进行描述（磁盘块越多，开销越大）</li>
+<li>虽然磁盘物理特性决定了最小的读写单元512字节，但是目前多数文件系统选用4k磁盘块。（根据不同文件系统特点选择）</li>
+</ul>
+</li>
+<li>
+<p>文件系统的缓存</p>
+<ul>
+<li>缓存能够加速的必要条件，时间局部性（经常访问）与空间局部性（附近的数据也需要访问）</li>
+</ul>
+</li>
+<li>
+<p>磁盘系统的优化策略</p>
+<ul>
+<li>磁盘的顺序读写与随机读写：尽量让磁盘进行顺序读写（顺序读写100MB带宽，随机读写1MB带宽）</li>
+<li>如何进行磁盘优化</li>
+</ul>
+</li>
+</ul>
+<h2 id="分布式文件系统">分布式文件系统</h2>
+
+        </div>
+        <!-- Share to Twitter, Weibo, Telegram -->
+        <div class="flex items-center">
+          <div class="mr-4 flex items-center">
+            <i class="ri-share-forward-line text-gray-500"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTwitter">
+            <i class="ri-twitter-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 inline-flex" @click="shareToWeibo">
+            <i class="ri-weibo-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTelegram">
+            <i class="ri-telegram-line"></i>
+          </div>
+        </div>
+      </div>
+
+      
+
+      
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Powered by <a href="https://github.com/wuriqilang" target="_blank">Wuriqilang</a>
+</footer>
+    </div>
+
+    <!-- TOC Container -->
+    <div class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white dark:bg-gray-500 dark:text-gray-200 hover:shadow-lg transition-all animated fadeInRight" @click="showToc = true">
+      <i class="ri-file-list-line"></i>
+    </div>
+
+    <div class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white dark:bg-gray-800 p-4 border-l border-gray-100 dark:border-gray-600 z-10 transition-fast" :class="{ '-mr-64': !showToc }">
+      <div class="flex mb-4 justify-end">
+        <div class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast" @click="showToc = false">
+          <i class="ri-close-line text-lg"></i>
+        </div>
+      </div>
+      <div class="post-toc-container">
+        <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80">文件系统基础</a>
+<ul>
+<li><a href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0">文件系统概述</a>
+<ul>
+<li><a href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E6%9C%89%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F">为什么要有文件系统？</a></li>
+<li><a href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%90%8D%E5%AD%97%E7%A9%BA%E9%97%B4%E5%90%8D%E5%AD%97%E7%A9%BA%E9%97%B4%E7%9A%84%E6%93%8D%E4%BD%9C">文件系统的名字空间，名字空间的操作</a></li>
+<li><a href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99%E6%93%8D%E4%BD%9C">文件系统中文件读写操作</a></li>
+</ul>
+</li>
+<li><a href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%AE%BE%E8%AE%A1">文件系统的设计</a>
+<ul>
+<li><a href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E4%B8%8B%E5%B1%82%E6%8E%A5%E5%8F%A3">文件系统的下层接口</a></li>
+<li><a href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E4%B8%8A%E5%B1%82%E6%8E%A5%E5%8F%A3">文件系统的上层接口</a></li>
+<li><a href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E6%9C%80%E6%9C%AC%E8%B4%A8%E7%9A%84%E5%8A%9F%E8%83%BD%E5%B0%86%E6%96%87%E4%BB%B6%E5%90%8D%E5%AD%97%E7%BF%BB%E8%AF%91%E5%AE%9A%E4%BD%8D%E5%88%B0%E4%B8%80%E4%B8%AA%E5%85%B7%E4%BD%93%E7%9A%84%E7%A3%81%E7%9B%98%E4%BD%8D%E7%BD%AE%E8%BF%9B%E8%80%8C%E5%8F%AF%E4%BB%A5%E5%AE%8C%E6%88%90%E6%96%87%E4%BB%B6%E7%9A%84%E8%AF%BB%E5%86%99">文件系统最本质的功能：将文件名字翻译定位到一个具体的磁盘位置，进而可以完成文件的读写。</a></li>
+</ul>
+</li>
+<li><a href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E6%8E%A5%E5%8F%A3%E6%A0%87%E5%87%86%E5%8C%96">文件系统接口标准化</a></li>
+<li><a href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%A3%81%E7%9B%98%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">文件系统的磁盘数据结构</a></li>
+<li><a href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%AE%A8%E8%AE%BA">文件系统的讨论</a></li>
+</ul>
+</li>
+<li><a href="#%E5%88%86%E5%B8%83%E5%BC%8F%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F">分布式文件系统</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <div class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all dark:bg-gray-500 dark:text-gray-200" @click="backToUp" v-show="scrolled">
+      <i class="ri-arrow-up-line"></i>
+    </div>
+  </div>
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe. 
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg">
+  </div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter">
+        </div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip">
+        </div>
+      </div>
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+      </button>
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+      </button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="http://localhost:4000/media/scripts/main.js"></script>
+  
+  <!-- Code Highlight -->
+  
+    <script src="http://localhost:4000/media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+  <script>
+    //拿到预览框架，也就是上面的html代码
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+    //定义图片数组变量
+    var imgitems;
+    /**
+    * 用于显示预览界面
+    * @param index 图片数组下标
+    */
+    function viewImg(index) {
+      //其它选项这里不做过多阐述，详情见官网
+      var pswpoptions = {
+        index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+        bgOpacity: 0.7, // 背景透明度，0-1
+        maxSpreadZoom: 3, // 缩放级别，不要太大
+      };
+      //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, imgitems, pswpoptions);
+      gallery.init()
+    }
+    /**
+    * 用于添加图片点击事件
+    * @param img 图片元素
+    * @param index 所属下标（在imgitems中的位置）
+    */
+    function addImgClick(img, index) {
+      img.onclick = function() {
+        viewImg(index)
+      }
+    }
+    /**
+    * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+    * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+    * 异步加载图片可在图片元素创建完成后调用此方法
+    */
+    function initImg() {
+      //重置图片数组
+      imgitems = [];
+      //查找class:markdown 下的所有img元素并遍历
+      var imgs = document.querySelectorAll('.markdown img');
+      for (var i = 0; i < imgs.length; i++) {
+        var img = imgs[i];
+        //本站相册初始为loading图片，真实图片放在data-src
+        var ds = img.getAttribute("data-src");
+        //创建image对象，用于获取图片宽高
+        var imgtemp = new Image();
+        //判断是否存在data-src
+        if (ds != null && ds.length > 0) {
+          imgtemp.src = ds
+        } else {
+          imgtemp.src = img.src
+        }
+        //判断是否存在缓存
+        if (imgtemp.complete) {
+          var imgobj = {
+            "src": imgtemp.src,
+            "w": imgtemp.width,
+            "h": imgtemp.height,
+          };
+          imgitems[i] = imgobj;
+          addImgClick(img, i);
+        } else {
+          console.log('进来了2')
+          imgtemp.index = i;
+          imgtemp.img = img;
+          imgtemp.onload = function() {
+            var imgobj = {
+              "src": this.src,
+              "w": this.width,
+              "h": this.height,
+            };
+            //不要使用push，因为onload前后顺序会不同
+            imgitems[this.index] = imgobj
+            //添加点击事件
+            addImgClick(this.img, this.index);
+          }
+        }
+      }
+    }
+    //初始化
+    initImg();
+  </script>
+</body>
+
+</html>

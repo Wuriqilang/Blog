@@ -1,132 +1,87 @@
-<html>
-  <head>
-    <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>Wuriqilang</title>
-<meta name="description" content="<p>一名专注于智能制造的程序员</p>" />
-<link rel="shortcut icon" href="http://doc.xr1228.com//favicon.ico?v=1580616533446">
-<link href="https://cdn.remixicon.com/releases/v1.3.1/remixicon.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="http://localhost:4000/media/css/tailwind.css">
+<link rel="stylesheet" href="http://localhost:4000/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Wuriqilang - Atom Feed" href="http://localhost:4000/atom.xml">
 
-<link rel="stylesheet" href="http://doc.xr1228.com//styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="Wuriqilang - Atom Feed" href="http://doc.xr1228.com//atom.xml">
+    
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
-
-
-
-  </head>
-  <body>
-    <div class="head">
-  <div class="inner">
-    <a class="site-name" href="http://doc.xr1228.com/">
-        <span>Wuriqilang</span>
-    </a>
-    <label class="burger" for="burger"></label>
-    <input id="burger" type="checkbox">
-    <button class="burger">
-      <div>
-        <span></span>
-        <span></span>
-      </div>
-    </button>
-    <nav class="info_nav">
-      
-        
-          <a href="/">首页</a>
-        
-      
-        
-          <a href="/tags">标签</a>
-        
-      
-        
-          <a href="/tag/python/">Python</a>
-        
-      
-        
-          <a href="/archives">归档</a>
-        
-      
-        
-          <a href="/tag/bigData/">工业与大数据</a>
-        
-      
-    </nav>
+  <meta name="description" content="<p>一名专注于智能制造的程序员</p>" />
+</head>
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+    <div class="nav py-3 md:py-8 fixed w-full z-10 bg-gray-50 dark:bg-gray-700 transition-all duration-300" :class="{ 'scroll': scrolled }">
+  <div class="flex justify-end px-4">
+    <div class="w-8 h-8 flex justify-center items-center rounded-full md:hidden" @click="showMenu = !showMenu">
+      <i class="ri-close-line" v-show="showMenu"></i>
+      <i class="ri-menu-3-line" v-show="!showMenu"></i>
+    </div>
   </div>
+  <nav class="max-w-4xl w-full mx-auto text-center flex flex-col md:flex-row justify-center md:block" :class="`${ showMenu ? 'block' : 'hidden' }`">
+    
+      <a href="/" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        首页
+      </a>
+    
+      <a href="/tags" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        分类
+      </a>
+    
+      <a href="/tag/python/" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        Python
+      </a>
+    
+      <a href="/archives" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        归档
+      </a>
+    
+      <a href="/tag/bigData/" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        工业与大数据
+      </a>
+    
+    <a href="http://localhost:4000/atom.xml" target="_blank" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+      RSS
+    </a>
+  </nav>
 </div>
-    <div class="info _site">
-      <div class="inner">
-        <div class="info_main">
-          <h1 class="info_title"><i class="remixicon-price-tag-3-line"></i> 目前共计 3 个标签</h1>
-        </div>
+    <div class="max-w-4xl w-full mx-auto pt-32">
+      <div class="py-8 shadow-box bg-white dark:bg-gray-600 border-gray-300 rounded-none md:rounded-lg -mx-1 md:mx-0 md:px-0">
+        
+          <div class="px-8 pb-5 inline-flex relative overflow-hidden">
+            <a href="http://localhost:4000/tag/bigData" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+              <i class="ri-hashtag"></i>
+              大数据（6）
+            </a>
+          </div>
+        
+          <div class="px-8 pb-5 inline-flex relative overflow-hidden">
+            <a href="http://localhost:4000/tag/python" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+              <i class="ri-hashtag"></i>
+              python（4）
+            </a>
+          </div>
+        
+          <div class="px-8 pb-5 inline-flex relative overflow-hidden">
+            <a href="http://localhost:4000/tag/smartManufacture" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+              <i class="ri-hashtag"></i>
+              智能制造（1）
+            </a>
+          </div>
+        
       </div>
-    </div>
-    <div class="main">
-      <div class="inner">
-        <div class="tags">
-          
-            <a class="tag" href="http://doc.xr1228.com/tag/bigData">
-              <div class="tag-name">大数据</div>
-              <div class="tag-count">5</div>
-              <i class="remixicon-price-tag-3-line icon"></i>
-            </a>
-          
-            <a class="tag" href="http://doc.xr1228.com/tag/python">
-              <div class="tag-name">python</div>
-              <div class="tag-count">4</div>
-              <i class="remixicon-price-tag-3-line icon"></i>
-            </a>
-          
-            <a class="tag" href="http://doc.xr1228.com/tag/smartManufacture">
-              <div class="tag-name">智能制造</div>
-              <div class="tag-count">1</div>
-              <i class="remixicon-price-tag-3-line icon"></i>
-            </a>
-          
-        </div>
-      </div>
-    </div>
-    <footer class="footer">
-  <div class="main">
-    <a href="http://doc.xr1228.com/">
-      <img class="avatar" src="http://doc.xr1228.com//images/avatar.png?v=1580616533446" alt="Wuriqilang">
-    </a>
-    <div class="footer__social">
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    </div>
-    <p class="footer__sosumi">
-      Powered by <a href="https://github.com/wuriqilang" target="_blank">Wuriqilang</a>
-    </p>
-    <a class="footer-rss" href="http://doc.xr1228.com//atom.xml">RSS</a>
-  </div>
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Powered by <a href="https://github.com/wuriqilang" target="_blank">Wuriqilang</a>
 </footer>
-
-<script src="http://doc.xr1228.com//media/prism.js"></script>
-<script>
-  Prism.highlightAll()
-</script>
-
-  </body>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="http://localhost:4000/media/scripts/main.js"></script>
+</body>
 </html>

@@ -1,0 +1,325 @@
+{
+  "name": "Rocky",
+  "version": "1.0.4",
+  "author": "EryouHao",
+  "customConfig": [
+    {
+      "name": "codeHighlight",
+      "label": "代码高亮",
+      "group": "特色功能",
+      "value": false,
+      "type": "switch",
+      "note": "若不需要，可关闭以加快页面加载速度"
+    },
+    {
+      "name": "hightlightTheme",
+      "label": "代码高亮主题",
+      "group": "特色功能",
+      "value": "atom-dark",
+      "type": "radio",
+      "options": [
+        {
+          "label": "Atom Dark",
+          "value": "atom-dark"
+        },
+        {
+          "label": "GitHub",
+          "value": "github"
+        },
+        {
+          "label": "Synthwave84",
+          "value": "synthwave84"
+        },
+        {
+          "label": "VS Light",
+          "value": "vs-light"
+        }
+      ]
+    },
+    {
+      "name": "katexRender",
+      "label": "数学公式（KaTeX）渲染",
+      "group": "特色功能",
+      "value": false,
+      "type": "switch",
+      "note": "若不需要，可关闭以加快页面加载速度"
+    },
+    {
+      "name": "fontFamily",
+      "label": "网页字体",
+      "group": "特色功能",
+      "value": "Inter",
+      "type": "radio",
+      "options": [
+        {
+          "label": "默认（Inter）",
+          "value": "Inter"
+        },
+        {
+          "label": "PingFang TC",
+          "value": "PingFang TC"
+        },
+        {
+          "label": "Georgia,serif",
+          "value": "Georgia,serif"
+        }
+      ]
+    },
+    {
+      "name": "showHomeBtn",
+      "label": "首页按钮",
+      "group": "特色功能",
+      "value": false,
+      "type": "switch"
+    },
+    {
+      "name": "homeBtnText",
+      "label": "首页按钮文案",
+      "group": "特色功能",
+      "value": "LET'S TALK!",
+      "type": "input"
+    },
+    {
+      "name": "homeBtnLink",
+      "label": "首页按钮链接",
+      "group": "特色功能",
+      "value": "/post/about",
+      "type": "input",
+      "note": "可写任意链接。如：邮箱链接(mailto:xxx@gmail.com)、关于页(https://xxx.com/post/about/)"
+    },
+    {
+      "name": "showSocial",
+      "label": "社交信息",
+      "group": "社交信息",
+      "value": false,
+      "type": "switch"
+    },
+    {
+      "name": "socialText",
+      "label": "社交信息文案",
+      "group": "社交信息",
+      "value": "Follow me 👉",
+      "type": "input"
+    },
+    {
+      "name": "wechat",
+      "label": "微信",
+      "group": "社交信息",
+      "value": "",
+      "type": "picture-upload",
+      "note": "建议设置正方形的二维码图片"
+    },
+    {
+      "name": "mail",
+      "label": "Email",
+      "group": "社交信息",
+      "value": "",
+      "type": "input",
+      "note": "建议填写 mailto:xxx@xxx.com"
+    },
+    {
+      "name": "github",
+      "label": "Github",
+      "group": "社交信息",
+      "value": "",
+      "type": "input",
+      "note": "链接地址"
+    },
+    {
+      "name": "twitter",
+      "label": "Twitter",
+      "group": "社交信息",
+      "value": "",
+      "type": "input",
+      "note": "链接地址"
+    },
+    {
+      "name": "weibo",
+      "label": "微博",
+      "group": "社交信息",
+      "value": "",
+      "type": "input",
+      "note": "链接地址"
+    },
+    {
+      "name": "zhihu",
+      "label": "知乎",
+      "group": "社交信息",
+      "value": "",
+      "type": "input",
+      "note": "链接地址"
+    },
+    {
+      "name": "facebook",
+      "label": "Facebook",
+      "group": "社交信息",
+      "value": "",
+      "type": "input",
+      "note": "链接地址"
+    },
+    {
+      "name": "telegram",
+      "label": "Telegram",
+      "group": "社交信息",
+      "value": "",
+      "type": "input",
+      "note": "链接地址"
+    },
+    {
+      "name": "dribbble",
+      "label": "Dribbble",
+      "group": "社交信息",
+      "value": "",
+      "type": "input",
+      "note": "链接地址"
+    },
+    {
+      "name": "instagram",
+      "label": "Instagram",
+      "group": "社交信息",
+      "value": "",
+      "type": "input",
+      "note": "链接地址"
+    },
+    {
+      "name": "behance",
+      "label": "Behance",
+      "group": "社交信息",
+      "value": "",
+      "type": "input",
+      "note": "链接地址"
+    },
+    {
+      "name": "qq",
+      "label": "QQ",
+      "group": "社交信息",
+      "value": "",
+      "type": "input",
+      "note": "链接地址"
+    },
+    {
+      "name": "readMore",
+      "label": "阅读更多",
+      "group": "网页文案",
+      "value": "Read more",
+      "type": "input"
+    },
+    {
+      "name": "prevPage",
+      "label": "上一页",
+      "group": "网页文案",
+      "value": "上一页",
+      "type": "input"
+    },
+    {
+      "name": "nextPage",
+      "label": "下一页",
+      "group": "网页文案",
+      "value": "下一页",
+      "type": "input"
+    },
+    {
+      "name": "openValine",
+      "label": "是否开启",
+      "group": "Valine 评论",
+      "value": false,
+      "type": "switch",
+      "note": "设置文档： https://valine.js.org/"
+    },
+    {
+      "name": "valineAppId",
+      "label": "App ID",
+      "group": "Valine 评论",
+      "value": "",
+      "type": "input",
+      "note": "从 LeanCloud 的应用中得到的 appId"
+    },
+    {
+      "name": "valineAppKey",
+      "label": "App Key",
+      "group": "Valine 评论",
+      "value": "",
+      "type": "input",
+      "note": "从 LeanCloud 的应用中得到的 APP Key"
+    },
+    {
+      "name": "valineNotify",
+      "label": "Notify",
+      "group": "Valine 评论",
+      "value": false,
+      "type": "switch",
+      "note": "评论回复邮件提醒"
+    },
+    {
+      "name": "valineVerify",
+      "label": "Verify",
+      "group": "Valine 评论",
+      "value": true,
+      "type": "switch",
+      "note": "验证码服务"
+    },
+    {
+      "name": "valineAvatar",
+      "label": "Avatar",
+      "group": "Valine 评论",
+      "value": "mp",
+      "type": "input",
+      "note": "Gravatar 头像展示方式"
+    },
+    {
+      "name": "valinePageSize",
+      "label": "Page Size",
+      "group": "Valine 评论",
+      "value": 10,
+      "type": "input",
+      "note": "评论列表分页，每页条数"
+    },
+    {
+      "name": "valineVisitor",
+      "label": "Visitor",
+      "group": "Valine 评论",
+      "value": false,
+      "type": "switch",
+      "note": "文章访问量统计"
+    },
+    {
+      "name": "valineHighlight",
+      "label": "Highlight",
+      "group": "Valine 评论",
+      "value": false,
+      "type": "switch",
+      "note": "代码高亮，默认开启，若不需要，请手动关闭"
+    },
+    {
+      "name": "valineRecordIp",
+      "label": "Record IP",
+      "group": "Valine 评论",
+      "value": false,
+      "type": "switch",
+      "note": "是否记录评论者IP"
+    },
+    {
+      "name": "valinePlaceholder",
+      "label": "Placeholder",
+      "group": "Valine 评论",
+      "value": "来都来了，不妨评论一下",
+      "type": "input",
+      "note": "评论框占位提示符"
+    },
+    {
+      "name": "customCss",
+      "label": "自定义CSS",
+      "group": "自定义样式",
+      "value": "",
+      "type": "textarea"
+    },
+    {
+      "name": "ga",
+      "label": "跟踪 ID",
+      "group": "谷歌统计",
+      "value": "",
+      "type": "input",
+      "note": "UA-xxxxxxxxx-x"
+    }
+  ]
+}
