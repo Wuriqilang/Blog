@@ -1,68 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>http://localhost:4000</id>
+    <id>http://doc.xr1228.com/</id>
     <title>Wuriqilang</title>
-    <updated>2020-02-04T15:06:13.910Z</updated>
+    <updated>2020-02-06T08:40:55.165Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="http://localhost:4000"/>
-    <link rel="self" href="http://localhost:4000/atom.xml"/>
-    <subtitle>&lt;p&gt;一名专注于智能制造的程序员&lt;/p&gt;</subtitle>
-    <logo>http://localhost:4000/images/avatar.png</logo>
-    <icon>http://localhost:4000/favicon.ico</icon>
+    <link rel="alternate" href="http://doc.xr1228.com/"/>
+    <link rel="self" href="http://doc.xr1228.com/atom.xml"/>
+    <subtitle>我是一名专注于智能制造的程序员 👨‍💻 
+&lt;h5&gt;编程只是解决问题的武器⚔️,希望我能用最简单的语言⚡告诉你如何拿起的武器🙊 ，以及如何打倒敌人👾&lt;/h5&gt;</subtitle>
+    <logo>http://doc.xr1228.com/images/avatar.png</logo>
+    <icon>http://doc.xr1228.com/favicon.ico</icon>
     <rights>All rights reserved 2020, Wuriqilang</rights>
     <entry>
+        <title type="html"><![CDATA[【工业与大数据】GFS：Google文件系统]]></title>
+        <id>http://doc.xr1228.com/post/gong-ye-yu-da-shu-ju-gfsgoogle-wen-jian-xi-tong</id>
+        <link href="http://doc.xr1228.com/post/gong-ye-yu-da-shu-ju-gfsgoogle-wen-jian-xi-tong">
+        </link>
+        <updated>2020-02-06T02:26:12.000Z</updated>
+        <summary type="html"><![CDATA[<p>为什么传统的NFS/AFS并不能满足大数据的需要？为什么GFS大名鼎鼎？它解决了什么样的问题？</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>为什么传统的NFS/AFS并不能满足大数据的需要？为什么GFS大名鼎鼎？它解决了什么样的问题？</p>
+]]></content>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[【工业与大数据】分布式文件系统]]></title>
-        <id>http://localhost:4000/post/gong-ye-yu-da-shu-ju-fen-bu-shi-wen-jian-xi-tong</id>
-        <link href="http://localhost:4000/post/gong-ye-yu-da-shu-ju-fen-bu-shi-wen-jian-xi-tong">
+        <id>http://doc.xr1228.com/post/gong-ye-yu-da-shu-ju-fen-bu-shi-wen-jian-xi-tong</id>
+        <link href="http://doc.xr1228.com/post/gong-ye-yu-da-shu-ju-fen-bu-shi-wen-jian-xi-tong">
         </link>
         <updated>2020-02-02T08:14:41.000Z</updated>
     </entry>
     <entry>
-        <title type="html"><![CDATA[【工业与大数据】典型的云计算系统：OPENSTACK]]></title>
-        <id>http://localhost:4000/post/gong-ye-yu-da-shu-ju-dian-xing-de-yun-ji-suan-xi-tong-openstack</id>
-        <link href="http://localhost:4000/post/gong-ye-yu-da-shu-ju-dian-xing-de-yun-ji-suan-xi-tong-openstack">
-        </link>
-        <updated>2020-02-02T08:02:11.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[【工业与大数据】 虚拟化技术]]></title>
-        <id>http://localhost:4000/post/da-shu-ju-xu-ni-hua-ji-zhu</id>
-        <link href="http://localhost:4000/post/da-shu-ju-xu-ni-hua-ji-zhu">
-        </link>
-        <updated>2020-02-01T13:58:08.000Z</updated>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[【工业与大数据】云计算的商业模式]]></title>
-        <id>http://localhost:4000/post/yun-ji-suan-de-shang-ye-mo-shi</id>
-        <link href="http://localhost:4000/post/yun-ji-suan-de-shang-ye-mo-shi">
+        <id>http://doc.xr1228.com/post/yun-ji-suan-de-shang-ye-mo-shi</id>
+        <link href="http://doc.xr1228.com/post/yun-ji-suan-de-shang-ye-mo-shi">
         </link>
         <updated>2020-01-27T15:10:56.000Z</updated>
     </entry>
     <entry>
-        <title type="html"><![CDATA[【工业与大数据】大数据的基础架构 —— 云计算]]></title>
-        <id>http://localhost:4000/post/da-shu-ju-de-ji-chu-jia-gou-yun-ji-suan</id>
-        <link href="http://localhost:4000/post/da-shu-ju-de-ji-chu-jia-gou-yun-ji-suan">
+        <title type="html"><![CDATA[【工业与大数据】大数据基础]]></title>
+        <id>http://doc.xr1228.com/post/da-shu-ju-de-ji-chu-jia-gou-yun-ji-suan</id>
+        <link href="http://doc.xr1228.com/post/da-shu-ju-de-ji-chu-jia-gou-yun-ji-suan">
         </link>
         <updated>2020-01-23T15:59:47.000Z</updated>
+        <summary type="html"><![CDATA[<p>大数据这个词已经火热了很多年，似乎处处都存在着大数据的噱头，让我们回归本质，探讨一下大数据是什么？<br>
+本文介绍了大数据技术细节以及相关背景的的一些概念。本文并未对大数据的相关知识进行总结，所以本文仅作为参考，无需详细阅读。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>大数据这个词已经火热了很多年，似乎处处都存在着大数据的噱头，让我们回归本质，探讨一下大数据是什么？<br>
+本文介绍了大数据技术细节以及相关背景的的一些概念。本文并未对大数据的相关知识进行总结，所以本文仅作为参考，无需详细阅读。</p>
+]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[【编程只是工具】Python实用手册03 词云]]></title>
-        <id>http://localhost:4000/post/python-shi-yong-shou-ce-03-ci-yun</id>
-        <link href="http://localhost:4000/post/python-shi-yong-shou-ce-03-ci-yun">
+        <id>http://doc.xr1228.com/post/python-shi-yong-shou-ce-03-ci-yun</id>
+        <link href="http://doc.xr1228.com/post/python-shi-yong-shou-ce-03-ci-yun">
         </link>
         <updated>2020-01-22T13:53:45.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[【编程只是工具】Python实用教程02  Python UI编程]]></title>
-        <id>http://localhost:4000/post/python-shi-yong-jiao-cheng-02-python-ui-bian-cheng</id>
-        <link href="http://localhost:4000/post/python-shi-yong-jiao-cheng-02-python-ui-bian-cheng">
+        <id>http://doc.xr1228.com/post/python-shi-yong-jiao-cheng-02-python-ui-bian-cheng</id>
+        <link href="http://doc.xr1228.com/post/python-shi-yong-jiao-cheng-02-python-ui-bian-cheng">
         </link>
         <updated>2020-01-22T13:51:17.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[【编程只是一种工具】Python实用教程01  一句话表白 ]]></title>
-        <id>http://localhost:4000/post/python-jiao-cheng-01</id>
-        <link href="http://localhost:4000/post/python-jiao-cheng-01">
+        <id>http://doc.xr1228.com/post/python-jiao-cheng-01</id>
+        <link href="http://doc.xr1228.com/post/python-jiao-cheng-01">
         </link>
         <updated>2020-01-22T13:49:28.000Z</updated>
         <summary type="html"><![CDATA[<p>让我们做一个小游戏吧,体会一下 Python 独特的魅力。</p>
@@ -72,15 +76,15 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[【编程只是一种工具】Python实用教程   介绍]]></title>
-        <id>http://localhost:4000/post/python</id>
-        <link href="http://localhost:4000/post/python">
+        <id>http://doc.xr1228.com/post/python</id>
+        <link href="http://doc.xr1228.com/post/python">
         </link>
         <updated>2020-01-22T13:45:15.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[ 【智能制造之路】智能制造简述]]></title>
-        <id>http://localhost:4000/post/zhi-neng-zhi-zao-jian-shu</id>
-        <link href="http://localhost:4000/post/zhi-neng-zhi-zao-jian-shu">
+        <id>http://doc.xr1228.com/post/zhi-neng-zhi-zao-jian-shu</id>
+        <link href="http://doc.xr1228.com/post/zhi-neng-zhi-zao-jian-shu">
         </link>
         <updated>2020-01-22T07:56:31.000Z</updated>
     </entry>
