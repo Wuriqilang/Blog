@@ -1,0 +1,470 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>【工业与大数据】大数据的主要处理框架与工具 - Wuriqilang</title>
+<link rel="shortcut icon" href="http://doc.xr1228.com//favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="http://doc.xr1228.com//media/css/tailwind.css">
+<link rel="stylesheet" href="http://doc.xr1228.com//styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="【工业与大数据】大数据的主要处理框架与工具 - Wuriqilang - Atom Feed" href="http://doc.xr1228.com//atom.xml">
+
+    
+
+  <meta name="description" content="大数据作为一门应用广泛的技术，在不同的应用场景下对其数据结构，处理实时性都有不同的需求，所以大数据技术的先驱们开发了许多不同的技术框架来满足不同的需求。本章主要介绍大数据所采用的的主流处理框架以及其技术细节。
+
+
+大数据处理工具分类
+
+
+一..." />
+  <meta property="og:title" content="【工业与大数据】大数据的主要处理框架与工具 - Wuriqilang">
+  <meta property="og:description" content="大数据作为一门应用广泛的技术，在不同的应用场景下对其数据结构，处理实时性都有不同的需求，所以大数据技术的先驱们开发了许多不同的技术框架来满足不同的需求。本章主要介绍大数据所采用的的主流处理框架以及其技术细节。
+
+
+大数据处理工具分类
+
+
+一..." />
+  <meta property="og:type" content="articles">
+  <meta property="og:url" content="http://doc.xr1228.com/post/gong-ye-yu-da-shu-ju-da-shu-ju-de-zhu-yao-chu-li-kuang-jia-yu-gong-ju" />
+  <meta property="og:image" content="http://doc.xr1228.com//images/avatar.png">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200">
+  <meta name="twitter:title" content="【工业与大数据】大数据的主要处理框架与工具 - Wuriqilang">
+  <meta name="twitter:description" content="大数据作为一门应用广泛的技术，在不同的应用场景下对其数据结构，处理实时性都有不同的需求，所以大数据技术的先驱们开发了许多不同的技术框架来满足不同的需求。本章主要介绍大数据所采用的的主流处理框架以及其技术细节。
+
+
+大数据处理工具分类
+
+
+一...">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="http://doc.xr1228.com/post/gong-ye-yu-da-shu-ju-da-shu-ju-de-zhu-yao-chu-li-kuang-jia-yu-gong-ju">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+ 
+  
+    <link rel="stylesheet" href="http://doc.xr1228.com//media/css/prism-atom-dark.css">
+  
+
+  
+</head>
+
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+    <a href="http://doc.xr1228.com/" class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+      Wuriqilang
+    </a>
+    <div class="max-w-4xl w-full mx-auto">
+      <div class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+        <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+          【工业与大数据】大数据的主要处理框架与工具
+        </h1>
+        
+        <div class="mb-8 flex flex-wrap">
+          <div class="text-gray-400 text-sm mr-4">2020-02-07 · 5 min read</div>
+          
+        </div>
+        <div class="markdown mb-8" v-pre>
+          <p>大数据作为一门应用广泛的技术，在不同的应用场景下对其数据结构，处理实时性都有不同的需求，所以大数据技术的先驱们开发了许多不同的技术框架来满足不同的需求。本章主要介绍大数据所采用的的主流处理框架以及其技术细节。</p>
+<!-- more -->
+<ul>
+<li>大数据处理工具分类<br>
+<img src="http://doc.xr1228.com//post-images/1581042442307.PNG" alt="" loading="lazy"></li>
+</ul>
+<h1 id="一-几个重要的概念">一、几个重要的概念</h1>
+<h3 id="大数据技术的几个重要的观点这个也是贯穿在整个大数据技术的重要思想">大数据技术的几个重要的观点，这个也是贯穿在整个大数据技术的重要思想</h3>
+<ul>
+<li>分布式：数据存储于成百上千个服务器中</li>
+<li>大数据块：大数据块减少元数据的开销</li>
+<li>失败无法避免：使用商用硬件 → 失败是不可避免的，所以买便宜的硬件</li>
+<li>简洁的才是稳定的：简洁的一致性模型（单写者，避免相互等待）</li>
+</ul>
+<h3 id="数据并行化dlp">数据并行化（DLP）</h3>
+<ul>
+<li>若干硬盘上的大量数据，可以被并行化的操作（比如，操作文档） Embarrassingly Parallel</li>
+</ul>
+<p>这是什么意思呢？将数据分隔成不同的，相互无关的数据块就能实现数据并行化。我们举个例子：</p>
+<p><strong>词频统计</strong>   从多个数据中找到dog的发生次数，我们只需要把数据分成不同的块，同时进行查找，没找到一个dog，就返回一次结果。这样就能显著提高查找效率，这也是一种很朴实的观点。</p>
+<figure data-type="image" tabindex="1"><img src="http://doc.xr1228.com//post-images/1581043388967.PNG" alt="" loading="lazy"></figure>
+<p>但是这样的解决方案也衍生了两个问题：</p>
+<ul>
+<li>共享的状态
+<ul>
+<li>吞吐量（多个进程同时改变）</li>
+<li>同步（同时修改需要锁）</li>
+</ul>
+</li>
+<li>小粒度的通信让元数据管理变得复杂</li>
+</ul>
+<p>为了解决这样的问题，我们将每个数据块看做一个单元，每个单元全部数完后将结果一次性返回。<br>
+看似很美好，但是又又又衍生出两个问题：</p>
+<ul>
+<li>失败的机器（某个机器发生错误无法及时发现异常）</li>
+<li>共享的状态太大（返回的数据量太大）</li>
+</ul>
+<p>所以我们将全局状态也作为分布式状态，并且将每个数据块的存储状态保存下来。这样就满足了分布式处理的需求。<br>
+<img src="http://doc.xr1228.com//post-images/1581059591932.PNG" alt="" loading="lazy"></p>
+<blockquote>
+<p>以上提到的设计理念，就是MapReduce的设计理念。接下来我将对MapReduce进行详细介绍。</p>
+</blockquote>
+<h1 id="二-mapreduce">二、MapReduce</h1>
+<h3 id="mapreduce-process-数据并行的分治策略">MapReduce Process —— 数据并行的分治策略</h3>
+<ul>
+<li>
+<p>Map</p>
+<ul>
+<li>将数据分割为shards或者splites，将它们分配给工作节点，将工作节点来计算子问题的解。</li>
+</ul>
+</li>
+<li>
+<p>Reduce</p>
+<ul>
+<li>收集，合并子问题的解</li>
+</ul>
+</li>
+<li>
+<p>易于使用</p>
+<ul>
+<li>开发者可以集中解决数据处理的问题</li>
+<li>MapReduce系统负责解决其他细节</li>
+</ul>
+<blockquote>
+<p>MapReduce是很早就提出的想法，是算法设计中常用的策略。但是其技术特点非常符合大数据的技术需求，很好的解决了大数据系统的需求，让开发者集中精力进行数据处理，而不用考虑数据内部的细节。</p>
+</blockquote>
+<h3 id="mapreduce-的基本编程模型">MapReduce 的基本编程模型</h3>
+</li>
+<li>
+<p>Map</p>
+<ul>
+<li>map（in_key，in_value） → list（out_key,intermediate value)
+<ul>
+<li>处理输入的键值对</li>
+<li>生成中间结果集</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Reduce</p>
+<ul>
+<li>reduce(out_key,list(intermediate_value)) → list(out_value)
+<ul>
+<li>对于某个键，合并他所有的值</li>
+<li>生成合并后的结果值集合</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>例子： 词频统计</p>
+<figure data-type="image" tabindex="2"><img src="http://doc.xr1228.com//post-images/1581060446962.PNG" alt="" loading="lazy"></figure>
+<p>MapReduce算法的程序实现是非常简洁的</p>
+<pre><code class="language-C">map(String input_key,String input_value):
+    //input_key:document name
+    //input_value:document contents
+    local Count = CountLocally(input_value);
+    foreach count:
+        Emit(word,count); //Produce count of words
+
+reduce(String word,Iterator intermediate_values):
+    //word:the word(in the intermediate key);
+    //intermediate_value:a list of counts;
+    int result = 0;
+    for each v in intermediate_values;
+        result += v;
+    Emit(word,result);
+</code></pre>
+<figure data-type="image" tabindex="3"><img src="http://doc.xr1228.com//post-images/1581060926629.PNG" alt="" loading="lazy"></figure>
+<h3 id="mapreduce-的执行步骤">MapReduce 的执行步骤</h3>
+<ol>
+<li>将输入数据分隔成M块，在每块上分布式的调用map()
+<ul>
+<li>通常每个数据魁岸16MB或者64MB</li>
+<li>取决于GFS的数据库大小</li>
+</ul>
+</li>
+<li>输入数据由不同的服务器并行处理</li>
+<li>通过将中间结果分割成R块,对每块分布式的调用Reduce()</li>
+</ol>
+<ul>
+<li>M和R的数量由用户指定
+<ul>
+<li>M&gt;&gt;#servers,R&gt;#servers</li>
+<li>很大的M值有助于负载均衡,以及快速恢复</li>
+<li>每个Reduce()调用,对应一个单独的输出文件,若依R值不应该太大</li>
+</ul>
+</li>
+</ul>
+<figure data-type="image" tabindex="4"><img src="http://doc.xr1228.com//post-images/1581061621076.PNG" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="5"><img src="http://doc.xr1228.com//post-images/1581061663957.PNG" alt="" loading="lazy"></figure>
+<h3 id="map-recude的性能优化">Map Recude的性能优化</h3>
+<ul>
+<li>MapReduce 冗余执行
+<ul>
+<li>整个任务完成时间是由最慢的节点决定的</li>
+<li>解决方案:在接近结束时,生成冗余任务 → 用其他机器同样进行冗余任务
+<ul>
+<li>谁最先完成,谁获胜</li>
+<li>也叫做&quot;投机&quot;(speculative)执行</li>
+</ul>
+</li>
+<li>影响:极大的缩短任务完成时间
+<ul>
+<li>资源消耗增加 3%,大型任务速度提高 30%</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>MapReduce所有的操作都是独立且幂等的,所以不存在同步性问题</p>
+</blockquote>
+<ul>
+<li>MapReduce故障处理
+<ul>
+<li>计算节点故障
+<ul>
+<li>控制节点通过周期性的心跳来检测故障</li>
+<li>重新执行</li>
+</ul>
+</li>
+<li>主节点故障
+<ul>
+<li>可以解决,但是目前还没有解决(控制节点故障可能性很低,所以就直接重启即可)</li>
+</ul>
+</li>
+<li>健壮性
+<ul>
+<li>MapReduce论文报告:曾经丢失1800个节点中的1600个,但是任务仍然正确完成.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        <!-- Share to Twitter, Weibo, Telegram -->
+        <div class="flex items-center">
+          <div class="mr-4 flex items-center">
+            <i class="ri-share-forward-line text-gray-500"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTwitter">
+            <i class="ri-twitter-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 inline-flex" @click="shareToWeibo">
+            <i class="ri-weibo-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTelegram">
+            <i class="ri-telegram-line"></i>
+          </div>
+        </div>
+      </div>
+
+      
+
+      
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  Powered by <a href="https://github.com/wuriqilang" target="_blank">Wuriqilang</a>
+</footer>
+    </div>
+
+    <!-- TOC Container -->
+    <div class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white dark:bg-gray-500 dark:text-gray-200 hover:shadow-lg transition-all animated fadeInRight" @click="showToc = true">
+      <i class="ri-file-list-line"></i>
+    </div>
+
+    <div class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white dark:bg-gray-800 p-4 border-l border-gray-100 dark:border-gray-600 z-10 transition-fast" :class="{ '-mr-64': !showToc }">
+      <div class="flex mb-4 justify-end">
+        <div class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast" @click="showToc = false">
+          <i class="ri-close-line text-lg"></i>
+        </div>
+      </div>
+      <div class="post-toc-container">
+        <ul class="markdownIt-TOC">
+<li><a href="#%E4%B8%80-%E5%87%A0%E4%B8%AA%E9%87%8D%E8%A6%81%E7%9A%84%E6%A6%82%E5%BF%B5">一、几个重要的概念</a><br>
+*
+<ul>
+<li><a href="#%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF%E7%9A%84%E5%87%A0%E4%B8%AA%E9%87%8D%E8%A6%81%E7%9A%84%E8%A7%82%E7%82%B9%E8%BF%99%E4%B8%AA%E4%B9%9F%E6%98%AF%E8%B4%AF%E7%A9%BF%E5%9C%A8%E6%95%B4%E4%B8%AA%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%9D%E6%83%B3">大数据技术的几个重要的观点，这个也是贯穿在整个大数据技术的重要思想</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%B9%B6%E8%A1%8C%E5%8C%96dlp">数据并行化（DLP）</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BA%8C-mapreduce">二、MapReduce</a><br>
+*
+<ul>
+<li><a href="#mapreduce-process-%E6%95%B0%E6%8D%AE%E5%B9%B6%E8%A1%8C%E7%9A%84%E5%88%86%E6%B2%BB%E7%AD%96%E7%95%A5">MapReduce Process —— 数据并行的分治策略</a></li>
+<li><a href="#mapreduce-%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%9E%8B">MapReduce 的基本编程模型</a></li>
+<li><a href="#mapreduce-%E7%9A%84%E6%89%A7%E8%A1%8C%E6%AD%A5%E9%AA%A4">MapReduce 的执行步骤</a></li>
+<li><a href="#map-recude%E7%9A%84%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96">Map Recude的性能优化</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <div class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all dark:bg-gray-500 dark:text-gray-200" @click="backToUp" v-show="scrolled">
+      <i class="ri-arrow-up-line"></i>
+    </div>
+  </div>
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe. 
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg">
+  </div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter">
+        </div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip">
+        </div>
+      </div>
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+      </button>
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+      </button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="http://doc.xr1228.com//media/scripts/main.js"></script>
+  
+  <!-- Code Highlight -->
+  
+    <script src="http://doc.xr1228.com//media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+  <script>
+    //拿到预览框架，也就是上面的html代码
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+    //定义图片数组变量
+    var imgitems;
+    /**
+    * 用于显示预览界面
+    * @param index 图片数组下标
+    */
+    function viewImg(index) {
+      //其它选项这里不做过多阐述，详情见官网
+      var pswpoptions = {
+        index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+        bgOpacity: 0.7, // 背景透明度，0-1
+        maxSpreadZoom: 3, // 缩放级别，不要太大
+      };
+      //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, imgitems, pswpoptions);
+      gallery.init()
+    }
+    /**
+    * 用于添加图片点击事件
+    * @param img 图片元素
+    * @param index 所属下标（在imgitems中的位置）
+    */
+    function addImgClick(img, index) {
+      img.onclick = function() {
+        viewImg(index)
+      }
+    }
+    /**
+    * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+    * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+    * 异步加载图片可在图片元素创建完成后调用此方法
+    */
+    function initImg() {
+      //重置图片数组
+      imgitems = [];
+      //查找class:markdown 下的所有img元素并遍历
+      var imgs = document.querySelectorAll('.markdown img');
+      for (var i = 0; i < imgs.length; i++) {
+        var img = imgs[i];
+        //本站相册初始为loading图片，真实图片放在data-src
+        var ds = img.getAttribute("data-src");
+        //创建image对象，用于获取图片宽高
+        var imgtemp = new Image();
+        //判断是否存在data-src
+        if (ds != null && ds.length > 0) {
+          imgtemp.src = ds
+        } else {
+          imgtemp.src = img.src
+        }
+        //判断是否存在缓存
+        if (imgtemp.complete) {
+          var imgobj = {
+            "src": imgtemp.src,
+            "w": imgtemp.width,
+            "h": imgtemp.height,
+          };
+          imgitems[i] = imgobj;
+          addImgClick(img, i);
+        } else {
+          console.log('进来了2')
+          imgtemp.index = i;
+          imgtemp.img = img;
+          imgtemp.onload = function() {
+            var imgobj = {
+              "src": this.src,
+              "w": this.width,
+              "h": this.height,
+            };
+            //不要使用push，因为onload前后顺序会不同
+            imgitems[this.index] = imgobj
+            //添加点击事件
+            addImgClick(this.img, this.index);
+          }
+        }
+      }
+    }
+    //初始化
+    initImg();
+  </script>
+</body>
+
+</html>
