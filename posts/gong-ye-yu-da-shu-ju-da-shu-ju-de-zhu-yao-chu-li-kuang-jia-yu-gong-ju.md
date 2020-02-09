@@ -1,10 +1,10 @@
 ---
 title: '【工业与大数据】大数据的主要处理框架与工具'
 date: 2020-02-07 10:18:09
-tags: []
+tags: [大数据]
 published: true
 hideInList: false
-feature: 
+feature: /post-images/gong-ye-yu-da-shu-ju-da-shu-ju-de-zhu-yao-chu-li-kuang-jia-yu-gong-ju.jpg
 isTop: false
 ---
 大数据作为一门应用广泛的技术，在不同的应用场景下对其数据结构，处理实时性都有不同的需求，所以大数据技术的先驱们开发了许多不同的技术框架来满足不同的需求。本章主要介绍大数据所采用的的主流处理框架以及其技术细节。
@@ -139,7 +139,7 @@ reduce(String word,Iterator intermediate_values):
     - 健壮性
         - MapReduce论文报告:曾经丢失1800个节点中的1600个,但是任务仍然正确完成.
 
-# Hadoop ：MapReduce的开源实现
+## Hadoop ：MapReduce的开源实现
 
 ### Hadoop MapReduce的基本架构
 
@@ -165,13 +165,164 @@ reduce(String word,Iterator intermediate_values):
 
 ![](http://doc.xr1228.com//post-images/1581090883921.png)
 
+![](http://doc.xr1228.com//post-images/1581093484533.png)
 
 
+![](http://doc.xr1228.com//post-images/1581093664775.png)
 
 
+## MapReduce总结
+
+### MapReduce的理解要点
+- 同样的细粒度操作（Map&Reduce）重复作用于大数据
+- 操作必须是确定性的
+- 操作必须是幂等的，才没有副作用
+- 只有shuffle过程中才有通信
+- 操作（Map&Reduce）的输出存储于硬盘上
+
+### MapReduce的作用
+- Google
+    - 为Google Search建立索引
+    - 为Google News进行文章聚类
+    - 统计行的机器翻译
+- Yahoo！
+    - 为Yahoo！Search建立索引
+    - 为Yahoo！Mail进行垃圾检测
+- Facebook
+    - 数据挖掘
+    - 广告优化
+    - 垃圾检测
+
+### MapReduce优点
+- 分布式过程完全有名
+    - 没有一行分布式编程（方便，有保证正确性）
+- 自动的容错性
+    - 操作的确定性保证了故障的任务可以在其他地方再次运行
+    - 保存的中间结果保证了只需要重新运行故障reduce节点
+- 自动的规模缩放
+    - 由于操作是没有f副作用的，所以他可以动态的被分发到任何数量的机器
+- 自动的负载均衡
+    - 及时移动任务，投机性的执行慢的任务
+  ### MapReduce缺点
+  1. 及其严格的数据流
+  2. 很多常见的操作也必须手写代码
+  3. 程序语义隐藏在map-reduce函数中：自动的维护，扩展，优化都比较困难
 
 
+# 三、PIG LATIN 编程语言
 
+> PIG LATIN本意是英语中一种“黑话”的规则，其规则就是将单词首字母放置在最后并加上ey，比如“happy” ➡️ “appy-hey” 
 
+在大数据技术中，PIG LATIN是一种高于MapReduce的可以处理任意数据流的大数据处理系统（也是一种语言）。
 
+为了说明PIG LATIN的作用，我们可以举个例子
 
+![](http://doc.xr1228.com//post-images/1581146546078.png)
+
+为了解决这个需求，传统的SQL 需要将两个表 Join在一起，再通过Group by，count的方式进行查询。但是显而易见，在互联网中这两个表可能是非常非常非常大的，他们只能被分布式的存储在不同的机器中，那么如何进行查询和运算呢？
+
+![](http://doc.xr1228.com//post-images/1581146799512.png)
+
+如果通过MapReduce进行运算，则需要将不同的MapReduce结合起来多次运算，最主要的MapReduce需要参数具有相同的数据类型，我们可能还涉及到数据类型的转换，这样就产生了大量的代码，也很难进行维护
+
+![](http://doc.xr1228.com//post-images/1581146968591.png)
+
+因此，Yahoo！发明了PIG LATIN语言。
+
+- 更高级的编程语言
+    - 更快捷的MapReduce工作流程
+    - 提供关系型数据库操作（例如JOIN，GROUP BY）
+    - 可以方便地潜入JAVA函数
+- 最先在Yahoo！Research使用
+    - 当是运行Yahoo！大约50%的任务
+
+## 3.1 PIG LATIN的基本语法
+
+```PIG LATIN
+visits = load '/data/visits' as (user,url,time);
+gVisits = group visits by url;
+vistCounts = foreach gVisits generate url,count(visits);
+
+urlInfo = load '.data.urlInfo' as (rul,categroy,pRank);
+visitCount = join visitCounts by url,urlInfo by url ;
+
+gCategories = group visitCounts by category;
+topUrls = foreach gCategories generate top(vistCounts,10);
+
+sotre topUrls into 'data/topUrls';
+```
+
+嵌套的数据结构
+
+- Pig Latin采用完全可以嵌套的数据结构
+    - 原子值（Atomic Values），元组（tuples），包（列表，bages（lists）），映射（maps）
+
+![](http://doc.xr1228.com//post-images/1581148734773.png)
+
+- 优势
+    - 对于开发者，比数据库的扁平组（flat tuple）更自然
+    - 避免代价昂贵joins操作
+
+- 嵌套数据模型
+    - 解耦grouping操作作为一个独立的操作
+  ![](http://doc.xr1228.com//post-images/1581148988714.png)
+    - 共同分组（CoGroup） 性能优化
+  ![](http://doc.xr1228.com//post-images/1581149076178.png)
+
+## 3.2 Pig Latin的实现与优化
+
+ User ➡️ PIG（或者写SQL）➡️Hadoop Map-Reduce ➡️cluster
+
+ Pig Latin 翻译为 Map-reduce的方法
+- 每一个group或join操作形成一个MapReduce
+- 其他操作进入map和reduce阶段的流水线
+
+![](http://doc.xr1228.com//post-images/1581149506733.png)
+
+- 抽象的优势
+    - 抽象的程序更简单，计算机可以进行优化
+    - 可以逐渐优化，不影响用户使用
+![](http://doc.xr1228.com//post-images/1581149584250.png)
+
+- Pig Latin的优化
+    - 合并函数（combiner）
+        - 中间过程传递数据越少越好，聚合求和运算越早执行越好
+        - 聚合函数
+        - 去掉重复数据（distinct）
+        ![](http://doc.xr1228.com//post-images/1581149915655.png)
+    - 偏斜数据的链接（Skew Join）
+        - 如果很多值都有同样的健，就会有问题
+        - Skew join对数据进行采样，来找到高频值
+        - 在reducer中进一步分割这些数据
+        - 转化为map-oinly的任务
+            - 将很小的数据集作为旁路输入（“sid file”）
+    - 多数据流：PIG通过split将Map分为多个数据流，减少Reduce操作
+
+# 四、其他类似框架
+
+- Sawzall
+    - 基于MapReduce的数据处理语言
+    - 严格的结构：过滤➡️聚合
+- Hive
+    - 基于MapReduce的类似SQL的语言
+- DryadLINQ
+    - 基于Dryad的类似SQL的语言
+
+# 五、总结
+
+- Hadoop与PIG
+![](http://doc.xr1228.com//post-images/1581150296782.png)
+- Hadoop 生态系统
+![](http://doc.xr1228.com//post-images/1581150412879.png)
+
+- 另一面：“MapReduce： A major step backwards”
+    - David J.DeWitt,Michael Stonebraker
+    - 在编程模式中后退了一大步
+        - 没有模式，没有高级的访问语言
+    - 一个次优化的实现
+        - 它使用了暴力法搜索，而不是用任何索引
+    - 一点也不创新
+        - 25年前就有类似的技术
+    - 缺少了目前数据库管理系统一般都有的大多数特点
+        - 索引，更新，食物，完整性约束，逻辑视图
+<!-- more -->

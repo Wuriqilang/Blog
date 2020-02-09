@@ -31,7 +31,7 @@
 一..." />
   <meta property="og:type" content="articles">
   <meta property="og:url" content="http://doc.xr1228.com/post/gong-ye-yu-da-shu-ju-da-shu-ju-de-zhu-yao-chu-li-kuang-jia-yu-gong-ju" />
-  <meta property="og:image" content="http://doc.xr1228.com//images/avatar.png">
+  <meta property="og:image" content="http://doc.xr1228.com//post-images/gong-ye-yu-da-shu-ju-da-shu-ju-de-zhu-yao-chu-li-kuang-jia-yu-gong-ju.jpg">
   <meta property="og:image:height" content="630">
   <meta property="og:image:width" content="1200">
   <meta name="twitter:title" content="【工业与大数据】大数据的主要处理框架与工具 - Wuriqilang">
@@ -66,8 +66,15 @@
           【工业与大数据】大数据的主要处理框架与工具
         </h1>
         
+          <img src="http://doc.xr1228.com//post-images/gong-ye-yu-da-shu-ju-da-shu-ju-de-zhu-yao-chu-li-kuang-jia-yu-gong-ju.jpg" alt="【工业与大数据】大数据的主要处理框架与工具" class="block w-full mb-8">
+        
         <div class="mb-8 flex flex-wrap">
-          <div class="text-gray-400 text-sm mr-4">2020-02-07 · 5 min read</div>
+          <div class="text-gray-400 text-sm mr-4">2020-02-07 · 10 min read</div>
+          
+            <a href="http://doc.xr1228.com/tag/bigData" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              大数据
+            </a>
           
         </div>
         <div class="markdown mb-8" v-pre>
@@ -247,6 +254,272 @@ reduce(String word,Iterator intermediate_values):
 </ul>
 </li>
 </ul>
+<h2 id="hadoop-mapreduce的开源实现">Hadoop ：MapReduce的开源实现</h2>
+<h3 id="hadoop-mapreduce的基本架构">Hadoop MapReduce的基本架构</h3>
+<blockquote>
+<p>Hadoop不仅仅实现了文件分布式存储和MapReduce，还实现了一系列容错、资源远离等服务</p>
+</blockquote>
+<ul>
+<li>JobTracker（Master）
+<ul>
+<li>接收MR作业</li>
+<li>分配任务给Worker</li>
+<li>监控任务</li>
+<li>处理错误</li>
+</ul>
+</li>
+<li>TaskTracker（worker）
+<ul>
+<li>运行Map和Reduce任务</li>
+<li>管理中间输出</li>
+</ul>
+</li>
+<li>Client
+<ul>
+<li>提交作业的界面</li>
+<li>得到多样的状态信息</li>
+</ul>
+</li>
+<li>Task
+<ul>
+<li>一个独立的过程</li>
+<li>运行Map/Reduce函数</li>
+</ul>
+</li>
+</ul>
+<h3 id="hadoop-mr程序执行过程-1">Hadoop MR程序执行过程 1</h3>
+<figure data-type="image" tabindex="6"><img src="http://doc.xr1228.com//post-images/1581090883921.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="7"><img src="http://doc.xr1228.com//post-images/1581093484533.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="8"><img src="http://doc.xr1228.com//post-images/1581093664775.png" alt="" loading="lazy"></figure>
+<h2 id="mapreduce总结">MapReduce总结</h2>
+<h3 id="mapreduce的理解要点">MapReduce的理解要点</h3>
+<ul>
+<li>同样的细粒度操作（Map&amp;Reduce）重复作用于大数据</li>
+<li>操作必须是确定性的</li>
+<li>操作必须是幂等的，才没有副作用</li>
+<li>只有shuffle过程中才有通信</li>
+<li>操作（Map&amp;Reduce）的输出存储于硬盘上</li>
+</ul>
+<h3 id="mapreduce的作用">MapReduce的作用</h3>
+<ul>
+<li>Google
+<ul>
+<li>为Google Search建立索引</li>
+<li>为Google News进行文章聚类</li>
+<li>统计行的机器翻译</li>
+</ul>
+</li>
+<li>Yahoo！
+<ul>
+<li>为Yahoo！Search建立索引</li>
+<li>为Yahoo！Mail进行垃圾检测</li>
+</ul>
+</li>
+<li>Facebook
+<ul>
+<li>数据挖掘</li>
+<li>广告优化</li>
+<li>垃圾检测</li>
+</ul>
+</li>
+</ul>
+<h3 id="mapreduce优点">MapReduce优点</h3>
+<ul>
+<li>分布式过程完全有名
+<ul>
+<li>没有一行分布式编程（方便，有保证正确性）</li>
+</ul>
+</li>
+<li>自动的容错性
+<ul>
+<li>操作的确定性保证了故障的任务可以在其他地方再次运行</li>
+<li>保存的中间结果保证了只需要重新运行故障reduce节点</li>
+</ul>
+</li>
+<li>自动的规模缩放
+<ul>
+<li>由于操作是没有f副作用的，所以他可以动态的被分发到任何数量的机器</li>
+</ul>
+</li>
+<li>自动的负载均衡
+<ul>
+<li>及时移动任务，投机性的执行慢的任务</li>
+</ul>
+<h3 id="mapreduce缺点">MapReduce缺点</h3>
+<ol>
+<li>及其严格的数据流</li>
+<li>很多常见的操作也必须手写代码</li>
+<li>程序语义隐藏在map-reduce函数中：自动的维护，扩展，优化都比较困难</li>
+</ol>
+</li>
+</ul>
+<h1 id="三-pig-latin-编程语言">三、PIG LATIN 编程语言</h1>
+<blockquote>
+<p>PIG LATIN本意是英语中一种“黑话”的规则，其规则就是将单词首字母放置在最后并加上ey，比如“happy” ➡️ “appy-hey”</p>
+</blockquote>
+<p>在大数据技术中，PIG LATIN是一种高于MapReduce的可以处理任意数据流的大数据处理系统（也是一种语言）。</p>
+<p>为了说明PIG LATIN的作用，我们可以举个例子</p>
+<figure data-type="image" tabindex="9"><img src="http://doc.xr1228.com//post-images/1581146546078.png" alt="" loading="lazy"></figure>
+<p>为了解决这个需求，传统的SQL 需要将两个表 Join在一起，再通过Group by，count的方式进行查询。但是显而易见，在互联网中这两个表可能是非常非常非常大的，他们只能被分布式的存储在不同的机器中，那么如何进行查询和运算呢？</p>
+<figure data-type="image" tabindex="10"><img src="http://doc.xr1228.com//post-images/1581146799512.png" alt="" loading="lazy"></figure>
+<p>如果通过MapReduce进行运算，则需要将不同的MapReduce结合起来多次运算，最主要的MapReduce需要参数具有相同的数据类型，我们可能还涉及到数据类型的转换，这样就产生了大量的代码，也很难进行维护</p>
+<figure data-type="image" tabindex="11"><img src="http://doc.xr1228.com//post-images/1581146968591.png" alt="" loading="lazy"></figure>
+<p>因此，Yahoo！发明了PIG LATIN语言。</p>
+<ul>
+<li>更高级的编程语言
+<ul>
+<li>更快捷的MapReduce工作流程</li>
+<li>提供关系型数据库操作（例如JOIN，GROUP BY）</li>
+<li>可以方便地潜入JAVA函数</li>
+</ul>
+</li>
+<li>最先在Yahoo！Research使用
+<ul>
+<li>当是运行Yahoo！大约50%的任务</li>
+</ul>
+</li>
+</ul>
+<h2 id="31-pig-latin的基本语法">3.1 PIG LATIN的基本语法</h2>
+<pre><code class="language-PIG">visits = load '/data/visits' as (user,url,time);
+gVisits = group visits by url;
+vistCounts = foreach gVisits generate url,count(visits);
+
+urlInfo = load '.data.urlInfo' as (rul,categroy,pRank);
+visitCount = join visitCounts by url,urlInfo by url ;
+
+gCategories = group visitCounts by category;
+topUrls = foreach gCategories generate top(vistCounts,10);
+
+sotre topUrls into 'data/topUrls';
+</code></pre>
+<p>嵌套的数据结构</p>
+<ul>
+<li>Pig Latin采用完全可以嵌套的数据结构
+<ul>
+<li>原子值（Atomic Values），元组（tuples），包（列表，bages（lists）），映射（maps）</li>
+</ul>
+</li>
+</ul>
+<figure data-type="image" tabindex="12"><img src="http://doc.xr1228.com//post-images/1581148734773.png" alt="" loading="lazy"></figure>
+<ul>
+<li>
+<p>优势</p>
+<ul>
+<li>对于开发者，比数据库的扁平组（flat tuple）更自然</li>
+<li>避免代价昂贵joins操作</li>
+</ul>
+</li>
+<li>
+<p>嵌套数据模型</p>
+<ul>
+<li>解耦grouping操作作为一个独立的操作<br>
+<img src="http://doc.xr1228.com//post-images/1581148988714.png" alt="" loading="lazy"></li>
+<li>共同分组（CoGroup） 性能优化<br>
+<img src="http://doc.xr1228.com//post-images/1581149076178.png" alt="" loading="lazy"></li>
+</ul>
+</li>
+</ul>
+<h2 id="32-pig-latin的实现与优化">3.2 Pig Latin的实现与优化</h2>
+<p>User ➡️ PIG（或者写SQL）➡️Hadoop Map-Reduce ➡️cluster</p>
+<p>Pig Latin 翻译为 Map-reduce的方法</p>
+<ul>
+<li>每一个group或join操作形成一个MapReduce</li>
+<li>其他操作进入map和reduce阶段的流水线</li>
+</ul>
+<figure data-type="image" tabindex="13"><img src="http://doc.xr1228.com//post-images/1581149506733.png" alt="" loading="lazy"></figure>
+<ul>
+<li>
+<p>抽象的优势</p>
+<ul>
+<li>抽象的程序更简单，计算机可以进行优化</li>
+<li>可以逐渐优化，不影响用户使用<br>
+<img src="http://doc.xr1228.com//post-images/1581149584250.png" alt="" loading="lazy"></li>
+</ul>
+</li>
+<li>
+<p>Pig Latin的优化</p>
+<ul>
+<li>合并函数（combiner）
+<ul>
+<li>中间过程传递数据越少越好，聚合求和运算越早执行越好</li>
+<li>聚合函数</li>
+<li>去掉重复数据（distinct）<br>
+<img src="http://doc.xr1228.com//post-images/1581149915655.png" alt="" loading="lazy"></li>
+</ul>
+</li>
+<li>偏斜数据的链接（Skew Join）
+<ul>
+<li>如果很多值都有同样的健，就会有问题</li>
+<li>Skew join对数据进行采样，来找到高频值</li>
+<li>在reducer中进一步分割这些数据</li>
+<li>转化为map-oinly的任务
+<ul>
+<li>将很小的数据集作为旁路输入（“sid file”）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>多数据流：PIG通过split将Map分为多个数据流，减少Reduce操作</li>
+</ul>
+</li>
+</ul>
+<h1 id="四-其他类似框架">四、其他类似框架</h1>
+<ul>
+<li>Sawzall
+<ul>
+<li>基于MapReduce的数据处理语言</li>
+<li>严格的结构：过滤➡️聚合</li>
+</ul>
+</li>
+<li>Hive
+<ul>
+<li>基于MapReduce的类似SQL的语言</li>
+</ul>
+</li>
+<li>DryadLINQ
+<ul>
+<li>基于Dryad的类似SQL的语言</li>
+</ul>
+</li>
+</ul>
+<h1 id="五-总结">五、总结</h1>
+<ul>
+<li>
+<p>Hadoop与PIG<br>
+<img src="http://doc.xr1228.com//post-images/1581150296782.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p>Hadoop 生态系统<br>
+<img src="http://doc.xr1228.com//post-images/1581150412879.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p>另一面：“MapReduce： A major step backwards”</p>
+<ul>
+<li>David J.DeWitt,Michael Stonebraker</li>
+<li>在编程模式中后退了一大步
+<ul>
+<li>没有模式，没有高级的访问语言</li>
+</ul>
+</li>
+<li>一个次优化的实现
+<ul>
+<li>它使用了暴力法搜索，而不是用任何索引</li>
+</ul>
+</li>
+<li>一点也不创新
+<ul>
+<li>25年前就有类似的技术</li>
+</ul>
+</li>
+<li>缺少了目前数据库管理系统一般都有的大多数特点
+<ul>
+<li>索引，更新，食物，完整性约束，逻辑视图</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- more -->
 
         </div>
         <!-- Share to Twitter, Weibo, Telegram -->
@@ -302,8 +575,30 @@ reduce(String word,Iterator intermediate_values):
 <li><a href="#mapreduce-%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%9E%8B">MapReduce 的基本编程模型</a></li>
 <li><a href="#mapreduce-%E7%9A%84%E6%89%A7%E8%A1%8C%E6%AD%A5%E9%AA%A4">MapReduce 的执行步骤</a></li>
 <li><a href="#map-recude%E7%9A%84%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96">Map Recude的性能优化</a></li>
+<li><a href="#hadoop-mapreduce%E7%9A%84%E5%BC%80%E6%BA%90%E5%AE%9E%E7%8E%B0">Hadoop ：MapReduce的开源实现</a>
+<ul>
+<li><a href="#hadoop-mapreduce%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%9E%B6%E6%9E%84">Hadoop MapReduce的基本架构</a></li>
+<li><a href="#hadoop-mr%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B-1">Hadoop MR程序执行过程 1</a></li>
 </ul>
 </li>
+<li><a href="#mapreduce%E6%80%BB%E7%BB%93">MapReduce总结</a>
+<ul>
+<li><a href="#mapreduce%E7%9A%84%E7%90%86%E8%A7%A3%E8%A6%81%E7%82%B9">MapReduce的理解要点</a></li>
+<li><a href="#mapreduce%E7%9A%84%E4%BD%9C%E7%94%A8">MapReduce的作用</a></li>
+<li><a href="#mapreduce%E4%BC%98%E7%82%B9">MapReduce优点</a></li>
+<li><a href="#mapreduce%E7%BC%BA%E7%82%B9">MapReduce缺点</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E4%B8%89-pig-latin-%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80">三、PIG LATIN 编程语言</a>
+<ul>
+<li><a href="#31-pig-latin%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95">3.1 PIG LATIN的基本语法</a></li>
+<li><a href="#32-pig-latin%E7%9A%84%E5%AE%9E%E7%8E%B0%E4%B8%8E%E4%BC%98%E5%8C%96">3.2 Pig Latin的实现与优化</a></li>
+</ul>
+</li>
+<li><a href="#%E5%9B%9B-%E5%85%B6%E4%BB%96%E7%B1%BB%E4%BC%BC%E6%A1%86%E6%9E%B6">四、其他类似框架</a></li>
+<li><a href="#%E4%BA%94-%E6%80%BB%E7%BB%93">五、总结</a></li>
 </ul>
 
       </div>
