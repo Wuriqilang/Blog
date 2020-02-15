@@ -1,6 +1,25 @@
 {
   "posts": [
     {
+      "content": "-- 1 清空临时表,清空后注意提交\r\n```sql\r\ndelete EQP_ALARM_MST_PP_TEMP\r\n```\r\n-- 2 用excel生成的代码 插入到临时表\r\n\r\n\r\n-- 3 判断临时表中是否有重复数据\r\n```sql\r\nselect count(distinct t.EQP_MODULE_ID ||t.EQP_DCP_ID || t.ALARM_ID) from EQP_ALARM_MST_PP_TEMP t \r\nselect count(t.EQP_MODULE_ID ||t.EQP_DCP_ID || t.ALARM_ID) from EQP_ALARM_MST_PP_TEMP t\r\n```\r\n\r\n-- 4 如果有重复数据  删除临时数据  提交\r\n```sql\r\ndelete from EQP_ALARM_MST_PP_TEMP T\r\n where (t.EQP_MODULE_ID, t.EQP_DCP_ID, t.ALARM_ID) in\r\n       (select EQP_MODULE_ID, EQP_DCP_ID, ALARM_ID\r\n          from EQP_ALARM_MST_PP_TEMP\r\n         group by EQP_MODULE_ID, EQP_DCP_ID, ALARM_ID\r\n        having count(*) > 1)\r\n   and rowid not in (select min(rowid)\r\n                       from EQP_ALARM_MST_PP_TEMP\r\n                      group by EQP_MODULE_ID, EQP_DCP_ID, ALARM_ID\r\n                     having count(*) > 1)\r\n```\r\n\r\n-- 5 将临时数据表merge 到目标表\r\n\r\n--方法1\r\n```sql\r\nINSERT INTO EQP_ALARM_MST_PP\r\n  SELECT *\r\n    FROM EQP_ALARM_MST_PP_TEMP t\r\n   where not exists (SELECT 1\r\n            FROM EQP_ALARM_MST_PP\r\n           where EQP_ALARM_MST_PP.EQP_MODULE_ID = t.EQP_MODULE_ID\r\n             and EQP_ALARM_MST_PP.EQP_DCP_ID = t.EQP_DCP_ID\r\n             and EQP_ALARM_MST_PP.ALARM_ID = t.ALARM_ID)\r\n```\r\n--方法2\r\n```sql\r\nMerge into EQP_ALARM_MST_PP G\r\nusing (select * from EQP_ALARM_MST_PP_temp) NG\r\non (G.EQP_MODULE_ID = NG.EQP_MODULE_ID \r\nand G.EQP_DCP_ID = NG.EQP_DCP_ID \r\nand G.ALARM_ID = NG.ALARM_ID\r\n)\r\nwhen not MATCHED THEN\r\nINSERT (RAWID,EQP_MODULE_ID,EQP_DCP_ID,ALARM_ID,ALARM_CODE,ALARM_TEXT,ALARM_TYPE,USED_YN,SEVERITY_CD,SEND_YN,FIRST_YN,SUBEQP_RAWID,DESCRIPTION,CREATE_DTTS,CREATE_BY,LAST_UPDATE_DTTS,LAST_UPDATE_BY,EQP_ID,SOURCE_ID)\r\nVALUES (NG.RAWID,NG.EQP_MODULE_ID,NG.EQP_DCP_ID,NG.ALARM_ID,NG.ALARM_CODE,NG.ALARM_TEXT,NG.ALARM_TYPE,NG.USED_YN,NG.SEVERITY_CD,NG.SEND_YN,NG.FIRST_YN,NG.SUBEQP_RAWID,NG.DESCRIPTION,NG.CREATE_DTTS,NG.CREATE_BY,NG.LAST_UPDATE_DTTS,NG.LAST_UPDATE_BY,NG.EQP_ID,NG.SOURCE_ID)\r\n```",
+      "data": {
+        "title": "【代码仓库】SQL -- 数据批量插入",
+        "date": "2020-02-14 11:37:01",
+        "tags": [
+          "SQL",
+          "代码仓库"
+        ],
+        "published": true,
+        "hideInList": false,
+        "feature": "/post-images/dai-ma-cang-ku-sql-shu-ju-pi-liang-cha-ru.jpg",
+        "isTop": false
+      },
+      "isEmpty": false,
+      "excerpt": "",
+      "abstract": "",
+      "fileName": "dai-ma-cang-ku-sql-shu-ju-pi-liang-cha-ru"
+    },
+    {
       "content": "MapReduce作为大数据技术最主流的并行计算方案，仍然存在编程实现较为复杂（麻烦但不难），性能较差的问题。MapReduce在运算过程中会产生大量的IO操作。为了提高性能，我们引入内存计算的概念。\r\n<!-- more -->\r\n\r\n- 为什么要进行并行计算\r\n    - 计算量大\r\n        - 单进程算的不够快，多CPU算\r\n    - 内存需求大\r\n        - 单机内存不够大\r\n        - 内存随机访问比硬盘随机访问块100000倍\r\n    - I/O量大\r\n        - 单个硬盘读写太慢，多个硬盘读写\r\n- 并行计算的挑战\r\n    - 编程困难\r\n        - 并行性识别与表达，难写\r\n        - 同步语句，难写对\r\n    - 性能调优难，难写块\r\n        - 负载平衡\r\n        - 局部性\r\n    - 容错难",
       "data": {
         "title": "【工业与大数据】内存计算 —— 更快",
@@ -171,7 +190,7 @@
         "published": true,
         "hideInList": false,
         "feature": "/post-images/python.jpg",
-        "isTop": false
+        "isTop": true
       },
       "isEmpty": false,
       "excerpt": "",
@@ -201,6 +220,18 @@
   "tags": [
     {
       "index": -1,
+      "name": "SQL",
+      "slug": "SQL",
+      "used": true
+    },
+    {
+      "index": 3,
+      "name": "代码仓库",
+      "slug": "code",
+      "used": true
+    },
+    {
+      "index": -1,
       "name": "智能制造",
       "slug": "smartManufacture",
       "used": true
@@ -219,8 +250,8 @@
     },
     {
       "index": -1,
-      "name": "代码库",
-      "slug": "code",
+      "name": "值得一读",
+      "slug": "worth",
       "used": false
     }
   ],

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://doc.xr1228.com/</id>
     <title>Wuriqilang</title>
-    <updated>2020-02-08T09:53:23.680Z</updated>
+    <updated>2020-02-14T03:47:41.350Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="http://doc.xr1228.com/"/>
     <link rel="self" href="http://doc.xr1228.com/atom.xml"/>
@@ -11,6 +11,24 @@
     <logo>http://doc.xr1228.com/images/avatar.png</logo>
     <icon>http://doc.xr1228.com/favicon.ico</icon>
     <rights>All rights reserved 2020, Wuriqilang</rights>
+    <entry>
+        <title type="html"><![CDATA[【代码仓库】SQL -- 数据批量插入]]></title>
+        <id>http://doc.xr1228.com/post/dai-ma-cang-ku-sql-shu-ju-pi-liang-cha-ru</id>
+        <link href="http://doc.xr1228.com/post/dai-ma-cang-ku-sql-shu-ju-pi-liang-cha-ru">
+        </link>
+        <updated>2020-02-14T03:37:01.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[【工业与大数据】内存计算 —— 更快]]></title>
+        <id>http://doc.xr1228.com/post/gong-ye-yu-da-shu-ju-nei-cun-ji-suan-geng-kuai</id>
+        <link href="http://doc.xr1228.com/post/gong-ye-yu-da-shu-ju-nei-cun-ji-suan-geng-kuai">
+        </link>
+        <updated>2020-02-10T01:03:05.000Z</updated>
+        <summary type="html"><![CDATA[<p>MapReduce作为大数据技术最主流的并行计算方案，仍然存在编程实现较为复杂（麻烦但不难），性能较差的问题。MapReduce在运算过程中会产生大量的IO操作。为了提高性能，我们引入内存计算的概念。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>MapReduce作为大数据技术最主流的并行计算方案，仍然存在编程实现较为复杂（麻烦但不难），性能较差的问题。MapReduce在运算过程中会产生大量的IO操作。为了提高性能，我们引入内存计算的概念。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[【工业与大数据】大数据的主要处理框架与工具]]></title>
         <id>http://doc.xr1228.com/post/gong-ye-yu-da-shu-ju-da-shu-ju-de-zhu-yao-chu-li-kuang-jia-yu-gong-ju</id>
@@ -84,19 +102,5 @@
 ]]></summary>
         <content type="html"><![CDATA[<p>让我们做一个小游戏吧,体会一下 Python 独特的魅力。</p>
 ]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[【编程只是一种工具】Python实用教程   介绍]]></title>
-        <id>http://doc.xr1228.com/post/python</id>
-        <link href="http://doc.xr1228.com/post/python">
-        </link>
-        <updated>2020-01-22T13:45:15.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[ 【智能制造之路】智能制造简述]]></title>
-        <id>http://doc.xr1228.com/post/zhi-neng-zhi-zao-jian-shu</id>
-        <link href="http://doc.xr1228.com/post/zhi-neng-zhi-zao-jian-shu">
-        </link>
-        <updated>2020-01-22T07:56:31.000Z</updated>
     </entry>
 </feed>

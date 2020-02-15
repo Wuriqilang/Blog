@@ -5,7 +5,7 @@ tags: [python]
 published: true
 hideInList: false
 feature: /post-images/python.jpg
-isTop: false
+isTop: true
 ---
 
 > 人生苦短，我用 Python。 ——鲁迅
