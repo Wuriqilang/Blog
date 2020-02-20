@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://doc.xr1228.com/</id>
     <title>Wuriqilang</title>
-    <updated>2020-02-14T03:47:41.350Z</updated>
+    <updated>2020-02-20T06:12:06.832Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="http://doc.xr1228.com/"/>
     <link rel="self" href="http://doc.xr1228.com/atom.xml"/>
@@ -12,16 +12,23 @@
     <icon>http://doc.xr1228.com/favicon.ico</icon>
     <rights>All rights reserved 2020, Wuriqilang</rights>
     <entry>
+        <title type="html"><![CDATA[【工业与大数据】流处理 —— 云计算的重要处理模式]]></title>
+        <id>http://doc.xr1228.com/post/gong-ye-yu-da-shu-ju-liu-ji-suan-yun-ji-suan-de-chong-yao-chu-li-mo-shi/</id>
+        <link href="http://doc.xr1228.com/post/gong-ye-yu-da-shu-ju-liu-ji-suan-yun-ji-suan-de-chong-yao-chu-li-mo-shi/">
+        </link>
+        <updated>2020-02-19T11:28:16.000Z</updated>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[【代码仓库】SQL -- 数据批量插入]]></title>
-        <id>http://doc.xr1228.com/post/dai-ma-cang-ku-sql-shu-ju-pi-liang-cha-ru</id>
-        <link href="http://doc.xr1228.com/post/dai-ma-cang-ku-sql-shu-ju-pi-liang-cha-ru">
+        <id>http://doc.xr1228.com/post/dai-ma-cang-ku-sql-shu-ju-pi-liang-cha-ru/</id>
+        <link href="http://doc.xr1228.com/post/dai-ma-cang-ku-sql-shu-ju-pi-liang-cha-ru/">
         </link>
         <updated>2020-02-14T03:37:01.000Z</updated>
     </entry>
     <entry>
-        <title type="html"><![CDATA[【工业与大数据】内存计算 —— 更快]]></title>
-        <id>http://doc.xr1228.com/post/gong-ye-yu-da-shu-ju-nei-cun-ji-suan-geng-kuai</id>
-        <link href="http://doc.xr1228.com/post/gong-ye-yu-da-shu-ju-nei-cun-ji-suan-geng-kuai">
+        <title type="html"><![CDATA[【工业与大数据】内存计算的解决方案 —— Spark]]></title>
+        <id>http://doc.xr1228.com/post/gong-ye-yu-da-shu-ju-nei-cun-ji-suan-geng-kuai/</id>
+        <link href="http://doc.xr1228.com/post/gong-ye-yu-da-shu-ju-nei-cun-ji-suan-geng-kuai/">
         </link>
         <updated>2020-02-10T01:03:05.000Z</updated>
         <summary type="html"><![CDATA[<p>MapReduce作为大数据技术最主流的并行计算方案，仍然存在编程实现较为复杂（麻烦但不难），性能较差的问题。MapReduce在运算过程中会产生大量的IO操作。为了提高性能，我们引入内存计算的概念。</p>
@@ -31,8 +38,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[【工业与大数据】大数据的主要处理框架与工具]]></title>
-        <id>http://doc.xr1228.com/post/gong-ye-yu-da-shu-ju-da-shu-ju-de-zhu-yao-chu-li-kuang-jia-yu-gong-ju</id>
-        <link href="http://doc.xr1228.com/post/gong-ye-yu-da-shu-ju-da-shu-ju-de-zhu-yao-chu-li-kuang-jia-yu-gong-ju">
+        <id>http://doc.xr1228.com/post/gong-ye-yu-da-shu-ju-da-shu-ju-de-zhu-yao-chu-li-kuang-jia-yu-gong-ju/</id>
+        <link href="http://doc.xr1228.com/post/gong-ye-yu-da-shu-ju-da-shu-ju-de-zhu-yao-chu-li-kuang-jia-yu-gong-ju/">
         </link>
         <updated>2020-02-07T02:18:09.000Z</updated>
         <summary type="html"><![CDATA[<p>大数据作为一门应用广泛的技术，在不同的应用场景下对其数据结构，处理实时性都有不同的需求，所以大数据技术的先驱们开发了许多不同的技术框架来满足不同的需求。本章主要介绍大数据所采用的的主流处理框架以及其技术细节。</p>
@@ -42,8 +49,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[【工业与大数据】GFS：Google文件系统]]></title>
-        <id>http://doc.xr1228.com/post/gong-ye-yu-da-shu-ju-gfsgoogle-wen-jian-xi-tong</id>
-        <link href="http://doc.xr1228.com/post/gong-ye-yu-da-shu-ju-gfsgoogle-wen-jian-xi-tong">
+        <id>http://doc.xr1228.com/post/gong-ye-yu-da-shu-ju-gfsgoogle-wen-jian-xi-tong/</id>
+        <link href="http://doc.xr1228.com/post/gong-ye-yu-da-shu-ju-gfsgoogle-wen-jian-xi-tong/">
         </link>
         <updated>2020-02-06T02:26:12.000Z</updated>
         <summary type="html"><![CDATA[<p>为什么传统的NFS/AFS并不能满足大数据的需要？为什么GFS大名鼎鼎？它解决了什么样的问题？</p>
@@ -53,22 +60,22 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[【工业与大数据】分布式文件系统]]></title>
-        <id>http://doc.xr1228.com/post/gong-ye-yu-da-shu-ju-fen-bu-shi-wen-jian-xi-tong</id>
-        <link href="http://doc.xr1228.com/post/gong-ye-yu-da-shu-ju-fen-bu-shi-wen-jian-xi-tong">
+        <id>http://doc.xr1228.com/post/gong-ye-yu-da-shu-ju-fen-bu-shi-wen-jian-xi-tong/</id>
+        <link href="http://doc.xr1228.com/post/gong-ye-yu-da-shu-ju-fen-bu-shi-wen-jian-xi-tong/">
         </link>
         <updated>2020-02-02T08:14:41.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[【工业与大数据】云计算的商业模式]]></title>
-        <id>http://doc.xr1228.com/post/yun-ji-suan-de-shang-ye-mo-shi</id>
-        <link href="http://doc.xr1228.com/post/yun-ji-suan-de-shang-ye-mo-shi">
+        <id>http://doc.xr1228.com/post/yun-ji-suan-de-shang-ye-mo-shi/</id>
+        <link href="http://doc.xr1228.com/post/yun-ji-suan-de-shang-ye-mo-shi/">
         </link>
         <updated>2020-01-27T15:10:56.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[【工业与大数据】大数据基础]]></title>
-        <id>http://doc.xr1228.com/post/da-shu-ju-de-ji-chu-jia-gou-yun-ji-suan</id>
-        <link href="http://doc.xr1228.com/post/da-shu-ju-de-ji-chu-jia-gou-yun-ji-suan">
+        <id>http://doc.xr1228.com/post/da-shu-ju-de-ji-chu-jia-gou-yun-ji-suan/</id>
+        <link href="http://doc.xr1228.com/post/da-shu-ju-de-ji-chu-jia-gou-yun-ji-suan/">
         </link>
         <updated>2020-01-23T15:59:47.000Z</updated>
         <summary type="html"><![CDATA[<p>大数据这个词已经火热了很多年，似乎处处都存在着大数据的噱头，让我们回归本质，探讨一下大数据是什么？<br>
@@ -80,27 +87,16 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[【编程只是工具】Python实用手册03 词云]]></title>
-        <id>http://doc.xr1228.com/post/python-shi-yong-shou-ce-03-ci-yun</id>
-        <link href="http://doc.xr1228.com/post/python-shi-yong-shou-ce-03-ci-yun">
+        <id>http://doc.xr1228.com/post/python-shi-yong-shou-ce-03-ci-yun/</id>
+        <link href="http://doc.xr1228.com/post/python-shi-yong-shou-ce-03-ci-yun/">
         </link>
         <updated>2020-01-22T13:53:45.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[【编程只是工具】Python实用教程02  Python UI编程]]></title>
-        <id>http://doc.xr1228.com/post/python-shi-yong-jiao-cheng-02-python-ui-bian-cheng</id>
-        <link href="http://doc.xr1228.com/post/python-shi-yong-jiao-cheng-02-python-ui-bian-cheng">
+        <id>http://doc.xr1228.com/post/python-shi-yong-jiao-cheng-02-python-ui-bian-cheng/</id>
+        <link href="http://doc.xr1228.com/post/python-shi-yong-jiao-cheng-02-python-ui-bian-cheng/">
         </link>
         <updated>2020-01-22T13:51:17.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[【编程只是一种工具】Python实用教程01  一句话表白 ]]></title>
-        <id>http://doc.xr1228.com/post/python-jiao-cheng-01</id>
-        <link href="http://doc.xr1228.com/post/python-jiao-cheng-01">
-        </link>
-        <updated>2020-01-22T13:49:28.000Z</updated>
-        <summary type="html"><![CDATA[<p>让我们做一个小游戏吧,体会一下 Python 独特的魅力。</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>让我们做一个小游戏吧,体会一下 Python 独特的魅力。</p>
-]]></content>
     </entry>
 </feed>

@@ -4,46 +4,37 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>【工业与大数据】内存计算 —— 更快 - Wuriqilang</title>
+<title>【工业与大数据】内存计算的解决方案 —— Spark - Wuriqilang</title>
 <link rel="shortcut icon" href="http://doc.xr1228.com//favicon.ico">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
 <link rel="stylesheet" href="http://doc.xr1228.com//media/css/tailwind.css">
 <link rel="stylesheet" href="http://doc.xr1228.com//styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="【工业与大数据】内存计算 —— 更快 - Wuriqilang - Atom Feed" href="http://doc.xr1228.com//atom.xml">
+<link rel="alternate" type="application/atom+xml" title="【工业与大数据】内存计算的解决方案 —— Spark - Wuriqilang - Atom Feed" href="http://doc.xr1228.com//atom.xml">
 
     
 
   <meta name="description" content="MapReduce作为大数据技术最主流的并行计算方案，仍然存在编程实现较为复杂（麻烦但不难），性能较差的问题。MapReduce在运算过程中会产生大量的IO操作。为了提高性能，我们引入内存计算的概念。
 
-
-为什么要进行并行计算
-
-计算量大
-..." />
-  <meta property="og:title" content="【工业与大数据】内存计算 —— 更快 - Wuriqilang">
+一、背景
+1.1 并行计算中的局部性..." />
+  <meta property="og:title" content="【工业与大数据】内存计算的解决方案 —— Spark - Wuriqilang">
   <meta property="og:description" content="MapReduce作为大数据技术最主流的并行计算方案，仍然存在编程实现较为复杂（麻烦但不难），性能较差的问题。MapReduce在运算过程中会产生大量的IO操作。为了提高性能，我们引入内存计算的概念。
 
-
-为什么要进行并行计算
-
-计算量大
-..." />
+一、背景
+1.1 并行计算中的局部性..." />
   <meta property="og:type" content="articles">
-  <meta property="og:url" content="http://doc.xr1228.com/post/gong-ye-yu-da-shu-ju-nei-cun-ji-suan-geng-kuai" />
-  <meta property="og:image" content="http://doc.xr1228.com//images/avatar.png">
+  <meta property="og:url" content="http://doc.xr1228.com/post/gong-ye-yu-da-shu-ju-nei-cun-ji-suan-geng-kuai/" />
+  <meta property="og:image" content="http://doc.xr1228.com//post-images/gong-ye-yu-da-shu-ju-nei-cun-ji-suan-geng-kuai.png">
   <meta property="og:image:height" content="630">
   <meta property="og:image:width" content="1200">
-  <meta name="twitter:title" content="【工业与大数据】内存计算 —— 更快 - Wuriqilang">
+  <meta name="twitter:title" content="【工业与大数据】内存计算的解决方案 —— Spark - Wuriqilang">
   <meta name="twitter:description" content="MapReduce作为大数据技术最主流的并行计算方案，仍然存在编程实现较为复杂（麻烦但不难），性能较差的问题。MapReduce在运算过程中会产生大量的IO操作。为了提高性能，我们引入内存计算的概念。
 
-
-为什么要进行并行计算
-
-计算量大
-...">
+一、背景
+1.1 并行计算中的局部性...">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="canonical" href="http://doc.xr1228.com/post/gong-ye-yu-da-shu-ju-nei-cun-ji-suan-geng-kuai">
+  <link rel="canonical" href="http://doc.xr1228.com/post/gong-ye-yu-da-shu-ju-nei-cun-ji-suan-geng-kuai/">
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
@@ -63,55 +54,239 @@
     <div class="max-w-4xl w-full mx-auto">
       <div class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8">
         <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
-          【工业与大数据】内存计算 —— 更快
+          【工业与大数据】内存计算的解决方案 —— Spark
         </h1>
         
+          <img src="http://doc.xr1228.com//post-images/gong-ye-yu-da-shu-ju-nei-cun-ji-suan-geng-kuai.png" alt="【工业与大数据】内存计算的解决方案 —— Spark" class="block w-full mb-8">
+        
         <div class="mb-8 flex flex-wrap">
-          <div class="text-gray-400 text-sm mr-4">2020-02-10 · 1 min read</div>
+          <div class="text-gray-400 text-sm mr-4">2020-02-10 · 7 min read</div>
+          
+            <a href="http://doc.xr1228.com/tag/bigData/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              大数据
+            </a>
           
         </div>
         <div class="markdown mb-8" v-pre>
           <p>MapReduce作为大数据技术最主流的并行计算方案，仍然存在编程实现较为复杂（麻烦但不难），性能较差的问题。MapReduce在运算过程中会产生大量的IO操作。为了提高性能，我们引入内存计算的概念。</p>
 <!-- more -->
+<h1 id="一-背景">一、背景</h1>
+<h3 id="11-并行计算中的局部性">1.1 并行计算中的局部性</h3>
+<figure data-type="image" tabindex="1"><img src="http://doc.xr1228.com//post-images/1581930013675.PNG" alt="" loading="lazy"></figure>
+<p>矩阵计算过程中，大量的Catch失效消耗了大量的时间，为了解决这个问题，人们提出了分块运算的思想，我们后面进行详细介绍。</p>
+<h3 id="12-高可用性">1.2 高可用性</h3>
 <ul>
-<li>为什么要进行并行计算
+<li>大数据处理系统通常是由大量不可靠的的服务器组成的的</li>
+<li>传统的容错方法不适用
 <ul>
-<li>计算量大
-<ul>
-<li>单进程算的不够快，多CPU算</li>
+<li>锁步法，多版本编程</li>
 </ul>
 </li>
-<li>内存需求大
+<li>检查点设置与恢复</li>
+</ul>
+<h1 id="二-内存计算技术的必要性">二、内存计算技术的必要性</h1>
+<p>大数据处理并行系统，最主要就是对以下三个方面进行权衡</p>
 <ul>
-<li>单机内存不够大</li>
-<li>内存随机访问比硬盘随机访问块100000倍</li>
+<li>编程模型 ： 如何识别和描述并行程序</li>
+<li>性能/成本优化</li>
+<li>容错能力</li>
 </ul>
-</li>
-<li>I/O量大
+<p>虽然MapReduce的发明与实现为开创了大数据的新时代，它很好的解决了自动容错，自动负载均衡，并行化处理的问题，但是随着用户对系统提出了更高的要求时，引入过多I/O操作的MapReduce很难支持复杂的，实时的交互式查询。</p>
+<p>所以说MapReduce的瓶颈在于大量的IO操作，这些操作产生的大量数据都需要存储在HDFS中。那么如果我们将MapReduce的中间结果存储在内存中，是否就能大幅度提升MapReduce的效率呢？答案是肯定的，这样的方案比之前速度提升10-100倍！<br>
+<img src="http://doc.xr1228.com//post-images/1582015787498.PNG" alt="" loading="lazy"></p>
+<blockquote>
+<p>Distributed memory ：分布式内存</p>
+</blockquote>
+<h1 id="三-内存计算的可行性">三、内存计算的可行性</h1>
 <ul>
-<li>单个硬盘读写太慢，多个硬盘读写</li>
+<li>内存是否足够大能够装下所需的数据？   → 现在单台机器数TB RAM的服务器已经很常见</li>
+<li>内存有多贵？与硬盘想必性价比如何？  → 摩尔定理</li>
+<li>数据保存在硬盘上，可以保证数据的可用性，放在内存里如果容错？</li>
+<li>如果高效表示内存里的数据？</li>
 </ul>
-</li>
-</ul>
-</li>
-<li>并行计算的挑战
+<figure data-type="image" tabindex="2"><img src="http://doc.xr1228.com//post-images/1582016119131.PNG" alt="" loading="lazy"></figure>
+<p>各个内存层次的延迟：DRAM比硬盘块100000倍，但DRAM还是比cache慢6-200</p>
+<figure data-type="image" tabindex="3"><img src="http://doc.xr1228.com//post-images/1582016314700.PNG" alt="" loading="lazy"></figure>
+<blockquote>
+<p>Tape is Dead，Disk is Tape，Flash is Disk，RAM Loacality is king —— Jim Gray</p>
+</blockquote>
+<h1 id="四-spark的设计理念">四、 SPARK的设计理念</h1>
+<p>传统抽象多台机器的内存的方案</p>
 <ul>
-<li>编程困难
+<li>分布式共享内存（DSM）
 <ul>
-<li>并行性识别与表达，难写</li>
-<li>同步语句，难写对</li>
+<li>统一地址空间</li>
+<li>很难容错</li>
 </ul>
 </li>
-<li>性能调优难，难写块
+<li>分布式键-值存储（Piccolo，RAMCloud）
 <ul>
-<li>负载平衡</li>
-<li>局部性</li>
+<li>允许细粒度访问</li>
+<li>可以修改数据（MUTABLE)</li>
+<li>容错开销大</li>
 </ul>
 </li>
-<li>容错难</li>
+</ul>
+<p>DSM和键值对的容错机制</p>
+<ul>
+<li>
+<p>副本或Log</p>
+<ul>
+<li>对数据密集应用来说开销很大</li>
+<li>比内存写要慢10-100倍</li>
+</ul>
+<h2 id="41-内存处理设计方案">4.1 内存处理设计方案</h2>
+<ul>
+<li>RDD （Resilient Distributed Datasets）
+<ul>
+<li>基于数据集合，而不是单个数据</li>
+<li>由确定性的粗粒度操作产生（map，filter，join等）</li>
+<li>数据一旦产生，就不能修改（immutable）</li>
+<li>如果要修改数据，要通过数据集的变换来产生新的数据集</li>
+<li>高容错性：数据一旦是确定性的产生，并且产生后不会变换
+<ul>
+<li>就可以通过”重复计算“的方法来恢复数据</li>
+<li>只要记住rdd的生成过程就可以了，这样一次log可以用于很多数据，在不出错的时候几乎没有开销</li>
 </ul>
 </li>
 </ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-Scala">message = textFile(...).filter(_.contains(&quot;error)).map(_.split('\t')(2))
+</code></pre>
+<figure data-type="image" tabindex="4"><img src="http://doc.xr1228.com//post-images/1582017712946.PNG" alt="" loading="lazy"></figure>
+<h1 id="五-spark编程技术">五、Spark编程技术</h1>
+<ul>
+<li>基于Scala
+<ul>
+<li>类似Java的一种函数语言</li>
+<li>可以在Scala控制台上交互式的使用Spark</li>
+<li>现在也支持Java和Python</li>
+</ul>
+</li>
+<li>基于RDD的操作
+<ul>
+<li>Transformation：从现有RDD产生新的RDD
+<ul>
+<li>map，reduce，filter，groupBy，sort，distinct，sample ……</li>
+</ul>
+</li>
+<li>Action：从RDD返回一个值
+<ul>
+<li>count，collect，first，foreach</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="例子log挖掘">例子：Log挖掘</h3>
+<p>将数据空文件系统中调入内存，然后进行交互式的查询</p>
+<pre><code class="language-JAVA">lines = spark.textFile(&quot;hdfs://...&quot;)
+error = lines.filter(_startwith(&quot;error&quot;))
+messages = errors.map(_.split('\t)(2))
+cachedMsgs = messages.cache()  //将其存入缓存
+cachedMsgs.filter(_.contains(&quot;foo)).count
+cachedMsgs.filter(_.contains(&quot;bar&quot;)).count
+</code></pre>
+<p>性能  1TB数据在内存上需要5-7s完成，在硬盘上需要 170s</p>
+<h3 id="例子逻辑回归">例子：逻辑回归</h3>
+<pre><code class="language-JAVA">val data = spark.textFile(...).map(readPoint).cache()
+var w = Vector.random(D)
+for(i &lt;- 1 to ITERATIONS){
+    var gradient = data.map(p =&gt; (1/(1+exp(-p.y*(w dot  p.x))) - 1)*p.y*p.x)
+    .reduce( _ + _ )
+    w -= gradient
+}
+println(&quot;final w: ' +w）
+</code></pre>
+<figure data-type="image" tabindex="5"><img src="http://doc.xr1228.com//post-images/1582018554068.PNG" alt="" loading="lazy"></figure>
+<h3 id="例子workcount">例子：WorkCount</h3>
+<pre><code class="language-JAVA">var spark = new SparkContext(master,appName,[sparkHome],[jars])
+var file = spark.textFile(&quot;hdfs://...&quot;)
+var counts = file.flatMap(line -&gt; line.split(&quot; &quot;))
+                    .map(word =&gt; (word,1))
+                    .reduceByKey( _ + _ )
+counts.saveAsTextFile(&quot;hdfs://,,,&quot;）
+</code></pre>
+<ul>
+<li>
+<p>SparkContext 实例化一个spark</p>
+</li>
+<li>
+<p>flatMap 将某一个字段分为多个元素</p>
+<ul>
+<li>line = “a b c a” →  （a）（b）（c）（a） → （a，1）（b，1）（c，1）（a，1）</li>
+</ul>
+</li>
+<li>
+<p>reduceByKey → （a，1）（b，1）（c，1）（a，1） → （a，2）（b，1）（c，1）</p>
+<h1 id="六-spark的实现">六、Spark的实现</h1>
+</li>
+</ul>
+<h3 id="61-延迟估值lazy-evaluation">6.1 延迟估值（Lazy Evaluation）</h3>
+<pre><code class="language-JAVA">var lines = sc.textFile(&quot;data.txt&quot;)
+val lineLengths = lines.map(s =&gt; s.length)
+val totalLength = lineLengths.reduce((a,b) =&gt; a + b)
+</code></pre>
+<p>前两行都不会出发计算（Transformation）<br>
+最后一行的reduce会引发计算，生成DAG</p>
+<ul>
+<li>复杂的DAG（Directed acyclic grap 有向无环图）<br>
+<img src="http://doc.xr1228.com//post-images/1582074271042.PNG" alt="" loading="lazy"></li>
+</ul>
+<h3 id="62-spark性能优化">6.2 Spark性能优化</h3>
+<h4 id="621-数据划分技术">6.2.1 数据划分技术</h4>
+<p>spark通过数据划分将 links 与</p>
+<pre><code class="language-java">links = // RDD of (url,neighbors) pairs    url和相邻的网页
+ranks = // RDD of (url,rank) pairs   网页的rank
+
+// 通过不断循环，实现配置rank算法
+for(i &lt;- 1 to ITERATIONS){
+    ranks = links.join(ranks).flatMap{
+        (url,(links,rank)) =&gt; links.map(dest =&gt; (dest,rank/links.size))
+    }.reduceByKey(_ + _)
+}
+</code></pre>
+<p><img src="http://doc.xr1228.com//post-images/1582074683069.PNG" alt="" loading="lazy"><br>
+<img src="http://doc.xr1228.com//post-images/1582074807555.PNG" alt="" loading="lazy"></p>
+<h4 id="622-cache">6.2.2 Cache</h4>
+<ul>
+<li>对messages使用cache，意思是将后面可能会重用的数据保存起来，并“尽量”放在内存中
+<ul>
+<li>正常计算的时候避免重算</li>
+<li>Cache是Persist的特例,是RDD提供的将数据保存在内存的方法</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-java">lines = spark.textFile(&quot;hdfs://...&quot;)
+errors = lines.filter(_startsWith(&quot;ERROR&quot;))
+messages = errors.map(_split('\t')(2))
+cachedMsgs = messages.cache()
+cachedMsgs.filter(_.contains(&quot;bar&quot;)).count
+</code></pre>
+<p>StorageLevel列表<br>
+<img src="http://doc.xr1228.com//post-images/1582081342943.PNG" alt="" loading="lazy"></p>
+<ul>
+<li>MEMORY_ONLY 2 表示数据保存两份数据</li>
+</ul>
+<h1 id="七-spark的生态环境">七、Spark的生态环境</h1>
+<figure data-type="image" tabindex="6"><img src="http://doc.xr1228.com//post-images/1582081795189.PNG" alt="" loading="lazy"></figure>
+<ul>
+<li>Spark 是伯克利大学AMP实验室开发的大数据系统</li>
+<li>Mesos ： 底层资源管理系统和调度器</li>
+<li>HDFS ： Hadoop 文件管理系统</li>
+<li>Tachyon ： 内存文件系统</li>
+<li>Spark ： 内存计算框架</li>
+<li>Shark ： Spark支持SQL API</li>
+<li>Spark Streaming ： Spark支持流计算</li>
+<li>GraphX ： Spark 支持图算法与模型</li>
+<li>MLbase ： Spark 支持机器学习</li>
+</ul>
+<p>现在的大数据系统，MapReduce是通用的批处理系统，而其他的工具用于实现专门业务的专用系统，例如Pregel，Giraph，Dremel，Drill，Tez，Impala，GraphLab，Strom，S4。而Spark系统希望将MapReduce一般化（任务DAG和数据共享）并统一编程框架。<br>
+然而Spark仍有局限性，Spark进行例如BFS（图遍历）算法过程中每次进行细粒度更新时，无法对RDD内部进行编辑，需要更换新的RDD。从而发生大量无用的内存拷贝，也产生了大量无用数据，导致性能的问题。</p>
 
         </div>
         <!-- Share to Twitter, Weibo, Telegram -->
@@ -170,7 +345,44 @@
         </div>
       </div>
       <div class="post-toc-container">
-        
+        <ul class="markdownIt-TOC">
+<li><a href="#%E4%B8%80-%E8%83%8C%E6%99%AF">一、背景</a><br>
+*
+<ul>
+<li><a href="#11-%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97%E4%B8%AD%E7%9A%84%E5%B1%80%E9%83%A8%E6%80%A7">1.1 并行计算中的局部性</a></li>
+<li><a href="#12-%E9%AB%98%E5%8F%AF%E7%94%A8%E6%80%A7">1.2 高可用性</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BA%8C-%E5%86%85%E5%AD%98%E8%AE%A1%E7%AE%97%E6%8A%80%E6%9C%AF%E7%9A%84%E5%BF%85%E8%A6%81%E6%80%A7">二、内存计算技术的必要性</a></li>
+<li><a href="#%E4%B8%89-%E5%86%85%E5%AD%98%E8%AE%A1%E7%AE%97%E7%9A%84%E5%8F%AF%E8%A1%8C%E6%80%A7">三、内存计算的可行性</a></li>
+<li><a href="#%E5%9B%9B-spark%E7%9A%84%E8%AE%BE%E8%AE%A1%E7%90%86%E5%BF%B5">四、 SPARK的设计理念</a>
+<ul>
+<li><a href="#41-%E5%86%85%E5%AD%98%E5%A4%84%E7%90%86%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88">4.1 内存处理设计方案</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BA%94-spark%E7%BC%96%E7%A8%8B%E6%8A%80%E6%9C%AF">五、Spark编程技术</a><br>
+*
+<ul>
+<li><a href="#%E4%BE%8B%E5%AD%90log%E6%8C%96%E6%8E%98">例子：Log挖掘</a></li>
+<li><a href="#%E4%BE%8B%E5%AD%90%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92">例子：逻辑回归</a></li>
+<li><a href="#%E4%BE%8B%E5%AD%90workcount">例子：WorkCount</a></li>
+</ul>
+</li>
+<li><a href="#%E5%85%AD-spark%E7%9A%84%E5%AE%9E%E7%8E%B0">六、Spark的实现</a><br>
+*
+<ul>
+<li><a href="#61-%E5%BB%B6%E8%BF%9F%E4%BC%B0%E5%80%BClazy-evaluation">6.1 延迟估值（Lazy Evaluation）</a></li>
+<li><a href="#62-spark%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96">6.2 Spark性能优化</a>
+<ul>
+<li><a href="#621-%E6%95%B0%E6%8D%AE%E5%88%92%E5%88%86%E6%8A%80%E6%9C%AF">6.2.1 数据划分技术</a></li>
+<li><a href="#622-cache">6.2.2 Cache</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E4%B8%83-spark%E7%9A%84%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83">七、Spark的生态环境</a></li>
+</ul>
+
       </div>
     </div>
 
