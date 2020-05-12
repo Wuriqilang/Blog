@@ -1,9 +1,9 @@
 {
   "config": {
     "branch": "",
-    "domain": "http://doc.xr1228.com/",
+    "domain": "https://www.xr1228.com/",
     "email": "",
-    "password": "Xinran900304",
+    "password": "Yuan636490..",
     "platform": "sftp",
     "port": 22,
     "remotePath": "/var/www/doc/",
