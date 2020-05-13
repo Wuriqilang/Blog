@@ -5,7 +5,7 @@ tags: []
 published: true
 hideInList: false
 feature: 
-isTop: false
+isTop: true
 ---
 
 
@@ -20,6 +20,8 @@ isTop: false
 - 个人工作职责：项目负责人，负责项目需求制定、程序开发、资源协调与业务推进。
 
 - 实现技术：BS/CS混合架构 + .NET Winform + MS SQL Server + LinQ + SpringBoot(部分ServerAPI)；
+
+
   
 ![](https://www.xr1228.com//post-images/1589153255940.png)
 
@@ -70,12 +72,12 @@ isTop: false
 
 - 实现技术：小程序原生框架 + Koa2（Nodejs） + MySQL
 
-![](https://www.xr1228.com//post-images/1589156828944.png)
+![](https://www.xr1228.com//post-images/1589385069512.png)
 
 - 项目难点：
   1. 服务中台：小程序项目具有轻量化、数量多、基本数据(用户信息）一致的特点，为了保障应用的快速开发上线，减少重复代码。将人员信息、项目配置信息、页面配置等进行了服务端中台化。
   2. UI组件：为保障项目统一性与页面美观，基于ColorUI开发了XRUI框架。通过template与css方式在保障项目美观的同时兼顾了框架的易用性与可拓展性。
-   3. 移动端数据展示：小程序端因为其特定的框架结构，Echarts等可视化工具无法直接使用。采用Canvans方式对echarts进行了定制化（基于echarts for wx）保障了移动端数据可视化功能的执行效率。
+   1. 移动端数据展示：小程序端因为其特定的框架结构，Echarts等可视化工具无法直接使用。采用Canvans方式对echarts进行了定制化（基于echarts for wx）保障了移动端数据可视化功能的执行效率。
 
 ![](https://www.xr1228.com//post-images/1589157404629.png)
 

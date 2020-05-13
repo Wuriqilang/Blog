@@ -21,6 +21,9 @@
 
 
 一..." />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta property="og:title" content="【工业与大数据】大数据的主要处理框架与工具 - Wuriqilang">
   <meta property="og:description" content="大数据作为一门应用广泛的技术，在不同的应用场景下对其数据结构，处理实时性都有不同的需求，所以大数据技术的先驱们开发了许多不同的技术框架来满足不同的需求。本章主要介绍大数据所采用的的主流处理框架以及其技术细节。
 
@@ -31,7 +34,8 @@
 一..." />
   <meta property="og:type" content="articles">
   <meta property="og:url" content="https://www.xr1228.com/post/gong-ye-yu-da-shu-ju-da-shu-ju-de-zhu-yao-chu-li-kuang-jia-yu-gong-ju" />
-  <meta property="og:image" content="https://www.xr1228.com//post-images/gong-ye-yu-da-shu-ju-da-shu-ju-de-zhu-yao-chu-li-kuang-jia-yu-gong-ju.jpg">
+  <meta property="og:image"
+    content="https://www.xr1228.com//post-images/gong-ye-yu-da-shu-ju-da-shu-ju-de-zhu-yao-chu-li-kuang-jia-yu-gong-ju.jpg">
   <meta property="og:image:height" content="630">
   <meta property="og:image:width" content="1200">
   <meta name="twitter:title" content="【工业与大数据】大数据的主要处理框架与工具 - Wuriqilang">
@@ -47,9 +51,10 @@
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
- 
+
   
-    <link rel="stylesheet" href="https://www.xr1228.com//media/css/prism-atom-dark.css">
+  <link rel="stylesheet"
+    href="https://www.xr1228.com//media/css/prism-atom-dark.css">
   
 
   
@@ -57,24 +62,27 @@
 
 <body>
   <div class="antialiased flex flex-col min-h-screen" id="app">
-    <a href="https://www.xr1228.com/" class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+    <a href="https://www.xr1228.com/"
+      class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
       Wuriqilang
     </a>
     <div class="max-w-4xl w-full mx-auto">
-      <div class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+      <div
+        class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8">
         <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
           【工业与大数据】大数据的主要处理框架与工具
         </h1>
         
-          <img src="https://www.xr1228.com//post-images/gong-ye-yu-da-shu-ju-da-shu-ju-de-zhu-yao-chu-li-kuang-jia-yu-gong-ju.jpg" alt="【工业与大数据】大数据的主要处理框架与工具" class="block w-full mb-8">
+        <img src="https://www.xr1228.com//post-images/gong-ye-yu-da-shu-ju-da-shu-ju-de-zhu-yao-chu-li-kuang-jia-yu-gong-ju.jpg" alt="【工业与大数据】大数据的主要处理框架与工具" class="block w-full mb-8">
         
         <div class="mb-8 flex flex-wrap">
           <div class="text-gray-400 text-sm mr-4">2020-02-07 · 10 min read</div>
           
-            <a href="https://www.xr1228.com/tag/bigData" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
-              <i class="ri-hashtag"></i>
-              大数据
-            </a>
+          <a href="https://www.xr1228.com/tag/bigData"
+            class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+            <i class="ri-hashtag"></i>
+            大数据
+          </a>
           
         </div>
         <div class="markdown mb-8" v-pre>
@@ -527,13 +535,16 @@ sotre topUrls into 'data/topUrls';
           <div class="mr-4 flex items-center">
             <i class="ri-share-forward-line text-gray-500"></i>
           </div>
-          <div class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTwitter">
+          <div class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 inline-flex"
+            @click="shareToTwitter">
             <i class="ri-twitter-line"></i>
           </div>
-          <div class="px-4 cursor-pointer text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 inline-flex" @click="shareToWeibo">
+          <div class="px-4 cursor-pointer text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 inline-flex"
+            @click="shareToWeibo">
             <i class="ri-weibo-line"></i>
           </div>
-          <div class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTelegram">
+          <div class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100 dark:hover:bg-gray-600 inline-flex"
+            @click="shareToTelegram">
             <i class="ri-telegram-line"></i>
           </div>
         </div>
@@ -542,7 +553,7 @@ sotre topUrls into 'data/topUrls';
       
 
       
-        <div id="vlaine-comment"></div>
+      <div id="vlaine-comment"></div>
 <script type="application/javascript" src="https://unpkg.com/valine"></script>
 <script type="application/javascript">
   new Valine({
@@ -567,13 +578,19 @@ sotre topUrls into 'data/topUrls';
     </div>
 
     <!-- TOC Container -->
-    <div class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white dark:bg-gray-500 dark:text-gray-200 hover:shadow-lg transition-all animated fadeInRight" @click="showToc = true">
+    <div
+      class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white dark:bg-gray-500 dark:text-gray-200 hover:shadow-lg transition-all animated fadeInRight"
+      @click="showToc = true">
       <i class="ri-file-list-line"></i>
     </div>
 
-    <div class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white dark:bg-gray-800 p-4 border-l border-gray-100 dark:border-gray-600 z-10 transition-fast" :class="{ '-mr-64': !showToc }">
+    <div
+      class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white dark:bg-gray-800 p-4 border-l border-gray-100 dark:border-gray-600 z-10 transition-fast"
+      :class="{ '-mr-64': !showToc }">
       <div class="flex mb-4 justify-end">
-        <div class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast" @click="showToc = false">
+        <div
+          class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast"
+          @click="showToc = false">
           <i class="ri-close-line text-lg"></i>
         </div>
       </div>
@@ -623,7 +640,9 @@ sotre topUrls into 'data/topUrls';
     </div>
 
     <!-- Back to top -->
-    <div class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all dark:bg-gray-500 dark:text-gray-200" @click="backToUp" v-show="scrolled">
+    <div
+      class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all dark:bg-gray-500 dark:text-gray-200"
+      @click="backToUp" v-show="scrolled">
       <i class="ri-arrow-up-line"></i>
     </div>
   </div>
@@ -685,13 +704,13 @@ sotre topUrls into 'data/topUrls';
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="https://www.xr1228.com//media/scripts/main.js"></script>
-  
+
   <!-- Code Highlight -->
   
-    <script src="https://www.xr1228.com//media/prism.js"></script>
-    <script>
-      Prism.highlightAll()
-    </script>
+  <script src="https://www.xr1228.com//media/prism.js"></script>
+  <script>
+    Prism.highlightAll()
+  </script>
   
 
   <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
@@ -702,9 +721,9 @@ sotre topUrls into 'data/topUrls';
     //定义图片数组变量
     var imgitems;
     /**
-    * 用于显示预览界面
-    * @param index 图片数组下标
-    */
+     * 用于显示预览界面
+     * @param index 图片数组下标
+     */
     function viewImg(index) {
       //其它选项这里不做过多阐述，详情见官网
       var pswpoptions = {
@@ -717,20 +736,20 @@ sotre topUrls into 'data/topUrls';
       gallery.init()
     }
     /**
-    * 用于添加图片点击事件
-    * @param img 图片元素
-    * @param index 所属下标（在imgitems中的位置）
-    */
+     * 用于添加图片点击事件
+     * @param img 图片元素
+     * @param index 所属下标（在imgitems中的位置）
+     */
     function addImgClick(img, index) {
-      img.onclick = function() {
+      img.onclick = function () {
         viewImg(index)
       }
     }
     /**
-    * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
-    * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
-    * 异步加载图片可在图片元素创建完成后调用此方法
-    */
+     * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+     * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+     * 异步加载图片可在图片元素创建完成后调用此方法
+     */
     function initImg() {
       //重置图片数组
       imgitems = [];
@@ -761,7 +780,7 @@ sotre topUrls into 'data/topUrls';
           console.log('进来了2')
           imgtemp.index = i;
           imgtemp.img = img;
-          imgtemp.onload = function() {
+          imgtemp.onload = function () {
             var imgobj = {
               "src": this.src,
               "w": this.width,

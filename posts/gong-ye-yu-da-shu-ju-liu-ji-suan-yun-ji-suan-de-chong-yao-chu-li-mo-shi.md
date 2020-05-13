@@ -27,7 +27,7 @@ isTop: false
     - 平均每秒 6000个tweets，每天约5亿
     - 对这些tweets及相关的点击进行统计
 
-![](http://doc.xr1228.com//post-images/1582112459447.PNG)
+![](https://www.xr1228.com//post-images/1582112459447.PNG)
 
 # 三、流计算的技术挑战
 
@@ -55,7 +55,7 @@ isTop: false
 - Worker ： 处理单元
 - Queue ： 缓冲 + 路由 → 解决传入分析系统的数据量不均衡的问题
 
-![](http://doc.xr1228.com//post-images/1582162418584.PNG)
+![](https://www.xr1228.com//post-images/1582162418584.PNG)
 
 数据传入后，通过负载均衡随机进入（或遵循一定规则）被分配到不同的Queue（队列）
 Queue中数据全连接到后续的worker，Worker对数据进行处理，制定接下里要进入的Queue
@@ -79,7 +79,7 @@ Worker  Queue存在不易扩展，难容错，编码复杂的问题，所以Twit
 - PE的状态互不可见
 - S4框架负责产生PE和消息路由
 
-![](http://doc.xr1228.com//post-images/1582162821926.PNG)
+![](https://www.xr1228.com//post-images/1582162821926.PNG)
 
 ### 5.2 S4的设计
 
@@ -87,7 +87,7 @@ Worker  Queue存在不易扩展，难容错，编码复杂的问题，所以Twit
 - 输入是（K,A）流，S4进行计算，产生中间结果，并（可能）输出一个流
 
 距离：进行wordCount
-![](http://doc.xr1228.com//post-images/1582162914721.PNG)
+![](https://www.xr1228.com//post-images/1582162914721.PNG)
 
 PE
 -   功能 ：由PE的代码和配置文件定义
@@ -105,7 +105,7 @@ Processing Node
 - PN到无力节点的映射可以修改，因此可以容错
 - 利用Zookepper保存全局信息，协调节点的行为
 
-![](http://doc.xr1228.com//post-images/1582163462684.PNG)
+![](https://www.xr1228.com//post-images/1582163462684.PNG)
 
 S4的编程模型
 ```java
