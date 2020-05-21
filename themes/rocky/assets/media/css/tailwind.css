@@ -14034,6 +14034,7 @@ pre code.markdown,
 .markdown > ul li pre code,
 .markdown > ol li pre code {
   padding: 1rem;
+  color: #EAEAEA;
 }
 
 .markdown > table {
@@ -32548,7 +32549,7 @@ pre code.markdown,
   }
 
   .md\:pt-64 {
-    padding-top: 8rem;
+    padding-top: 16rem;
   }
 
   .md\:pr-64 {

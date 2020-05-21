@@ -1,0 +1,388 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>【前端拾遗】CSS知识点 - Wuriqilang</title>
+<link rel="shortcut icon" href="https://www.xr1228.com//favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://www.xr1228.com//media/css/tailwind.css">
+<link rel="stylesheet" href="https://www.xr1228.com//styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="【前端拾遗】CSS知识点 - Wuriqilang - Atom Feed" href="https://www.xr1228.com//atom.xml">
+
+    
+
+  <meta name="description" content="CSS 作为构建前端页面的三驾马车,随着现代前端技术的飞速发展,已经称为描述页面样式不可或缺的部分. 本文将从前端面试题目出发,总结CSS必须掌握的知识点.
+
+Questions
+1. css sprite是什么?有什么优缺点?
+
+
+知识点..." />
+  <meta property="og:title" content="【前端拾遗】CSS知识点 - Wuriqilang">
+  <meta property="og:description" content="CSS 作为构建前端页面的三驾马车,随着现代前端技术的飞速发展,已经称为描述页面样式不可或缺的部分. 本文将从前端面试题目出发,总结CSS必须掌握的知识点.
+
+Questions
+1. css sprite是什么?有什么优缺点?
+
+
+知识点..." />
+  <meta property="og:type" content="articles">
+  <meta property="og:url" content="https://www.xr1228.com/post/CSS-Point/" />
+  <meta property="og:image" content="https://www.xr1228.com//images/avatar.png">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200">
+  <meta name="twitter:title" content="【前端拾遗】CSS知识点 - Wuriqilang">
+  <meta name="twitter:description" content="CSS 作为构建前端页面的三驾马车,随着现代前端技术的飞速发展,已经称为描述页面样式不可或缺的部分. 本文将从前端面试题目出发,总结CSS必须掌握的知识点.
+
+Questions
+1. css sprite是什么?有什么优缺点?
+
+
+知识点...">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://www.xr1228.com/post/CSS-Point/">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+ 
+  
+    <link rel="stylesheet" href="https://www.xr1228.com//media/css/prism-github.css">
+  
+
+  
+</head>
+
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+    <a href="https://www.xr1228.com/" class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+      Wuriqilang
+    </a>
+    <div class="max-w-4xl w-full mx-auto">
+      <div class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+        <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+          【前端拾遗】CSS知识点
+        </h1>
+        
+        <div class="mb-8 flex flex-wrap">
+          <div class="text-gray-400 text-sm mr-4">2020-05-21 · 3 min read</div>
+          
+            <a href="https://www.xr1228.com/tag/FE/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              前端拾遗
+            </a>
+          
+        </div>
+        <div class="markdown mb-8" v-pre>
+          <p>CSS 作为构建前端页面的三驾马车,随着现代前端技术的飞速发展,已经称为描述页面样式不可或缺的部分. 本文将从前端面试题目出发,总结CSS必须掌握的知识点.</p>
+<!-- more -->
+<h1 id="questions">Questions</h1>
+<h3 id="1-css-sprite是什么有什么优缺点">1. css sprite是什么?有什么优缺点?</h3>
+<ul>
+<li>
+<p>知识点:css sprite</p>
+</li>
+<li>
+<p>重要程度:★★★</p>
+</li>
+<li>
+<p>概念与背景: css sprite是一种用于解决页面图片过多导致大量http请求的解决方案. css sprite将多个小图片拼接到一个图片中，通过background-positon 和元素尺寸调节需要显示的背景图案.</p>
+</li>
+<li>
+<p>优点:</p>
+<ul>
+<li>减少HTTP请求数,极大的提高页面加载速度</li>
+<li>增加图片信息重复度,提高压缩比,减少图片大小</li>
+<li>更换风格方便.只需要在少量图片上修改颜色或者样式即可</li>
+</ul>
+</li>
+<li>
+<p>缺点:</p>
+<ul>
+<li>图片合并麻烦</li>
+<li>维护不便,修改一个图片可能需要重新布局整个图片样式</li>
+</ul>
+</li>
+<li>
+<p>实现 (转自MDN教程):<br>
+如果为类名为toolbtn的元素附加一张图片</p>
+</li>
+</ul>
+<pre><code class="language-css">.toolbtn{
+   background:url(myfile.png);
+   display : inline-block;
+   height : 20px;
+   width : 20px;
+}
+</code></pre>
+<p>为设置 background-position 以使每个按钮得到合并后图片中的正确部分，可以在 background 属性中的 url() 后添加 x, y 两个坐标值，或直接使用 background-position 属性。例如：</p>
+<pre><code class="language-css">#btn1 {background-position: -20px 0px}
+#btn2 {background-position: -40px 0px}
+</code></pre>
+<p>这会将 ID 为 btn1 的元素的背景向左移 20px，ID 为 btn2 的元素的背景向左移40px（假设这两个元素都带有 toolbtn 这个类且应用了上面 background 属性中定义的图片背景）</p>
+<p>类似的，你也可以使用下面的代码添加悬停效果：</p>
+<pre><code class="language-css">#btn:hover {
+  background-position: &lt;pixels shifted right&gt;px &lt;pixels shifted down&gt;px;
+}
+</code></pre>
+<h3 id="2-displaynone-与-visibilityhidden-的区别">2. display:none 与 visibility:hidden 的区别</h3>
+<ul>
+<li>知识点: display与visibility</li>
+<li>重要程度:★★</li>
+<li>概念与背景: 本题考察display与visibility的渲染机制</li>
+<li>display:none; :
+<ul>
+<li>会让元素完全从渲染树中消失,渲染时不占任何空间</li>
+<li>非继承属性: 子孙节点同样消失,无法通过修改子孙节点属性使子孙节点显示</li>
+</ul>
+</li>
+<li>visibility:hidden; :
+<ul>
+<li>不会让元素从渲染树中消失,渲染时仍然占据控件,只是内容不可见</li>
+<li>子孙节点可以通过重新设置 visibility:visible; 使自身显示</li>
+<li>修改display属性会导致文档重拍,visibility只会导致内容重新渲染</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-link与import的区别">3. link与@import的区别</h3>
+<ul>
+<li>知识点: 样式文件的引用方式\FOUC</li>
+<li>重要程度:★★</li>
+<li>概念与背景: link与@import都是前端用于引入css文件的方式.但因其作用方式不同,在传统的前端项目中容易遇到一些样式覆盖,FOUC的bug</li>
+</ul>
+
+        </div>
+        <!-- Share to Twitter, Weibo, Telegram -->
+        <div class="flex items-center">
+          <div class="mr-4 flex items-center">
+            <i class="ri-share-forward-line text-gray-500"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTwitter">
+            <i class="ri-twitter-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 inline-flex" @click="shareToWeibo">
+            <i class="ri-weibo-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTelegram">
+            <i class="ri-telegram-line"></i>
+          </div>
+        </div>
+      </div>
+
+      
+
+      
+        <div id="vlaine-comment"></div>
+      
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  备案号:蒙ICP备19002373号-1 <a href="http://beian.niit.gov.cn" target="_blank">工信部</a>
+</footer>
+    </div>
+
+    <!-- TOC Container -->
+    <div class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white dark:bg-gray-500 dark:text-gray-200 hover:shadow-lg transition-all animated fadeInRight" @click="showToc = true">
+      <i class="ri-file-list-line"></i>
+    </div>
+
+    <div class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white dark:bg-gray-800 p-4 border-l border-gray-100 dark:border-gray-600 z-10 transition-fast" :class="{ '-mr-64': !showToc }">
+      <div class="flex mb-4 justify-end">
+        <div class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast" @click="showToc = false">
+          <i class="ri-close-line text-lg"></i>
+        </div>
+      </div>
+      <div class="post-toc-container">
+        <ul class="markdownIt-TOC">
+<li><a href="#questions">Questions</a><br>
+*
+<ul>
+<li><a href="#1-css-sprite%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E4%BC%98%E7%BC%BA%E7%82%B9">1. css sprite是什么?有什么优缺点?</a></li>
+<li><a href="#2-displaynone-%E4%B8%8E-visibilityhidden-%E7%9A%84%E5%8C%BA%E5%88%AB">2. display:none 与 visibility:hidden 的区别</a></li>
+<li><a href="#3-link%E4%B8%8Eimport%E7%9A%84%E5%8C%BA%E5%88%AB">3. link与@import的区别</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <div class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all dark:bg-gray-500 dark:text-gray-200" @click="backToUp" v-show="scrolled">
+      <i class="ri-arrow-up-line"></i>
+    </div>
+  </div>
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe. 
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg">
+  </div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter">
+        </div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip">
+        </div>
+      </div>
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+      </button>
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+      </button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://www.xr1228.com//media/scripts/main.js"></script>
+  
+  <!-- Code Highlight -->
+  
+    <script src="https://www.xr1228.com//media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+  <script>
+    //拿到预览框架，也就是上面的html代码
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+    //定义图片数组变量
+    var imgitems;
+    /**
+    * 用于显示预览界面
+    * @param index 图片数组下标
+    */
+    function viewImg(index) {
+      //其它选项这里不做过多阐述，详情见官网
+      var pswpoptions = {
+        index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+        bgOpacity: 0.7, // 背景透明度，0-1
+        maxSpreadZoom: 3, // 缩放级别，不要太大
+      };
+      //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, imgitems, pswpoptions);
+      gallery.init()
+    }
+    /**
+    * 用于添加图片点击事件
+    * @param img 图片元素
+    * @param index 所属下标（在imgitems中的位置）
+    */
+    function addImgClick(img, index) {
+      img.onclick = function() {
+        viewImg(index)
+      }
+    }
+    /**
+    * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+    * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+    * 异步加载图片可在图片元素创建完成后调用此方法
+    */
+    function initImg() {
+      //重置图片数组
+      imgitems = [];
+      //查找class:markdown 下的所有img元素并遍历
+      var imgs = document.querySelectorAll('.markdown img');
+      for (var i = 0; i < imgs.length; i++) {
+        var img = imgs[i];
+        //本站相册初始为loading图片，真实图片放在data-src
+        var ds = img.getAttribute("data-src");
+        //创建image对象，用于获取图片宽高
+        var imgtemp = new Image();
+        //判断是否存在data-src
+        if (ds != null && ds.length > 0) {
+          imgtemp.src = ds
+        } else {
+          imgtemp.src = img.src
+        }
+        //判断是否存在缓存
+        if (imgtemp.complete) {
+          var imgobj = {
+            "src": imgtemp.src,
+            "w": imgtemp.width,
+            "h": imgtemp.height,
+          };
+          imgitems[i] = imgobj;
+          addImgClick(img, i);
+        } else {
+          console.log('进来了2')
+          imgtemp.index = i;
+          imgtemp.img = img;
+          imgtemp.onload = function() {
+            var imgobj = {
+              "src": this.src,
+              "w": this.width,
+              "h": this.height,
+            };
+            //不要使用push，因为onload前后顺序会不同
+            imgitems[this.index] = imgobj
+            //添加点击事件
+            addImgClick(this.img, this.index);
+          }
+        }
+      }
+    }
+    //初始化
+    initImg();
+  </script>
+  
+    <script type="application/javascript" src="https://unpkg.com/valine"></script>
+<script type="application/javascript">
+  new Valine({
+    el: '#vlaine-comment',
+    appId: 'mosVKaOcHQ7SRcPdWDwRwksy-gzGzoHsz',
+    appKey: 'WtY1Jypo6oLtpBkEJKqGYIWp',
+    pageSize: 10,
+    notify: false,
+    avatar: 'mp',
+    verify: true,
+    placeholder: '评论点亮灵感',
+    visitor: true,
+    highlight: false,
+    recordIP: false,
+  })
+</script>
+  
+  
+</body>
+
+</html>

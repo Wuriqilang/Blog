@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.xr1228.com/</id>
     <title>Wuriqilang</title>
-    <updated>2020-05-13T15:51:47.920Z</updated>
+    <updated>2020-05-21T09:18:17.346Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://www.xr1228.com/"/>
     <link rel="self" href="https://www.xr1228.com/atom.xml"/>
@@ -12,37 +12,55 @@
     <icon>https://www.xr1228.com/favicon.ico</icon>
     <rights>All rights reserved 2020, Wuriqilang</rights>
     <entry>
+        <title type="html"><![CDATA[【前端拾遗】CSS知识点]]></title>
+        <id>https://www.xr1228.com/post/CSS-Point/</id>
+        <link href="https://www.xr1228.com/post/CSS-Point/">
+        </link>
+        <updated>2020-05-21T02:55:48.000Z</updated>
+        <summary type="html"><![CDATA[<p>CSS 作为构建前端页面的三驾马车,随着现代前端技术的飞速发展,已经称为描述页面样式不可或缺的部分. 本文将从前端面试题目出发,总结CSS必须掌握的知识点.</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>CSS 作为构建前端页面的三驾马车,随着现代前端技术的飞速发展,已经称为描述页面样式不可或缺的部分. 本文将从前端面试题目出发,总结CSS必须掌握的知识点.</p>
+]]></content>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[个人项目经历总结]]></title>
-        <id>https://www.xr1228.com/post/xiangmu</id>
-        <link href="https://www.xr1228.com/post/xiangmu">
+        <id>https://www.xr1228.com/post/xiangmu/</id>
+        <link href="https://www.xr1228.com/post/xiangmu/">
         </link>
         <updated>2020-05-10T15:33:14.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[【前端拾遗】前端布局方案]]></title>
-        <id>https://www.xr1228.com/post/qian-duan-mian-shi-bi-kao-ti</id>
-        <link href="https://www.xr1228.com/post/qian-duan-mian-shi-bi-kao-ti">
+        <id>https://www.xr1228.com/post/qian-duan-mian-shi-bi-kao-ti/</id>
+        <link href="https://www.xr1228.com/post/qian-duan-mian-shi-bi-kao-ti/">
         </link>
         <updated>2020-05-08T17:02:17.000Z</updated>
     </entry>
     <entry>
+        <title type="html"><![CDATA[【工业与大数据】基于Cloudera Manager进行CDH集群管理运维]]></title>
+        <id>https://www.xr1228.com/post/gong-ye-yu-da-shu-ju-ji-yu-cloudera-manager-jin-xing-cdh-ji-qun-guan-li-yun-wei/</id>
+        <link href="https://www.xr1228.com/post/gong-ye-yu-da-shu-ju-ji-yu-cloudera-manager-jin-xing-cdh-ji-qun-guan-li-yun-wei/">
+        </link>
+        <updated>2020-03-18T05:57:05.000Z</updated>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[【工业与大数据】流处理 —— 云计算的重要处理模式]]></title>
-        <id>https://www.xr1228.com/post/gong-ye-yu-da-shu-ju-liu-ji-suan-yun-ji-suan-de-chong-yao-chu-li-mo-shi</id>
-        <link href="https://www.xr1228.com/post/gong-ye-yu-da-shu-ju-liu-ji-suan-yun-ji-suan-de-chong-yao-chu-li-mo-shi">
+        <id>https://www.xr1228.com/post/gong-ye-yu-da-shu-ju-liu-ji-suan-yun-ji-suan-de-chong-yao-chu-li-mo-shi/</id>
+        <link href="https://www.xr1228.com/post/gong-ye-yu-da-shu-ju-liu-ji-suan-yun-ji-suan-de-chong-yao-chu-li-mo-shi/">
         </link>
         <updated>2020-02-19T11:28:16.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[【代码仓库】SQL -- 数据批量插入]]></title>
-        <id>https://www.xr1228.com/post/dai-ma-cang-ku-sql-shu-ju-pi-liang-cha-ru</id>
-        <link href="https://www.xr1228.com/post/dai-ma-cang-ku-sql-shu-ju-pi-liang-cha-ru">
+        <id>https://www.xr1228.com/post/dai-ma-cang-ku-sql-shu-ju-pi-liang-cha-ru/</id>
+        <link href="https://www.xr1228.com/post/dai-ma-cang-ku-sql-shu-ju-pi-liang-cha-ru/">
         </link>
         <updated>2020-02-14T03:37:01.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[【工业与大数据】内存计算的解决方案 —— Spark]]></title>
-        <id>https://www.xr1228.com/post/gong-ye-yu-da-shu-ju-nei-cun-ji-suan-geng-kuai</id>
-        <link href="https://www.xr1228.com/post/gong-ye-yu-da-shu-ju-nei-cun-ji-suan-geng-kuai">
+        <id>https://www.xr1228.com/post/gong-ye-yu-da-shu-ju-nei-cun-ji-suan-geng-kuai/</id>
+        <link href="https://www.xr1228.com/post/gong-ye-yu-da-shu-ju-nei-cun-ji-suan-geng-kuai/">
         </link>
         <updated>2020-02-10T01:03:05.000Z</updated>
         <summary type="html"><![CDATA[<p>MapReduce作为大数据技术最主流的并行计算方案，仍然存在编程实现较为复杂（麻烦但不难），性能较差的问题。MapReduce在运算过程中会产生大量的IO操作。为了提高性能，我们引入内存计算的概念。</p>
@@ -52,8 +70,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[【工业与大数据】大数据的主要处理框架与工具]]></title>
-        <id>https://www.xr1228.com/post/gong-ye-yu-da-shu-ju-da-shu-ju-de-zhu-yao-chu-li-kuang-jia-yu-gong-ju</id>
-        <link href="https://www.xr1228.com/post/gong-ye-yu-da-shu-ju-da-shu-ju-de-zhu-yao-chu-li-kuang-jia-yu-gong-ju">
+        <id>https://www.xr1228.com/post/gong-ye-yu-da-shu-ju-da-shu-ju-de-zhu-yao-chu-li-kuang-jia-yu-gong-ju/</id>
+        <link href="https://www.xr1228.com/post/gong-ye-yu-da-shu-ju-da-shu-ju-de-zhu-yao-chu-li-kuang-jia-yu-gong-ju/">
         </link>
         <updated>2020-02-07T02:18:09.000Z</updated>
         <summary type="html"><![CDATA[<p>大数据作为一门应用广泛的技术，在不同的应用场景下对其数据结构，处理实时性都有不同的需求，所以大数据技术的先驱们开发了许多不同的技术框架来满足不同的需求。本章主要介绍大数据所采用的的主流处理框架以及其技术细节。</p>
@@ -63,8 +81,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[【工业与大数据】GFS：Google文件系统]]></title>
-        <id>https://www.xr1228.com/post/gong-ye-yu-da-shu-ju-gfsgoogle-wen-jian-xi-tong</id>
-        <link href="https://www.xr1228.com/post/gong-ye-yu-da-shu-ju-gfsgoogle-wen-jian-xi-tong">
+        <id>https://www.xr1228.com/post/gong-ye-yu-da-shu-ju-gfsgoogle-wen-jian-xi-tong/</id>
+        <link href="https://www.xr1228.com/post/gong-ye-yu-da-shu-ju-gfsgoogle-wen-jian-xi-tong/">
         </link>
         <updated>2020-02-06T02:26:12.000Z</updated>
         <summary type="html"><![CDATA[<p>为什么传统的NFS/AFS并不能满足大数据的需要？为什么GFS大名鼎鼎？它解决了什么样的问题？</p>
@@ -74,29 +92,9 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[【工业与大数据】分布式文件系统]]></title>
-        <id>https://www.xr1228.com/post/gong-ye-yu-da-shu-ju-fen-bu-shi-wen-jian-xi-tong</id>
-        <link href="https://www.xr1228.com/post/gong-ye-yu-da-shu-ju-fen-bu-shi-wen-jian-xi-tong">
+        <id>https://www.xr1228.com/post/gong-ye-yu-da-shu-ju-fen-bu-shi-wen-jian-xi-tong/</id>
+        <link href="https://www.xr1228.com/post/gong-ye-yu-da-shu-ju-fen-bu-shi-wen-jian-xi-tong/">
         </link>
         <updated>2020-02-02T08:14:41.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[【工业与大数据】云计算的商业模式]]></title>
-        <id>https://www.xr1228.com/post/yun-ji-suan-de-shang-ye-mo-shi</id>
-        <link href="https://www.xr1228.com/post/yun-ji-suan-de-shang-ye-mo-shi">
-        </link>
-        <updated>2020-01-27T15:10:56.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[【工业与大数据】大数据基础]]></title>
-        <id>https://www.xr1228.com/post/da-shu-ju-de-ji-chu-jia-gou-yun-ji-suan</id>
-        <link href="https://www.xr1228.com/post/da-shu-ju-de-ji-chu-jia-gou-yun-ji-suan">
-        </link>
-        <updated>2020-01-23T15:59:47.000Z</updated>
-        <summary type="html"><![CDATA[<p>大数据这个词已经火热了很多年，似乎处处都存在着大数据的噱头，让我们回归本质，探讨一下大数据是什么？<br>
-本文介绍了大数据技术细节以及相关背景的的一些概念。本文并未对大数据的相关知识进行总结，所以本文仅作为参考，无需详细阅读。</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>大数据这个词已经火热了很多年，似乎处处都存在着大数据的噱头，让我们回归本质，探讨一下大数据是什么？<br>
-本文介绍了大数据技术细节以及相关背景的的一些概念。本文并未对大数据的相关知识进行总结，所以本文仅作为参考，无需详细阅读。</p>
-]]></content>
     </entry>
 </feed>

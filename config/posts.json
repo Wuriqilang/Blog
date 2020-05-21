@@ -1,14 +1,34 @@
 {
   "posts": [
     {
+      "content": "\r\nCSS 作为构建前端页面的三驾马车,随着现代前端技术的飞速发展,已经称为描述页面样式不可或缺的部分. 本文将从前端面试题目出发,总结CSS必须掌握的知识点.\r\n<!-- more -->\r\n\r\n\r\n# Questions\r\n\r\n### 1. css sprite是什么?有什么优缺点?\r\n\r\n- 知识点:css sprite\r\n- 重要程度:★★★\r\n- 概念与背景: css sprite是一种用于解决页面图片过多导致大量http请求的解决方案. css sprite将多个小图片拼接到一个图片中，通过background-positon 和元素尺寸调节需要显示的背景图案.\r\n- 优点:\r\n    - 减少HTTP请求数,极大的提高页面加载速度\r\n    - 增加图片信息重复度,提高压缩比,减少图片大小\r\n    - 更换风格方便.只需要在少量图片上修改颜色或者样式即可\r\n- 缺点:\r\n    - 图片合并麻烦\r\n    - 维护不便,修改一个图片可能需要重新布局整个图片样式\r\n\r\n- 实现 (转自MDN教程):\r\n  如果为类名为toolbtn的元素附加一张图片\r\n ```css\r\n.toolbtn{\r\n    background:url(myfile.png);\r\n    display : inline-block;\r\n    height : 20px;\r\n    width : 20px;\r\n}\r\n ```\r\n为设置 background-position 以使每个按钮得到合并后图片中的正确部分，可以在 background 属性中的 url() 后添加 x, y 两个坐标值，或直接使用 background-position 属性。例如：\r\n\r\n ```css\r\n#btn1 {background-position: -20px 0px}\r\n#btn2 {background-position: -40px 0px}\r\n ```\r\n\r\n 这会将 ID 为 btn1 的元素的背景向左移 20px，ID 为 btn2 的元素的背景向左移40px（假设这两个元素都带有 toolbtn 这个类且应用了上面 background 属性中定义的图片背景）\r\n\r\n类似的，你也可以使用下面的代码添加悬停效果：\r\n```css\r\n#btn:hover {\r\n  background-position: <pixels shifted right>px <pixels shifted down>px;\r\n}\r\n```\r\n\r\n\r\n### 2. display:none 与 visibility:hidden 的区别\r\n\r\n- 知识点: display与visibility\r\n- 重要程度:★★\r\n- 概念与背景: 本题考察display与visibility的渲染机制\r\n- display:none; :\r\n    - 会让元素完全从渲染树中消失,渲染时不占任何空间\r\n    - 非继承属性: 子孙节点同样消失,无法通过修改子孙节点属性使子孙节点显示\r\n- visibility:hidden; :\r\n    - 不会让元素从渲染树中消失,渲染时仍然占据控件,只是内容不可见\r\n    - 子孙节点可以通过重新设置 visibility:visible; 使自身显示\r\n    - 修改display属性会导致文档重拍,visibility只会导致内容重新渲染\r\n\r\n\r\n\r\n### 3. link与@import的区别\r\n\r\n- 知识点: 样式文件的引用方式\\FOUC\r\n- 重要程度:★★\r\n- 概念与背景: link与@import都是前端用于引入css文件的方式.但因其作用方式不同,在传统的前端项目中容易遇到一些样式覆盖,FOUC的bug\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+      "data": {
+        "title": "【前端拾遗】CSS知识点",
+        "date": "2020-05-21 10:55:48",
+        "tags": [
+          "前端拾遗"
+        ],
+        "published": true,
+        "hideInList": false,
+        "feature": null,
+        "isTop": false
+      },
+      "isEmpty": false,
+      "excerpt": "",
+      "abstract": "\r\nCSS 作为构建前端页面的三驾马车,随着现代前端技术的飞速发展,已经称为描述页面样式不可或缺的部分. 本文将从前端面试题目出发,总结CSS必须掌握的知识点.\r",
+      "fileName": "CSS-Point"
+    },
+    {
       "content": "\n\n\n> 2014 - 2020 ，两千多个披星戴月，收获良多。对个人负责、参与过的项目进行总结如下。\n\n\n## 项目一： 设备智能管理系统（桌面应用程序）\n\n- 项目描述：一套以发挥数据潜能为核心的智能制造解决方案。主要用于解决当前工厂生产运营中存在的人力、效率、方法、数据价值相关问题，最终帮助工厂向工业4.0转型。\n\n- 个人工作职责：项目负责人，负责项目需求制定、程序开发、资源协调与业务推进。\n\n- 实现技术：BS/CS混合架构 + .NET Winform + MS SQL Server + LinQ + SpringBoot(部分ServerAPI)；\n\n\n  \n![](https://www.xr1228.com//post-images/1589153255940.png)\n\n- 主要模块：设备监控、工艺监控、不良调查\n>   ![](https://www.xr1228.com//post-images/1589153107363.png)\n\n>   ![](https://www.xr1228.com//post-images/1589153172425.png)\n\n>   ![](https://www.xr1228.com//post-images/1589153182823.png)\n\n- 项目难点：\n\n    1. UI 样式 ：Winform作为一款20年前推出的框架，组件UI样式已经显得十分“呆板落伍”。\n    - 解决方案：通过对 MetroFramework 框架的定制开发，实现了样式设计的现代化同时兼具Winform拖动组件设计的便捷性。\n![](https://www.xr1228.com//post-images/1589154078440.png)\n\n    2. 代码执行效率：工业级应用在数据分析过程中要快速处理大量数据（M级），BS架构会极大增加服务器压力，CS架构下用户对于程序卡顿感知较强。\n\n    - 解决方案：数据处理在客户端执行，保证了代码执行效率减少服务器开销。大量使用了多线程方案优化用户体验。\n\n\n## 项目二： 数据透明化平台（Web）\n\n- 项目描述：一套用于工厂数据可视化、展示固定报表，数据监控的Web应用。解决用户复杂的数据处理加工需求，减少重复低效的数据二次处理劳动。固化日报月报，帮助技术部获取实时数据。\n\n- 个人工作职责：全栈开发，主要进行项目的需求检讨与开发。\n\n- 实现技术：AngularJS + SpringBoot + Oracle + Primeng + echarts + d3js\n\n![](https://www.xr1228.com//post-images/1589154673790.png)\n\n## 项目三：基于大数据技术的不良分析平台\n\n- 项目描述：一个基于大数据技术的不良分析平台，将工业生产数据与检测数据进行全面联动，采用特定算法计算影响不良的相关因子，明确不良发生原因。为工厂提供不良监控、自主分析等功能。\n\n- 个人工作职责：项目支援，主要进行项目的前端开发、性能调优。\n\n- 实现技术：AngularJS + SpringBoot + 。。。（保密协议相关）\n\n\n## 项目四：小程序（篇幅有限，将几款小程序合并一起说明）\n\n- 智造之窗：一款用于企业智能制造项目改进、移动端数据展示、新闻、数据交互的微信小程序。\n- i创+提案平台：一款用于企业改善提案上报、审批、数据展示的微信小程序。\n- 全员学习系统：用于单位全员学习、考试、学习情况评比、学习心得展示的钉钉小程序。\n- 资产名片：用于企业固定资产管理、二维码标签自动生成、资产审批的微信小程序。\n- 绩效时钟：用于单位全员绩效管理、任务分解、任务下发的微信小程序。\n\n- 实现技术：小程序原生框架 + Koa2（Nodejs） + MySQL\n\n![](https://www.xr1228.com//post-images/1589385069512.png)\n\n- 项目难点：\n  1. 服务中台：小程序项目具有轻量化、数量多、基本数据(用户信息）一致的特点，为了保障应用的快速开发上线，减少重复代码。将人员信息、项目配置信息、页面配置等进行了服务端中台化。\n  2. UI组件：为保障项目统一性与页面美观，基于ColorUI开发了XRUI框架。通过template与css方式在保障项目美观的同时兼顾了框架的易用性与可拓展性。\n   1. 移动端数据展示：小程序端因为其特定的框架结构，Echarts等可视化工具无法直接使用。采用Canvans方式对echarts进行了定制化（基于echarts for wx）保障了移动端数据可视化功能的执行效率。\n\n![](https://www.xr1228.com//post-images/1589157404629.png)\n\n## 项目五：房车情报（已下线）\n\n- 项目描述：一个为房车情报官方设计的房车展示、新闻展示、车型数据库网站。\n\n- 个人工作职责：项目负责人，负责项目需求制定、程序开发。\n\n- 实现技术：bootStrap + vue + koa2（nodejs） + mySql + sequelize\n\n- 项目难点：\n  1. 静态资源优化：新闻类咨询类网站存在大量静态资源且通常图片尺寸较大。采用Gzip压缩、上传压缩、CDN等方式实现了静态资源的尺寸、访问速度优化。\n  2. 首屏加载与SEO优化：单页应用存在首屏加载与SEO问题，通过首页服务度渲染、组件懒加载、Gzip、h5语义化标签等方式对其进行了优化。\n\n![](https://www.xr1228.com//post-images/1589157977232.jpeg)\n\n\n-------\n\n\n\n###  附：个人简历\n\n![](https://www.xr1228.com//post-images/1589125473530.jpg)\n\n![](https://www.xr1228.com//post-images/1589125514909.jpg)\n",
       "data": {
         "title": "个人项目经历总结",
         "date": "2020-05-10 23:33:14",
-        "tags": [],
+        "tags": [
+          "值得一读"
+        ],
         "published": true,
         "hideInList": false,
-        "feature": null,
+        "feature": "/post-images/xiangmu.png",
         "isTop": true
       },
       "isEmpty": false,
@@ -31,6 +51,22 @@
       "excerpt": "",
       "abstract": "",
       "fileName": "qian-duan-mian-shi-bi-kao-ti"
+    },
+    {
+      "content": "\r\n## 一、Cloudera Manager平台的安装\r\n\r\n1. 分析用户的需求\r\n\r\n",
+      "data": {
+        "title": "【工业与大数据】基于Cloudera Manager进行CDH集群管理运维",
+        "date": "2020-03-18 13:57:05",
+        "tags": [],
+        "published": true,
+        "hideInList": false,
+        "feature": null,
+        "isTop": false
+      },
+      "isEmpty": false,
+      "excerpt": "",
+      "abstract": "",
+      "fileName": "gong-ye-yu-da-shu-ju-ji-yu-cloudera-manager-jin-xing-cdh-ji-qun-guan-li-yun-wei"
     },
     {
       "content": "\n# 一、流计算的必要性\n\n- 流计算的需求\n    - Map-Reduce，Spark，GraphLab都是批处理模型，会面临如下挑战\n        - Volume 数据量太大以至于存不下全部数据（譬如筛选近十年所有的互联网的词）\n        - Velocity 数据的到来太快以至于用批处理方式来不及处理\n        - 使用批处理框架达到所需要性能的成本太高\n\n\n# 二、什么情况下使用流计算\n  \n    F(X+△X) = F(X)op(△X)\n  \n  计算F(X+△X)时不需要对全部数据集 X+△X进行计算，只需要将X之前的某种处理结果保留下来，并和增量△X处理结果再进行处理。这种处理方式可以看做数据不断增量的方式流入系统并处理，改变系统状态并输出结果。我们把这种方式叫做流计算。\n\n  - 举例：Twitter 大规模实时应用\n    - 平均每秒 6000个tweets，每天约5亿\n    - 对这些tweets及相关的点击进行统计\n\n![](https://www.xr1228.com//post-images/1582112459447.PNG)\n\n# 三、流计算的技术挑战\n\n- 流计算的目标\n    - 实时性/可扩展性：\n        - 批处理任务一般对固定规模数据进行处理，执行时间可以长达几十小时（离线）\n        - 流处理\n            - 数据到达速率变化很大（做负载均衡）\n            - 要么能够处理所有的数据\n            - 要么预先定义好降级处理的方法\n    - 容错：系统的错误与系统的故障\n        - 批处理任务\n            - 数据错误通常由数据清洗阶段完成 \n            - 系统故障有重算或检查点设置等机制 （MapReduce：从中间结果开始重新计算）\n        - 流计算\n            - 数据错误必须实施处理\n            - 系统故障时的容错机制必须是低开销的，而且还能满足实时性\n    - 可编程性\n        - 描述自然\n        - 表达力强\n        - 无需关注（或少关注）容错机制和负载平衡\n\n# 四、流计算的一种简单实现  Worker + Queue （处理+缓冲/路由）\n\n- Worker ： 处理单元\n- Queue ： 缓冲 + 路由 → 解决传入分析系统的数据量不均衡的问题\n\n![](https://www.xr1228.com//post-images/1582162418584.PNG)\n\n数据传入后，通过负载均衡随机进入（或遵循一定规则）被分配到不同的Queue（队列）\nQueue中数据全连接到后续的worker，Worker对数据进行处理，制定接下里要进入的Queue\n处理后的Queue与后续的Worker一一对应，解决并发，数据一致性的问题。\n\nWorker  Queue存在不易扩展，难容错，编码复杂的问题，所以Twitter替换了这种方式，采用了Strom\n\n\n# 五、S4 （Simple Scalable Streaming System）\n-   简单的流处理编程接口\n    -   和MapReduce类似，都是处理key-value\n- 有限容错\n    - 系统节点出错后会重新在备用节点上启动进程\n    - 当前进程状态丢失，但支持非协调式检查点\n    - 在运行期间不能增加或删除系统节点\n\n### 5.1 S4的处理模型 —— Actor模型\n\n- PE（Processiong Element）\n- PE之间通过event进行通信\n- PE的状态互不可见\n- S4框架负责产生PE和消息路由\n\n![](https://www.xr1228.com//post-images/1582162821926.PNG)\n\n### 5.2 S4的设计\n\n- 基于（Key，Attribute）流\n- 输入是（K,A）流，S4进行计算，产生中间结果，并（可能）输出一个流\n\n距离：进行wordCount\n![](https://www.xr1228.com//post-images/1582162914721.PNG)\n\nPE\n-   功能 ：由PE的代码和配置文件定义\n-   处理的事件类型\n-   每个Key的值对应一个PE\n    -   在wordcount中，如果遇到一个新词，则会创建一个新的PE\n- PE的垃圾收集是一个挑战性问题\n    - 超时，内存使用情况\n\nProcessing Node\n- PN是一个逻辑概念\n    - 每个PE都在一个PN上\n    - 一个PN包含多个PE\n- S4的路由是先到PN，再到PE\n- PN到无力节点的映射可以修改，因此可以容错\n- 利用Zookepper保存全局信息，协调节点的行为\n\n![](https://www.xr1228.com//post-images/1582163462684.PNG)\n\nS4的编程模型\n```java\nprivate void processEvent(Eventevent ){\n    queryCount+;\n}\npublic void output(){\n    String query = (String)this.getKeyValue().get(0);\n    persister.set(query.queryCount);\n}\n```\n\n```xml\n<bean id=\"queryCounterPE\" class=\"com.company.s4.processor:QueryCounterPE\">\n<property name=\"keys\">\n    <list>\n        <value>QueryEvent queryString</value>\n    </list>\n</property>\n<property name=\"persister\" ref=\"externalPersister\">\n<property name=\"outputFrequencyByTimeBoundary\" value=\"600\"/>\n</bean>\n```\n\n\n# 六、流计算最主流的框架 —— Storm\n\n## 6.1 Storm的实现\n- Tuple（Named list of values）：[:name \"Chen\" :age 40],类似<KEY,VALUE>\n- Storm的基本概念\n    - Stream : Tuple格式的数据流\n    - Spout ：Stream的源头。\n    - Bolt : 类似于Worker，主要的处理单元。\n        - Filters 流的分析筛选\n        - Aggregation  统计，聚合\n        - Joins 将两个流合并\n        - 访问数据库\n        - 运行自定义函数\n    - Topology ： Storm程序被称为Topology\n-  数据类型：Storm已经支持所有的primitive type，用户也可以自己定义对象作为value。\n-  数据连接（Stream Grouping）：Bolts之间相关连接\n    -  Shuffle Grouping 随机\n    -  Field Grouping 根据tuple field的值选取\n    -  All Grouping 发给所有任务\n    -  Global Grouping 发给具有最小id的任务\n\n定义Strom结构的粒子\n```java\nTopologyBuilder builder = new TopologyBuilder();\nbuilder.setSpout(\"words\",new TestWordSpout(),10);\nbuilder.setBolt(\"exclaim1\",new ExclamationBolt(),3).shuffleGrouping(\"words\");\nbuilder.setBolt(\"exclaim2\",new ExclamationBolt(),2).shuffleGrouping(\"exclaim1\");\n//TestWordSpout()\npublic void nextTuple(){\n    Utils.sleep(100);\n    final String[] words = new String[] {\"nathan\",\"mike\",\"jackson\",\"golda\",\"bertels};\n    final Random rand = new Random();\n    final String word = words[rand.nextInt(words.length)];\n    _collector.emit(new Values(word))；\n}\n// ExclamationBolt()\npublic void execute(Tuple tuple){\n    _collector.emit(tuple,new Values(tuple.getString(0)+\"!!!!\"));  //emit的原因是为了后续容错，后面的ack方法使程序知道execute完成了。\n    _collector.ack(tuple);  \n}\n\npublic void declareOutputFields(OutputFieldsDeclarer declarer){\n    declarer.declarer(new Fields(\"word\"));\n}\n```\n\n实现WordCount的 Storm代码实例\n\n```java\npublic static class WordCount implements IBasicBolt{\n    Map<String,Integer> counts = new HashMap<String,Interger>();\n    public void prepare(Map conf,TopologyContext context){\n        //\n    }\n    public void excete(Tuple tuple,BasicOutputCollector collector){\n        String word = tuple.getString(0);  //bolt中包含多个词的计数，先找到某个词的count，取出增加计数后，在重新写入bolt。\n        Integer count = counts.get(word);\n        cont ++ ;\n        conts.put(word,count); \n        collector.emit(new Values(word,count));\n    }\n    public void cleanup(){\n        //\n    }\n    public void declareOutputFields(OutputFieldDeclarer declarer){\n        declarer.declare(new Fields(\"word\",\"count\"));\n    }\n}\n\n运行Storm\n```java\nLocalCluster cluter = new LocalCluster();\nMap conf = new HashMap();\nconf.put(Config.TOPOLOGY_DEBUG,true);  //Debug模式\n\ncluster.submitTopology(\"demo\",conf,builder.createTopology());\n```\n\n## 6.2  Storm的容错\n- 消息的完整处理\n    - 每一条消息至少执行一次 at least once\n    - 通过每条消息 ack()  方法来判断是否完成，如果部分任务没有完成（Timeout）则判断消息没有完整性。为了防止重新计算带来了状态额不一致，采用Transcational（区分计算和提交部分，提交部分按编号传行，计算部分流水线并行）\n\n\n## 6.3 S4和Storm的对比\n\n- 编程模型\n    - S4更简单，编写每个Key的行为就行了\n    - Storm需要保存和处理更多的东西\n- 推还是拉\n    - S4推，如果缓冲区不够消息就会丢失\n    - Storm拉，因此丢失的消息来自最初的数据输入\n- 容错\n    - S4不管消息丢失，但是可以恢复状态\n    - Storm保证消息被处理至少一次\n- 社区\n    - Storm是Apache顶级项目，社区非常活跃，Twitter使用\n    - S4是Apache incubator项目（孵化器），Yahoo使用\n\n\n\n\n\n\n\n\n\n\n",
@@ -288,6 +324,18 @@
   "tags": [
     {
       "index": -1,
+      "name": "值得一读",
+      "slug": "worth",
+      "used": true
+    },
+    {
+      "index": -1,
+      "name": "前端拾遗",
+      "slug": "FE",
+      "used": true
+    },
+    {
+      "index": -1,
       "name": "SQL",
       "slug": "SQL",
       "used": true
@@ -315,12 +363,6 @@
       "name": "大数据",
       "slug": "bigData",
       "used": true
-    },
-    {
-      "index": -1,
-      "name": "值得一读",
-      "slug": "worth",
-      "used": false
     }
   ],
   "menus": [
