@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>【前端拾遗】CSS知识点 - Wuriqilang</title>
-<link rel="shortcut icon" href="https://www.xr1228.com//favicon.ico">
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
-<link rel="stylesheet" href="https://www.xr1228.com//media/css/tailwind.css">
-<link rel="stylesheet" href="https://www.xr1228.com//styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="【前端拾遗】CSS知识点 - Wuriqilang - Atom Feed" href="https://www.xr1228.com//atom.xml">
+<link rel="stylesheet" href="http://localhost:4000/media/css/tailwind.css">
+<link rel="stylesheet" href="http://localhost:4000/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="【前端拾遗】CSS知识点 - Wuriqilang - Atom Feed" href="http://localhost:4000/atom.xml">
 
     
 
@@ -30,8 +30,8 @@ Questions
 
 知识点..." />
   <meta property="og:type" content="articles">
-  <meta property="og:url" content="https://www.xr1228.com/post/CSS-Point/" />
-  <meta property="og:image" content="https://www.xr1228.com//post-images/CSS-Point.jpg">
+  <meta property="og:url" content="http://localhost:4000/post/CSS-Point" />
+  <meta property="og:image" content="http://localhost:4000/post-images/CSS-Point.jpg">
   <meta property="og:image:height" content="630">
   <meta property="og:image:width" content="1200">
   <meta name="twitter:title" content="【前端拾遗】CSS知识点 - Wuriqilang">
@@ -43,13 +43,13 @@ Questions
 
 知识点...">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="canonical" href="https://www.xr1228.com/post/CSS-Point/">
+  <link rel="canonical" href="http://localhost:4000/post/CSS-Point">
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
  
   
-    <link rel="stylesheet" href="https://www.xr1228.com//media/css/prism-github.css">
+    <link rel="stylesheet" href="http://localhost:4000/media/css/prism-github.css">
   
 
   
@@ -57,7 +57,7 @@ Questions
 
 <body>
   <div class="antialiased flex flex-col min-h-screen" id="app">
-    <a href="https://www.xr1228.com/" class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+    <a href="http://localhost:4000" class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
       Wuriqilang
     </a>
     <div class="max-w-4xl w-full mx-auto">
@@ -66,12 +66,12 @@ Questions
           【前端拾遗】CSS知识点
         </h1>
         
-          <img src="https://www.xr1228.com//post-images/CSS-Point.jpg" alt="【前端拾遗】CSS知识点" class="block w-full mb-8">
+          <img src="http://localhost:4000/post-images/CSS-Point.jpg" alt="【前端拾遗】CSS知识点" class="block w-full mb-8">
         
         <div class="mb-8 flex flex-wrap">
-          <div class="text-gray-400 text-sm mr-4">2020-05-21 · 3 min read</div>
+          <div class="text-gray-400 text-sm mr-4">2020-05-21 · 5 min read</div>
           
-            <a href="https://www.xr1228.com/tag/FE/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+            <a href="http://localhost:4000/tag/FE" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
               <i class="ri-hashtag"></i>
               前端拾遗
             </a>
@@ -154,6 +154,80 @@ Questions
 <li>重要程度:★★</li>
 <li>概念与背景: link与@import都是前端用于引入css文件的方式.但因其作用方式不同,在传统的前端项目中容易遇到一些样式覆盖,FOUC的bug</li>
 </ul>
+<h3 id="4css的选择器">4.CSS的选择器</h3>
+<ul>
+<li>知识点: CSS的样式选择器</li>
+<li>重要程度:★★★★</li>
+<li>概念与背景: CSS 选择器规定了 CSS 规则会被应用到哪些元素上。CSS选择器是构建前端页面样式最基础也是最重要的部分</li>
+</ul>
+<blockquote>
+<p>备注：暂时没有能够选择 父元素、父元素的同级元素，或 父元素的同级元素的子元素 的选择器或者组合器。</p>
+</blockquote>
+<p>这里列举部分常见CSS元素选择器的使用方法</p>
+<pre><code class="language-html">&lt;div id=&quot;box&quot; class=&quot;myBox&quot;&gt;
+    &lt;p title=&quot;value&quot;&gt;This is a P tag&lt;/p&gt;
+    &lt;button class=&quot;myBtn&quot;&gt;Click&lt;/button&gt;
+
+    &lt;p&gt;This is a P tag2&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-css">/* 类选择器 */
+.myBox{  backgournd-color:red;  }
+/* id选择器 */
+#box{backgournd-color:red;}
+/* 元素选择器 */
+p{backgournd-color:yellow;}
+/* 组合选择器 */
+p, button  {backgournd-color:yellow;}   /* 多个元素为平行关系,都获得该样式属性 */
+/* 后代选择器 */
+.myBox .myBtn{ background-color:green; }  /* .myBox中的所有.myBtn  用空格隔开 */
+/* 子选择器 */
+.myBox &gt; .myBtn{ background-color:green; }  /* .myBox中的所有.myBtn子元素  用&gt;隔开 */
+/* 相邻选择器 */
+p + .myBtn{ background-color:green; }  /* p后相邻的.myBtn同级元素*/
+/* 同级通配符 */
+p ~ btn { background:#ff0; }  /* p后所有同级的btn元素  CSS3*/  
+
+/* 伪类 */
+.myBox:first-child { font-style:italic; }  /* mybox的第一个子元素*/  
+.myBtn:hover { background-color:green; }  /* mybox的第一个子元素*/  
+
+/* 元素选择器 */
+p[title] { color:#f00; }  /*具有title属性的P标签*/  
+p[title=value] { color:#f00; }  /*具有title属性且属性内容为value的P标签*/  
+</code></pre>
+<ul>
+<li>
+<p>关于选择器的权重：</p>
+<ul>
+<li>
+<p>选择器类型：<br>
+1、ID　　#id<br>
+2、class　　.class<br>
+3、标签　　p<br>
+4、通用　　*<br>
+5、属性　　[type=&quot;text&quot;]<br>
+6、伪类　　：hover<br>
+7、伪元素　　::first-line<br>
+8、子选择器、相邻选择器</p>
+</li>
+<li>
+<p>权重计算规则：<br>
+1、第一等：代表内联样式，如: style=””，权值为1000。<br>
+2、第二等：代表ID选择器，如：#content，权值为0100。<br>
+3、第三等：代表类，伪类和属性选择器，如.content，权值为0010。<br>
+4、第四等：代表类型选择器和伪元素选择器，如div p，权值为0001。<br>
+5、通配符、子选择器、相邻选择器等的。如*、&gt;、+,权值为0000。<br>
+6、继承的样式没有权值。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>附：选择器使用方法</p>
+</li>
+</ul>
+<p><img src="http://localhost:4000/post-images/1590135976965.png" alt="" loading="lazy"><br>
+<img src="http://localhost:4000/post-images/1590135990176.png" alt="" loading="lazy"></p>
 
         </div>
         <!-- Share to Twitter, Weibo, Telegram -->
@@ -203,6 +277,7 @@ Questions
 <li><a href="#1-css-sprite%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E4%BC%98%E7%BC%BA%E7%82%B9">1. css sprite是什么?有什么优缺点?</a></li>
 <li><a href="#2-displaynone-%E4%B8%8E-visibilityhidden-%E7%9A%84%E5%8C%BA%E5%88%AB">2. display:none 与 visibility:hidden 的区别</a></li>
 <li><a href="#3-link%E4%B8%8Eimport%E7%9A%84%E5%8C%BA%E5%88%AB">3. link与@import的区别</a></li>
+<li><a href="#4css%E7%9A%84%E9%80%89%E6%8B%A9%E5%99%A8">4.CSS的选择器</a></li>
 </ul>
 </li>
 </ul>
@@ -272,11 +347,11 @@ Questions
 </div>
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <script src="https://www.xr1228.com//media/scripts/main.js"></script>
+  <script src="http://localhost:4000/media/scripts/main.js"></script>
   
   <!-- Code Highlight -->
   
-    <script src="https://www.xr1228.com//media/prism.js"></script>
+    <script src="http://localhost:4000/media/prism.js"></script>
     <script>
       Prism.highlightAll()
     </script>
