@@ -120,3 +120,22 @@ a:not([class]):hover {
         }
       }
     
+.markdown img {
+border: 0;
+width:auto;
+height:auto;
+max-width: 100%;
+display: block;
+}
+@media screen and (max-width: 1200px) {
+.markdown img {
+border: 0;
+width:auto;
+height:auto;
+
+max-width: 100%;
+max-height: 25%; 
+display: block;
+}
+}
+    

@@ -4,7 +4,7 @@ date: 2020-05-21 10:55:48
 tags: [前端拾遗]
 published: true
 hideInList: false
-feature: 
+feature: /post-images/CSS-Point.jpg
 isTop: false
 ---
 
@@ -76,6 +76,62 @@ CSS 作为构建前端页面的三驾马车,随着现代前端技术的飞速发
 - 概念与背景: link与@import都是前端用于引入css文件的方式.但因其作用方式不同,在传统的前端项目中容易遇到一些样式覆盖,FOUC的bug
 
 
+
+
+### 4.CSS的选择器 
+- 知识点: CSS的样式选择器
+- 重要程度:★★★★
+- 概念与背景: CSS 选择器规定了 CSS 规则会被应用到哪些元素上。CSS选择器是构建前端页面样式最基础也是最重要的部分
+
+> 备注：暂时没有能够选择 父元素、父元素的同级元素，或 父元素的同级元素的子元素 的选择器或者组合器。
+
+这里列举部分常见CSS元素选择器的使用方法
+
+```html
+<div id="box" class="myBox">
+    <p title="value">This is a P tag</p>
+    <button class="myBtn">Click</button>
+
+    <p>This is a P tag2</p>
+</div>
+
+<style>
+/* 类选择器 */
+.myBox{  backgournd-color:red;  }
+/* id选择器 */
+#box{backgournd-color:red;}
+/* 元素选择器 */
+p{backgournd-color:yellow;}
+/* 组合选择器 */
+p, button  {backgournd-color:yellow;}   /* 多个元素为平行关系,都获得该样式属性 */
+/* 后代选择器 */
+.myBox .myBtn{ background-color:green; }  /* .myBox中的所有.myBtn  用空格隔开 */
+/* 子选择器 */
+.myBox > .myBtn{ background-color:green; }  /* .myBox中的所有.myBtn子元素  用>隔开 */
+/* 相邻选择器 */
+p + .myBtn{ background-color:green; }  /* p后相邻的.myBtn同级元素*/
+/* 同级通配符 */
+p ~ btn { background:#ff0; }  /* p后所有同级的btn元素  CSS3*/  
+
+/* 伪类 */
+.myBox:first-child { font-style:italic; }  /* mybox的第一个子元素*/  
+.myBtn:hover { background-color:green; }  /* mybox的第一个子元素*/  
+
+/* 元素选择器 */
+p[title] { color:#f00; }  /*具有title属性的P标签*/  
+p[title=value] { color:#f00; }  /*具有title属性且属性内容为value的P标签*/  
+
+
+
+
+<style>
+
+
+
+```
+
+![](https://www.xr1228.com//post-images/1590135976965.png)
+![](https://www.xr1228.com//post-images/1590135990176.png)
 
 
 

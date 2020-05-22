@@ -19,7 +19,7 @@
   "customConfig": {
     "behance": "",
     "codeHighlight": true,
-    "customCss": "",
+    "customCss": ".markdown img {\nborder: 0;\nwidth:auto;\nheight:auto;\nmax-width: 100%;\ndisplay: block;\n}\n@media screen and (max-width: 1200px) {\n.markdown img {\nborder: 0;\nwidth:auto;\nheight:auto;\nmax-width: 100%;\nmax-height: 25%; \ndisplay: block;\n}\n}",
     "dribbble": "",
     "facebook": "",
     "fontFamily": "PingFang TC",
