@@ -69,16 +69,7 @@ CSS 作为构建前端页面的三驾马车,随着现代前端技术的飞速发
 
 
 
-### 3. link与@import的区别
-
-- 知识点: 样式文件的引用方式\FOUC
-- 重要程度:★★
-- 概念与背景: link与@import都是前端用于引入css文件的方式.但因其作用方式不同,在传统的前端项目中容易遇到一些样式覆盖,FOUC的bug
-
-
-
-
-### 4.CSS的选择器 
+### 3.CSS的选择器 
 - 知识点: CSS的样式选择器
 - 重要程度:★★★★
 - 概念与背景: CSS 选择器规定了 CSS 规则会被应用到哪些元素上。CSS选择器是构建前端页面样式最基础也是最重要的部分
@@ -149,6 +140,156 @@ p[title=value] { color:#f00; }  /*具有title属性且属性内容为value的P�
 
 
 
+### 4.清除浮动有哪些方法？ 
+- 知识点: 清除浮动，BFC
+- 重要程度:★★
+- 概念与背景: 清除浮动其实就是为了解决父元素内的子元素设置浮动后导致的父元素内部高度为0的问题。
+如图：父元素内有两个子元素 BIG、SMALL。当子元素未设置浮动时子元素会自动撑开父元素高度。
+
+![](https://www.xr1228.com//post-images/1590204347700.png)
+
+当子元素设置Float属性后，父元素高度变为0，且外部元素位置也发生了改变。
+
+![](https://www.xr1228.com//post-images/1590204463221.png)
+
+#### 清除浮动的方法：
+1.  额外标签法：（在最后一个浮动标签后，新加一个标签，给其设置clear：both；）（不推荐）
+        -   优点：方便，通俗易懂
+        -   缺点：增加无意义的标签
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      font-size: 30px;
+    }
+    .father {
+      background-color: bisque;
+      border: red solid 1px;
+    }
+    .big {
+      float: left;
+      height: 400px;
+      width: 400px;
+      background-color: pink;
+    }
+    .small {
+      float: left;
+      height: 200px;
+      width: 200px;
+      background-color: blue;
+    }
+    .clear {
+      clear: both;
+    }
+    .other {
+      height: 200px;
+      background-color: green;
+      ;
+    }
+  </style>
+</head>
+<body>
+  <div class="father">
+    <div class="big">BIG</div>
+    <div class="small">SMALL</div>
+    <div class="clear"></div>
+  </div>
+  <div class="other"></div>
+</body>
+</html>
+```
+2. 触发BFC：父级添加overflow属性（父元素添加overflow:hidden）（不推荐）
+这里要说明一下BFC，
+> BFC（Block formatting context）：块级格式化上下文，BFC是一个独立的布局环境，其中的元素布局是不受外界的影响，并且在一个BFC中，块盒与行盒（行盒由一行中所有的内联元素所组成）都会垂直的沿着其父元素的边框排列。
+
+通俗来讲，BFC是HTML的一种特性，**只要触发了BFC，一个块级元素就形成了一个封闭空间。这个空间内的子元素排布不会对外部元素发生影响。**
+overflow是触发BFC的一个条件，我们利用这个条件就可以让父级形成BFC。
+**触发BFC的条件：**
+1、float的值不是none。
+2、position的值不是static或者relative。
+3、display的值是inline-block、table-cell、flex、table-caption或者inline-flex
+4、overflow的值不是visible
+
+    -  优点：代码简洁
+    -  缺点：内容增多的时候容易造成不会自动换行导致内容被隐藏掉，无法显示要溢出的元素
+
+```css
+    .father {
+      background-color: bisque;
+      border: red solid 1px;
+      overflow:hidden;
+    }
+```
+3. 使用after伪元素清除浮动（推荐）
+- 优点：符合闭合浮动思想，结构语义化正确
+- 缺点：after是css3提出的伪类，兼容IE6-7需要使用zoom:1 触发hasLayout
+
+```css
+    .clearfix:after{ /*伪元素是行内元素 正常浏览器清除浮动方法*/
+        content: "";
+        display: block;
+        height: 0;
+        clear:both;
+        visibility: hidden;
+    }
+    .clearfix{
+        *zoom: 1;/*ie6清除浮动的方式 *号只有IE6-IE7执行，其他浏览器不执行*/
+    }
+```
+ ```html
+<body>
+    <div class="fahter clearfix">
+        <div class="big">big</div>
+        <div class="small">small</div>
+        <!--<div class="clear">额外标签法</div>-->
+    </div>
+    <div class="other"></div>
+```
+
+
+4. 使用before和after双伪元素清除浮动
+- 优点：符合闭合浮动思想，结构语义化正确
+- 缺点：after是css3提出的伪类，兼容IE6-7需要使用zoom:1 触发hasLayout
+```css
+
+     .clearfix:after , .clearfix:before{
+        content: "";
+        display: table;
+    }
+    .clearfix:after{
+        clear: both;
+    }
+    .clearfix{
+        *zoom: 1;
+``````
+
+### 5. CSS3有哪些改变？
+- 知识点: CSS3变化
+- 重要程度:★★★★
+
+#### CSS3带来的一些变化：
+
+- 新增了一些选择器
+    - p:first-of-type 选择属于其父元素的首个P元素
+    - p:last-of-type 选择属于其父元素的最后一个P元素
+    - p:only-of-type 选择属于其父元素的唯一个P元素
+    - p:only-child 选择属于其父元素的唯一个P元素
+    - p:nth-child(2) 选择属于其父元素的第二个子元素的P元素
+    - after：在元素之后添加内容，可以用来清除浮动
+    - before：在元素之前添加内容
+    - enable，disable，checked
+
+
+### 6.浏览器是如何解析CSS选择器的？
+
+CSS选择器是从右向左解析的，如果从左向右解析发现不匹配则需要回溯，会损失许多性能。从右向左解析先找到最右节点，向上寻找其父节点直到找到根元素。
+CSS解析完成后，需要与Dom Tree一起分析简历Render Tree，最后进行绘图。
 
 
 

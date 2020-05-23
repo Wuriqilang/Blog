@@ -49,7 +49,7 @@ Questions
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
  
   
-    <link rel="stylesheet" href="http://localhost:4000/media/css/prism-github.css">
+    <link rel="stylesheet" href="http://localhost:4000/media/css/prism-synthwave84.css">
   
 
   
@@ -69,7 +69,7 @@ Questions
           <img src="http://localhost:4000/post-images/CSS-Point.jpg" alt="【前端拾遗】CSS知识点" class="block w-full mb-8">
         
         <div class="mb-8 flex flex-wrap">
-          <div class="text-gray-400 text-sm mr-4">2020-05-21 · 5 min read</div>
+          <div class="text-gray-400 text-sm mr-4">2020-05-21 · 10 min read</div>
           
             <a href="http://localhost:4000/tag/FE" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
               <i class="ri-hashtag"></i>
@@ -148,13 +148,7 @@ Questions
 </ul>
 </li>
 </ul>
-<h3 id="3-link与import的区别">3. link与@import的区别</h3>
-<ul>
-<li>知识点: 样式文件的引用方式\FOUC</li>
-<li>重要程度:★★</li>
-<li>概念与背景: link与@import都是前端用于引入css文件的方式.但因其作用方式不同,在传统的前端项目中容易遇到一些样式覆盖,FOUC的bug</li>
-</ul>
-<h3 id="4css的选择器">4.CSS的选择器</h3>
+<h3 id="3css的选择器">3.CSS的选择器</h3>
 <ul>
 <li>知识点: CSS的样式选择器</li>
 <li>重要程度:★★★★</li>
@@ -228,6 +222,158 @@ p[title=value] { color:#f00; }  /*具有title属性且属性内容为value的P�
 </ul>
 <p><img src="http://localhost:4000/post-images/1590135976965.png" alt="" loading="lazy"><br>
 <img src="http://localhost:4000/post-images/1590135990176.png" alt="" loading="lazy"></p>
+<h3 id="4清除浮动有哪些方法">4.清除浮动有哪些方法？</h3>
+<ul>
+<li>知识点: 清除浮动，BFC</li>
+<li>重要程度:★★</li>
+<li>概念与背景: 清除浮动其实就是为了解决父元素内的子元素设置浮动后导致的父元素内部高度为0的问题。<br>
+如图：父元素内有两个子元素 BIG、SMALL。当子元素未设置浮动时子元素会自动撑开父元素高度。</li>
+</ul>
+<figure data-type="image" tabindex="1"><img src="http://localhost:4000/post-images/1590204347700.png" alt="" loading="lazy"></figure>
+<p>当子元素设置Float属性后，父元素高度变为0，且外部元素位置也发生了改变。</p>
+<figure data-type="image" tabindex="2"><img src="http://localhost:4000/post-images/1590204463221.png" alt="" loading="lazy"></figure>
+<h4 id="清除浮动的方法">清除浮动的方法：</h4>
+<ol>
+<li>额外标签法：（在最后一个浮动标签后，新加一个标签，给其设置clear：both；）（不推荐）<br>
+-   优点：方便，通俗易懂<br>
+-   缺点：增加无意义的标签</li>
+</ol>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;Document&lt;/title&gt;
+  &lt;style&gt;
+    body {
+      font-size: 30px;
+    }
+    .father {
+      background-color: bisque;
+      border: red solid 1px;
+    }
+    .big {
+      float: left;
+      height: 400px;
+      width: 400px;
+      background-color: pink;
+    }
+    .small {
+      float: left;
+      height: 200px;
+      width: 200px;
+      background-color: blue;
+    }
+    .clear {
+      clear: both;
+    }
+    .other {
+      height: 200px;
+      background-color: green;
+      ;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class=&quot;father&quot;&gt;
+    &lt;div class=&quot;big&quot;&gt;BIG&lt;/div&gt;
+    &lt;div class=&quot;small&quot;&gt;SMALL&lt;/div&gt;
+    &lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;other&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<ol start="2">
+<li>触发BFC：父级添加overflow属性（父元素添加overflow:hidden）（不推荐）<br>
+这里要说明一下BFC，</li>
+</ol>
+<blockquote>
+<p>BFC（Block formatting context）：块级格式化上下文，BFC是一个独立的布局环境，其中的元素布局是不受外界的影响，并且在一个BFC中，块盒与行盒（行盒由一行中所有的内联元素所组成）都会垂直的沿着其父元素的边框排列。</p>
+</blockquote>
+<p>通俗来讲，BFC是HTML的一种特性，<strong>只要触发了BFC，一个块级元素就形成了一个封闭空间。这个空间内的子元素排布不会对外部元素发生影响。</strong><br>
+overflow是触发BFC的一个条件，我们利用这个条件就可以让父级形成BFC。<br>
+<strong>触发BFC的条件：</strong><br>
+1、float的值不是none。<br>
+2、position的值不是static或者relative。<br>
+3、display的值是inline-block、table-cell、flex、table-caption或者inline-flex<br>
+4、overflow的值不是visible</p>
+<pre><code>-  优点：代码简洁
+-  缺点：内容增多的时候容易造成不会自动换行导致内容被隐藏掉，无法显示要溢出的元素
+</code></pre>
+<pre><code class="language-css">    .father {
+      background-color: bisque;
+      border: red solid 1px;
+      overflow:hidden;
+    }
+</code></pre>
+<ol start="3">
+<li>使用after伪元素清除浮动（推荐）</li>
+</ol>
+<ul>
+<li>优点：符合闭合浮动思想，结构语义化正确</li>
+<li>缺点：after是css3提出的伪类，兼容IE6-7需要使用zoom:1 触发hasLayout</li>
+</ul>
+<pre><code class="language-css">    .clearfix:after{ /*伪元素是行内元素 正常浏览器清除浮动方法*/
+        content: &quot;&quot;;
+        display: block;
+        height: 0;
+        clear:both;
+        visibility: hidden;
+    }
+    .clearfix{
+        *zoom: 1;/*ie6清除浮动的方式 *号只有IE6-IE7执行，其他浏览器不执行*/
+    }
+</code></pre>
+<pre><code class="language-html">&lt;body&gt;
+   &lt;div class=&quot;fahter clearfix&quot;&gt;
+       &lt;div class=&quot;big&quot;&gt;big&lt;/div&gt;
+       &lt;div class=&quot;small&quot;&gt;small&lt;/div&gt;
+       &lt;!--&lt;div class=&quot;clear&quot;&gt;额外标签法&lt;/div&gt;--&gt;
+   &lt;/div&gt;
+   &lt;div class=&quot;other&quot;&gt;&lt;/div&gt;
+</code></pre>
+<ol start="4">
+<li>使用before和after双伪元素清除浮动</li>
+</ol>
+<ul>
+<li>优点：符合闭合浮动思想，结构语义化正确</li>
+<li>缺点：after是css3提出的伪类，兼容IE6-7需要使用zoom:1 触发hasLayout</li>
+</ul>
+<pre><code class="language-css">
+     .clearfix:after , .clearfix:before{
+        content: &quot;&quot;;
+        display: table;
+    }
+    .clearfix:after{
+        clear: both;
+    }
+    .clearfix{
+        *zoom: 1;
+</code></pre>
+<h3 id="5-css3有哪些改变">5. CSS3有哪些改变？</h3>
+<ul>
+<li>知识点: CSS3变化</li>
+<li>重要程度:★★★★</li>
+</ul>
+<h4 id="css3带来的一些变化">CSS3带来的一些变化：</h4>
+<ul>
+<li>新增了一些选择器
+<ul>
+<li>p:first-of-type 选择属于其父元素的首个P元素</li>
+<li>p:last-of-type 选择属于其父元素的最后一个P元素</li>
+<li>p:only-of-type 选择属于其父元素的唯一个P元素</li>
+<li>p:only-child 选择属于其父元素的唯一个P元素</li>
+<li>p:nth-child(2) 选择属于其父元素的第二个子元素的P元素</li>
+<li>after：在元素之后添加内容，可以用来清除浮动</li>
+<li>before：在元素之前添加内容</li>
+<li>enable，disable，checked</li>
+</ul>
+</li>
+</ul>
+<h3 id="6浏览器是如何解析css选择器的">6.浏览器是如何解析CSS选择器的？</h3>
+<p>CSS选择器是从右向左解析的，如果从左向右解析发现不匹配则需要回溯，会损失许多性能。从右向左解析先找到最右节点，向上寻找其父节点直到找到根元素。<br>
+CSS解析完成后，需要与Dom Tree一起分析简历Render Tree，最后进行绘图。</p>
 
         </div>
         <!-- Share to Twitter, Weibo, Telegram -->
@@ -276,8 +422,18 @@ p[title=value] { color:#f00; }  /*具有title属性且属性内容为value的P�
 <ul>
 <li><a href="#1-css-sprite%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E4%BC%98%E7%BC%BA%E7%82%B9">1. css sprite是什么?有什么优缺点?</a></li>
 <li><a href="#2-displaynone-%E4%B8%8E-visibilityhidden-%E7%9A%84%E5%8C%BA%E5%88%AB">2. display:none 与 visibility:hidden 的区别</a></li>
-<li><a href="#3-link%E4%B8%8Eimport%E7%9A%84%E5%8C%BA%E5%88%AB">3. link与@import的区别</a></li>
-<li><a href="#4css%E7%9A%84%E9%80%89%E6%8B%A9%E5%99%A8">4.CSS的选择器</a></li>
+<li><a href="#3css%E7%9A%84%E9%80%89%E6%8B%A9%E5%99%A8">3.CSS的选择器</a></li>
+<li><a href="#4%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B9%E6%B3%95">4.清除浮动有哪些方法？</a>
+<ul>
+<li><a href="#%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8%E7%9A%84%E6%96%B9%E6%B3%95">清除浮动的方法：</a></li>
+</ul>
+</li>
+<li><a href="#5-css3%E6%9C%89%E5%93%AA%E4%BA%9B%E6%94%B9%E5%8F%98">5. CSS3有哪些改变？</a>
+<ul>
+<li><a href="#css3%E5%B8%A6%E6%9D%A5%E7%9A%84%E4%B8%80%E4%BA%9B%E5%8F%98%E5%8C%96">CSS3带来的一些变化：</a></li>
+</ul>
+</li>
+<li><a href="#6%E6%B5%8F%E8%A7%88%E5%99%A8%E6%98%AF%E5%A6%82%E4%BD%95%E8%A7%A3%E6%9E%90css%E9%80%89%E6%8B%A9%E5%99%A8%E7%9A%84">6.浏览器是如何解析CSS选择器的？</a></li>
 </ul>
 </li>
 </ul>
