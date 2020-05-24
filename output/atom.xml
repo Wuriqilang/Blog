@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://localhost:4000</id>
-    <title>Wuriqilang</title>
-    <updated>2020-05-23T13:05:17.817Z</updated>
+    <title>乌日其浪</title>
+    <updated>2020-05-24T16:40:23.433Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="http://localhost:4000"/>
     <link rel="self" href="http://localhost:4000/atom.xml"/>
@@ -10,7 +10,33 @@
 &lt;h5&gt;编程只是解决问题的武器⚔️,希望我能用最简单的语言⚡告诉你如何拿起的武器🙊 ，以及如何打倒敌人👾&lt;/h5&gt;</subtitle>
     <logo>http://localhost:4000/images/avatar.png</logo>
     <icon>http://localhost:4000/favicon.ico</icon>
-    <rights>All rights reserved 2020, Wuriqilang</rights>
+    <rights>All rights reserved 2020, 乌日其浪</rights>
+    <entry>
+        <title type="html"><![CDATA[【前端拾遗】JS的历史]]></title>
+        <id>http://localhost:4000/post/jsHistory</id>
+        <link href="http://localhost:4000/post/jsHistory">
+        </link>
+        <updated>2020-05-24T00:51:05.000Z</updated>
+        <summary type="html"><![CDATA[<blockquote>
+<p>一切软件，终将用JS再实现一遍。</p>
+</blockquote>
+]]></summary>
+        <content type="html"><![CDATA[<blockquote>
+<p>一切软件，终将用JS再实现一遍。</p>
+</blockquote>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[【前端拾遗】HTML相关知识点]]></title>
+        <id>http://localhost:4000/post/htmlpoint</id>
+        <link href="http://localhost:4000/post/htmlpoint">
+        </link>
+        <updated>2020-05-23T13:06:33.000Z</updated>
+        <summary type="html"><![CDATA[<p>本文将从前端面试题目出发,总结HTML必须掌握的知识点.</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>本文将从前端面试题目出发,总结HTML必须掌握的知识点.</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[【前端拾遗】CSS知识点]]></title>
         <id>http://localhost:4000/post/CSS-Point</id>
@@ -23,7 +49,7 @@
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[个人项目经历总结]]></title>
+        <title type="html"><![CDATA[我做过哪些项目？]]></title>
         <id>http://localhost:4000/post/xiangmu</id>
         <link href="http://localhost:4000/post/xiangmu">
         </link>
@@ -82,19 +108,5 @@
 ]]></summary>
         <content type="html"><![CDATA[<p>为什么传统的NFS/AFS并不能满足大数据的需要？为什么GFS大名鼎鼎？它解决了什么样的问题？</p>
 ]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[【工业与大数据】分布式文件系统]]></title>
-        <id>http://localhost:4000/post/gong-ye-yu-da-shu-ju-fen-bu-shi-wen-jian-xi-tong</id>
-        <link href="http://localhost:4000/post/gong-ye-yu-da-shu-ju-fen-bu-shi-wen-jian-xi-tong">
-        </link>
-        <updated>2020-02-02T08:14:41.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[【工业与大数据】云计算的商业模式]]></title>
-        <id>http://localhost:4000/post/yun-ji-suan-de-shang-ye-mo-shi</id>
-        <link href="http://localhost:4000/post/yun-ji-suan-de-shang-ye-mo-shi">
-        </link>
-        <updated>2020-01-27T15:10:56.000Z</updated>
     </entry>
 </feed>

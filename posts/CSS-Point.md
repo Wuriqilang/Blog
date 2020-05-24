@@ -284,7 +284,14 @@ overflow是触发BFC的一个条件，我们利用这个条件就可以让父级
     - after：在元素之后添加内容，可以用来清除浮动
     - before：在元素之前添加内容
     - enable，disable，checked
-
+  
+- 增加了对于动画、图形处的处理
+    - transition：过度
+    - transform：旋转、缩放、移动或倾斜
+    - animation：动画
+    - gradient：渐变
+    - shadow：阴影
+    - border-radius：圆角
 
 ### 6.浏览器是如何解析CSS选择器的？
 
