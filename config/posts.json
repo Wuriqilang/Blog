@@ -1,14 +1,11 @@
 {
   "posts": [
     {
-      "content": "等等",
+      "content": "> 发动机之于汽车,九阳真经之于张无忌,数据结构之于编程.\r\n\r\n本文并不是数据结构和算法的学习教程,而是面向解决问题来讨论数据结构与算法,是在实践过程中对数据结构与算法的高度总结.\r\n<!-- more -->\r\n\r\n## 什么是数据结构与算法\r\n\r\n> 数据结构是一组数据的存储结构. 算法是操作数据的一组方法. \r\n\r\n**算法与数据结构是相辅相成的,没有建立在数据结构上的算法,讨论数据结构也没有意义.**\r\n\r\n举个例子 : 工厂仓库需要存放成百上千个商品. 存放商品的方式就是数据结构, 而对于商品的查找,盘点,分类就属于算法.\r\n\r\n然而数据结构与算法的涉及面实在太广,俗话说\"一入算法深似海\",为了防止我或者你放弃,所以我们集中讨论实际工作与代码优化中会用到的20个算法与数据结构.\r\n\r\n## 本文集中讨论的20个数据结构与算法\r\n\r\n- 数据结构: 数组,链表,栈,队列,散列表,二叉树,堆,跳表,图,Trie树\r\n- 算法: 递归,排序,二分查找,搜索,哈希算法,贪心算法,贪心算法,分治算法,回溯算法,动态规划,字符串匹配算法\r\n\r\n\r\n## 我希望达到的目的\r\n\r\n作为一个以解决问题为主的工程师,我认为编程只是一种工具. 我希望能尽自己最大的能力,从实际出发,一起领略数据结构与代码之美.",
       "data": {
-        "title": "【前端拾遗】JS核心知识点",
-        "date": "2020-05-25 00:44:59",
-        "tags": [
-          "前端拾遗",
-          "值得一读"
-        ],
+        "title": "【实践数据结构与算法】开篇词:数据与算法之美",
+        "date": "2020-05-26 09:52:27",
+        "tags": [],
         "published": true,
         "hideInList": false,
         "feature": null,
@@ -16,7 +13,45 @@
       },
       "isEmpty": false,
       "excerpt": "",
-      "abstract": "",
+      "abstract": "> 发动机之于汽车,九阳真经之于张无忌,数据结构之于编程.\r\n\r\n本文并不是数据结构和算法的学习教程,而是面向解决问题来讨论数据结构与算法,是在实践过程中对数据结构与算法的高度总结.\r",
+      "fileName": "shi-jian-shu-ju-jie-gou-yu-suan-fa-kai-pian-ci-shu-ju-yu-suan-fa-zhi-mei"
+    },
+    {
+      "content": "> 之所以要分上下两个部分,是因为我实在是担心你没有耐心一口气读完全文. 但闭包之于JS,就如同麻酱之于火锅. 那是灵魂\r\n<!-- more -->\r\n\r\n## 1.闭包的概念\r\n\r\n> 闭包就是函数能够记住它的词法作用域,及时它在其他地方执行时.\r\n\r\n负责任的说:如果你细细度了本文上篇的内容,这句话就能让你豁然开朗.我们举个例子\r\n\r\n```js\r\nfunction foo() {\r\n\tvar a = 2;\r\n\tfunction bar() {\r\n\t\tconsole.log( a ); // 2\r\n\t}\r\n\tbar(); //注意这句!!!\r\n}\r\n\r\nfoo();\r\n```\r\n从定义上来讲,因为bar()在foo()中调用了,且bar访问了foo()中的变量,我们认为**bar()闭住了foo()的作用域**,它形成了一个闭包.\r\n**但是!**\r\n这不是我们要讨论的闭包.上面的代码虽然形成了闭包,但是bar()并没有供外部调用.\r\n\r\n我们来看一段真正的闭包:\r\n```js\r\nfunction foo() {\r\n\tvar a = 2;\r\n\tfunction bar() {\r\n\t\tconsole.log( a );\r\n\t}\r\n\treturn bar;\r\n}\r\nvar baz = foo();\r\nbaz(); // 2 -- 哇噢，看到闭包了\r\n\r\n```\r\n我们来解释一下: \r\n1. 函数bar()对于foo()的函数作用域拥有访问权. \r\n2. 我们将bar()这个函数像值一样传递(return)  即 return bar;\r\n3. 执行bar = foo()时我们就获得了返回值 bar();\r\n4. 当我们调用baz的时候,我们本质上就调用了 bar();\r\n   \r\n这下聪明的你隐约间有了一种说不清道不明的感. 之所以说不清楚,因为你不知道这么做有什么用. \r\n\r\n先说结论: \r\n> 闭包可以避免垃圾回收机制\r\n\r\n根据JS垃圾回收机制,一般来说foo()执行后,其内部作用域都将消失,被垃圾回收机制释放掉. 但是当闭包出现后,垃圾回收机制就被阻止了! \r\n在闭包出现后,foo()内部作用域仍然存在,因为函数bar()在使用它. 通过闭包,我们依旧可以继续访问在程序编写时定义的词法作用域.\r\n\r\n所以说,我们回头再看看闭包的定义. \r\n\r\n> 闭包就是函数能够记住它的词法作用域,及时它在其他地方执行时.\r\n\r\n形成闭包只需要  在函数A内部嵌套一个函数B,只要函数B能够访问函数A的内容且被执行,就形成了闭包.\r\n\r\n## 2.闭包的不同形式\r\n\r\n除了通过值传递,闭包在其他位置调用也可以形成闭包.\r\n\r\n```js\r\n\r\nfunction foo() {\r\n\tvar a = 2;\r\n\r\n\tfunction baz() {\r\n\t\tconsole.log( a ); // 2\r\n\t}\r\n\r\n\tbar( baz );\r\n}\r\n\r\nfunction bar(fn) {\r\n\tfn(); // 看妈妈，我看到闭包了！\r\n}\r\n\r\nfoo(); //2\r\n```\r\n\r\n内部函数bar()被传递给了bar,而bar是定义在全局作用域中的函数. 这样就形成了一个闭包,且在外部bar()作用域中被调用了.\r\n\r\n这样的函数传递也可以是间接的.\r\n\r\n```js\r\nvar fn;\r\n\r\nfunction foo() {\r\n\tvar a = 2;\r\n\r\n\tfunction baz() {\r\n\t\tconsole.log( a );\r\n\t}\r\n\r\n\tfn = baz; // 将`baz`赋值给一个全局变量\r\n}\r\n\r\nfunction bar() {\r\n\tfn(); // 看妈妈，我看到闭包了！\r\n}\r\n\r\nfoo();\r\n\r\nbar(); // 2\r\n```\r\n\r\n无论我们使用什么方法,只要将内部函数传送到其词法作用域外,函数都将维护一个最开始被声明时候的作用域的引用. 无论我们什么时候执行它,闭包都会运行.且运行的变量是**最开始声明时候的作用域**\r\n\r\n## 3.无处不在的闭包\r\n\r\n其实闭包,已经被应用在你的项目中且无处不在了. \r\n\r\n```js\r\nfunction wait(message) {\r\n\r\n\tsetTimeout( function timer(){\r\n\t\tconsole.log( message );\r\n\t}, 1000 );\r\n\r\n}\r\n\r\nwait( \"Hello, closure!\" );\r\n```\r\n虽然通常我们不这样写,但这段代码能够很好的说明闭包的运行规则,\r\n\r\n1. 首先setTimeout是一个JS自有的全局函数.\r\n2. 我们将timer()传递给setTimeout(..), timer()包含着对于wait词法作用域的引用\r\n3. 当我们执行wait()时,虽然1000ms后才执行timer(),但是它仍然记忆着message的内容\r\n\r\n**这就是闭包** 就是这么简单\r\n\r\n我们再举一个循环的例子,循环被认为是解释闭包原理最好的例子.\r\n```js\r\nfor (var i=1; i<=5; i++) {\r\n\tsetTimeout( function timer(){\r\n\t\tconsole.log( i );\r\n\t}, i*1000 );\r\n}\r\n```\r\n答案是: 6 (循环五次)   我们本来的期望是1,2,3,4,5 但实际情况却事与愿违. \r\n就定时器而言,定时器都是在循环执行结束后才执行的,此时timer()所执行的值是当前全局作用域中的 i\r\n如何解决这样的问题? \r\n或许我们可以通过立即执行函数在每次一生成setTimeout时给其一个单独的i\r\n```js\r\nfor (var i=1; i<=5; i++) {\r\n\t(function(){\r\n\t\tsetTimeout( function timer(){\r\n\t\t\tconsole.log( i );\r\n\t\t}, i*1000 );\r\n\t})();\r\n}\r\n```\r\n\r\n但这样不行,因为虽然我们在立即函数执行过程中新建了许多空的作用域,**但这些作用域中并没有内容,它仍然会到全局作用域中查找变量 i . **\r\n\r\n我们可以在被闭包的作用域加入内容\r\n\r\n```js\r\nfor (var i=1; i<=5; i++) {\r\n\t(function(){\r\n\t\tvar j = i;\r\n\t\tsetTimeout( function timer(){\r\n\t\t\tconsole.log( j );\r\n\t\t}, j*1000 );\r\n\t})();\r\n}\r\n```\r\n或者是这种形式\r\n```js\r\nfor (var i=1; i<=5; i++) {\r\n\t(function(j){\r\n\t\tsetTimeout( function timer(){\r\n\t\t\tconsole.log( j );\r\n\t\t}, j*1000 );\r\n\t})( i );\r\n}\r\n```\r\n但当我们采用块级作用域,代码会变得更加NB\r\n\r\n```js\r\nfor (let i=1; i<=5; i++) {\r\n\tsetTimeout( function timer(){\r\n\t\tconsole.log( i );\r\n\t}, i*1000 );\r\n}\r\n```\r\n在用于 for 循环头部的 let 声明被定义了一种**特殊行为**。这种行为说，这个变量将不是只为循环声明一次，而是为每次迭代声明一次。并且，它将在每次后续的迭代中被上一次迭代末尾的值初始化。\r\n简而言之,采用块级作用域为每一次循环附上单独的值.\r\n\r\n\r\n## 4.闭包的用途(转自[阮一峰 学习Javascript闭包（Closure）](https://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html))\r\n\r\n闭包可以用在许多地方。它的最大用处有两个，一个是前面提到的可以读取函数内部的变量，另一个就是让这些变量的值始终保持在内存中。\r\n\r\n怎么来理解这句话呢？请看下面的代码。\r\n\r\n```js\r\n　　function f1(){\r\n\r\n　　　　var n=999;\r\n\r\n　　　　nAdd=function(){n+=1}\r\n\r\n　　　　function f2(){\r\n　　　　　　alert(n);\r\n　　　　}\r\n\r\n　　　　return f2;\r\n\r\n　　}\r\n\r\n　　var result=f1();\r\n\r\n　　result(); // 999\r\n\r\n　　nAdd();\r\n\r\n　　result(); // 1000\r\n```\r\n在这段代码中，result实际上就是闭包f2函数。它一共运行了两次，第一次的值是999，第二次的值是1000。这证明了，函数f1中的局部变量n一直保存在内存中，并没有在f1调用后被自动清除。\r\n\r\n为什么会这样呢？原因就在于f1是f2的父函数，而f2被赋给了一个全局变量，这导致f2始终在内存中，而f2的存在依赖于f1，因此f1也始终在内存中，不会在调用结束后，被垃圾回收机制（garbage collection）回收。\r\n\r\n\r\n这段代码中另一个值得注意的地方，就是\"nAdd=function(){n+=1}\"这一行，首先在nAdd前面没有使用var关键字，因此nAdd是一个全局变量，而不是局部变量。其次，nAdd的值是一个匿名函数（anonymous function），而这个匿名函数本身也是一个闭包，所以nAdd相当于是一个setter，可以在函数外部对函数内部的局部变量进行操作。\r\n\r\n## 5.使用闭包的注意点\r\n\r\n1）由于闭包会使得函数中的变量都被保存在内存中，内存消耗很大，所以不能滥用闭包，否则会造成网页的性能问题，在IE中可能导致内存泄露。解决方法是，在退出函数之前，将不使用的局部变量全部删除。\r\n\r\n2）闭包会在父函数外部，改变父函数内部变量的值。所以，如果你把父函数当作对象（object）使用，把闭包当作它的公用方法（Public Method），把内部变量当作它的私有属性（private value），这时一定要小心，不要随便改变父函数内部变量的值。\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+      "data": {
+        "title": "【前端拾遗】JS核心知识点——关于闭包的一切(下)",
+        "date": "2020-05-25 15:22:23",
+        "tags": [
+          "值得一读",
+          "前端拾遗"
+        ],
+        "published": true,
+        "hideInList": false,
+        "feature": "/post-images/bibaoxia.jpg",
+        "isTop": false
+      },
+      "isEmpty": false,
+      "excerpt": "",
+      "abstract": "> 之所以要分上下两个部分,是因为我实在是担心你没有耐心一口气读完全文. 但闭包之于JS,就如同麻酱之于火锅. 那是灵魂\r",
+      "fileName": "bibaoxia"
+    },
+    {
+      "content": "闭包作为前段封装函数，私有化变量的常用手段，几乎是出现在所有面试问题当中。虽然说闭包已经在我们的程序中无处不在，但作为一个日常面向用户写业务代码的程序员，我们总是对闭包一知半解，模棱两可，希望可以通过这篇文章详解关于闭包的一切。\r\n\r\n\r\n<!-- more -->\r\n\r\n> 对于那些有一点JavaScript使用经验但从未真正理解闭包概念的人来说，理解闭包甚至可以看作是某种意义上的重生。\r\n\r\n## 1.闭包的前置知识：作用域与词法作用域\r\n\r\n### 什么是作用域？\r\n\r\n作用域并不是JS独有的概念，对于任何编程语言来说，只要它能够定义变量、获取变量中的内容，就需要用到作用域的概念。\r\n\r\n> 作用域就是一套规则,它明确**程序在哪里以及如何查找变量(标识符).**\r\n\r\n通俗的说,作用域就是告诉你的程序,你去哪儿找变量. 我们来看一段代码.\r\n\r\n```js\r\n//代码片段1\r\nfunciton foo() {\r\n    var a = 'i am a';\r\n    console.log(a); \r\n}\r\nfoo(); //程序输出 i am a\r\n//代码片段2\r\nvar b = \"i am b\";\r\nfunction foo2(){\r\n    console.log(b);\r\n}\r\nfoo2(); //代码输出 i am b\r\n```\r\n第一段代码查找变量,在**函数内部**找到了a,程序就停止查找并且输出a;\r\n第二段代码先在函数内部查找b,没有找到就到**全局**中查找,找到了b,停止查找并且输出b;\r\n用程序员的黑话来说, 第一段代码在**函数作用域**中找到变量,第二段代码在**全局作用域**中找到变量\r\n\r\n聪明如你一定发现,第二段代码先从函数内部进行查找变量,没有找到后在外部查找变量. 仿佛程序沿着一条由内向外的链条来查找变量. 这个链条我们称之为:**作用域链**\r\n\r\n### 作用域的嵌套\r\n\r\n在ES6之前(ES6为了明确作用域增加了let,const关键字),只有函数作用域和全局作用域.全局作用域包含函数作用域,而函数作用域又可以嵌套函数作用域.\r\n\r\n![](https://www.xr1228.com//post-images/1590372683410.png)\r\n\r\n用代码表示:\r\n\r\n![](https://www.xr1228.com//post-images/1590372697520.png)\r\n\r\n### 作用域的工作规则\r\n\r\n尽管JS是一种脚本语言(边编译边运行),但JS是有预编译阶段的. 这里我们不讨论复杂且精妙的JS编译过程,直接放出结论: \r\n\r\n JS在代码运行前先从上到下进行编译\r\n - 变量声明 : 遇到var声明的变量时,如果当前作用域已经存在该变量则忽略,如果不存在则在当前作用域中声明这个变量.\r\n - 变量取值 : 在当前作用域查找变量.如果没有找到则到父级查找,以此类推,直到全局作用域.如果还没有找到就报错: ReferenceError: XX is not defiend;\r\n - 变量赋值 : 同样在当前作用域中查找,如果没有找到则到父级查找,以此类推,直到全局作用域如果还没有找到**,在非严格模式下则创建一个全局变量.**\r\n\r\n### 词法作用域\r\n\r\n作用域是一种规则,而这种规则有两种运行模式: \r\n- 词法作用域\r\n- 动态作用域\r\n\r\n所谓词法作用域,就是在程序员编写程序的时候,根据变量定义的位置就确定了作用域.和大多数编程语言一样,JS也采用了词法作用域.\r\n\r\n> 相对的,动态作用域是不在乎变量定义的位置,仅关注变量时在哪里调用的.。换句话说，作用域链是基于调用栈的，而不是代码中的作用域嵌套。\r\n\r\n我们用一段代码来说明一下这两种模式的区别.\r\n\r\n```js\r\nvar a = 2;\r\nfunction foo() {\r\n  console.log(a); // 会输出2还是3？\r\n}\r\nfunction bar() {\r\n  var a = 3;\r\n  foo();\r\n}\r\n\r\nbar();\r\n```\r\n\r\n- 词法作用域下:  foo() 在申明阶段,引用是全局作用域,所以该函数输出为 2\r\n- 动态作用域下(假设js是动态作用域): foo() 输出应该是 3\r\n\r\n总而言之,词法作用域实在写代码或者定义时候明确的,关注函数在哪里申明.而动态作用域是在运行时确定的,关注函数在哪里调用.\r\n\r\n 这也对于词法作用域我们总是感觉很别扭,因为人类的大脑其实是习惯了动态作用域来思考问题.\r\n我们用一段伪代码来还原大脑的\"作用域\"\r\n\r\n```js\r\nvar 小明的学历 = \"文盲\";\r\n\r\nfunction 学历( ){\r\n    console.log(小明的学历);\r\n}\r\n\r\nfunction 上学(){\r\n    var 小明的学历 = \"小学\";\r\n    学历();\r\n}\r\n上学();\r\n```\r\n\r\n我们人为已经上过学的小明肯定是小学学历,但是在词法作用域看来,小明仍然是一个文盲.\r\n\r\n\r\n## 2. 为什么要有作用域?\r\n\r\n是的,我们已经知道作用域的运行规则,但是为什么要整这么多作用域呢? 大家都全局调用不好吗? 小朋友你是否有很多问号?\r\n\r\n![](https://www.xr1228.com//post-images/1590377477309.gif)\r\n\r\n\r\n这个问题其实不难解答.我们先写出结论:\r\n\r\n1. 变量私有化\r\n2. 避免命名冲突\r\n\r\n### 变量私有化\r\n```js\r\nfunction foo(a) {\r\n\tvar b = 2;\r\n\t// 一些代码\r\n\tfunction bar() {\r\n\t\t// ...\r\n\t}\r\n\t// 更多代码\r\n\tvar c = 3;\r\n}\r\n\r\nbar();  //报错\r\n\r\nconsole.log(a,b,c); //报错\r\n```\r\n很明显,程序报错了. 因为 bar(),a,b,c 都是 foo() 函数内部的变量,这些变量在同一个函数作用域内(foo的函数作用域) 是可以互相访问的,但是外部函数想要调用他们却不行. 这种设计思想的好处显而易见 —— 变量可以根据需要来接受不同类型的值. 我们不但避免变量名称的重复,同时也能将私有化的变量在函数中隐藏起来,不至于过多的暴露到外部. (\"最低权限\"设计原则)\r\n\r\n<你不懂的JS> 提到了一个很好的例子:\r\n\r\n```js\r\nfunction doSomething(a) {\r\n\tb = a + doSomethingElse( a * 2 );\r\n\r\n\tconsole.log( b * 3 );\r\n}\r\n\r\nfunction doSomethingElse(a) {\r\n\treturn a - 1;\r\n}\r\n\r\nvar b;\r\n\r\ndoSomething( 2 ); // 15\r\n```\r\n\r\n这个代码段中，变量 b 和函数 doSomethingElse(..) 很可能是 doSomething(..) 的“私有”细节。允许外围的作用域“访问” b 和 doSomethingElse(..) 不仅没必要而且可能是“危险的”.换一种写法获取更加恰当:\r\n```js\r\nfunction doSomething(a) {\r\n\tfunction doSomethingElse(a) {\r\n\t\treturn a - 1;\r\n\t}\r\n\r\n\tvar b;\r\n\r\n\tb = a + doSomethingElse( a * 2 );\r\n\r\n\tconsole.log( b * 3 );\r\n}\r\n\r\ndoSomething( 2 ); // 15\r\n```\r\n现在，b 和 doSomethingElse(..) 对任何外界影响都是不可访问的，而是仅仅由 doSomething(..) 控制。\r\n\r\n### 避免变量冲突\r\n\r\n将变量和函数隐藏在一个作用域内部就很容易避免同名变量之间发生冲突.(不要在浏览器中尝试这段代码,别问我怎么知道的.)\r\n```js\r\nfunction foo() {\r\n\tfunction bar(a) {\r\n\t\ti = 3; // 在外围的for循环的作用域中改变`i`\r\n\t\tconsole.log( a + i );\r\n\t}\r\n\r\n\tfor (var i=0; i<10; i++) {\r\n\t\tbar( i * 2 ); // 噢，无限循环！\r\n\t}\r\n}\r\nfoo();\r\n```\r\nbar(..) 内部的赋值 i = 3 地覆盖了在 foo(..) 的for循环中声明的 i。这是因为 bar作为内部函数可以访问外部作用域,i=3改变了外部函数的i,导致循环无法停止.\r\n将 i =3; 改为 var i = 3; 就可以有效解决这个问题. \r\n\r\n试想一下,你的项目引用了很多外部的库,而这些库没有隐藏内部/私有函数变量,那么就很容易出现类似的冲突.\r\n\r\n## 3.函数作用域与块作用域\r\n\r\n说实在的,作为一个以解决问题为首要目的的程序员,我已经在努力把这个事情说的简单清晰. 如果你感觉很啰嗦,那就当做\"听妈妈的话\"吧..... 相信当你仔细读完之后一定会发现JS的乐趣. \r\n\r\n你已经知道,只要声明一个函数把一段代码包裹起来,就能够建立一个作用域,将内部的变量或者函数声明\"隐藏\"起来.\r\n\r\n```js\r\nvar a = 2;\r\nfunction foo() { \r\n\tvar a = 3;\r\n\tconsole.log( a ); // 3\r\n} \r\nfoo(); \r\nconsole.log( a ); // 2\r\n```\r\n但这样并不理想. 你看,我们为了将 a 变量隔离, 不但需要声明一个函数foo(); 还要后面引用它才能达到我们的目的. 事实上声明foo()其实也是一种命名污染. \r\n\r\n> 如果这个函数不需要命名(或者命名了也不会对外部作用域产生影响)并且能自动运行就好了. ^_^\r\n\r\n的确,JavaScript提供了解决方法:  立即执行函数\r\n\r\n```js\r\nvar a = 2;\r\n\r\n(function foo(){ // <-- 插入这个\r\n\tvar a = 3;\r\n\tconsole.log( a ); // 3\r\n})(); // <-- 和这个\r\n\r\nconsole.log( a ); // 2\r\n```\r\n\r\n**当function..通过(function..)的形式包裹起来后,这个函数不再是一种函数声明,而是变成了一个函数表达式.**\r\n\r\n> 简而言之,通过()包裹起来后,原来的函数foo从 \"定义foo()\"变成了 \"执行foo()里的代码\"\r\n\r\n这个时候,即使我们在立即执行函数中命名了函数名称foo, 在全局作用域中也无法调用 foo(). 它不再没有必要的污染外部作用域了.\r\n\r\n### 匿名函数\r\n\r\n当然你也可以不对函数进行命名\r\n```js\r\nvar a = 2;\r\n(function(){ \r\n\tvar a = 3;\r\n\tconsole.log( a ); // 3\r\n})(); \r\nconsole.log( a ); // 2\r\n```\r\n但是它有几个缺点:\r\n1. 在栈轨迹上匿名函数没有有用的名称可以表示，这可能会使得调试更加困难。\r\n2. 没有名称的情况下，如果这个函数需要为了递归等目的引用它自己，那么就需要很不幸地使用 被废弃的arguments.callee 引用。另一个需要自引用的例子是，当一个事件处理器函数在被触发后想要把自己解除绑定。\r\n3. 名称经常对提供更易读/易懂的代码很有帮助。一个描述性的名称可以帮助代码自解释。\r\n\r\n所以还是建议为自己的立即执行函数进行命名.\r\n\r\n\r\n### 块级作用域\r\n\r\n虽然说函数作用域是最常见的作用域单位,但在ES6之前的JavaScript在代码书写方面并不符合程序员的思维习惯. ES6之后引入的let和const可以帮助我们写出更好的,更简洁且易于维护的代码.\r\n\r\n```js\r\nfor (var i=0; i<10; i++) {\r\n\tconsole.log( i );\r\n}\r\n```\r\n譬如上面这段非常常见代码,我们的本意是希望定义一个 i在循环内部使用,但实际上却将i划入了外部作用域. \r\n再譬如下面这段代码: 我们的本意是将bar作为if中使用的变量,但它依旧暴露在全局作用域中了.\r\n```js\r\nvar foo = true;\r\n\r\nif (foo) {\r\n\tvar bar = foo * 2;\r\n\tbar = something( bar );\r\n\tconsole.log( bar );\r\n}\r\n```\r\n\r\n那该如何是好呢? JavaScript并将代码块作为作用域的能力呀. \r\n\r\n![](https://www.xr1228.com//post-images/1590390075720.jpg)\r\n\r\n但是ES6已经很好的解决了这个问题:\r\n\r\n### let与const\r\n\r\nlet和const 关键字将变量声明附着在它所在的任何块（通常是一个 { .. }）的作用域中。换句话说，let 为它的变量声明隐含地劫持了任意块作用域。我们可以通过简单地引入一个 { .. } 来为 let 创建一个任意的可以绑定的块儿。在这个例子中，我们在 if 语句内部制造了一个明确的块儿，在以后的重构中将整个块儿四处移动可能会更容易，而且不会影响外围的 if 语句的位置和语义。\r\n\r\n```js\r\nvar foo = true;\r\n\r\nif (foo) {\r\n\tlet bar = foo * 2;\r\n\tbar = something( bar );\r\n\tconsole.log( bar );\r\n}\r\n\r\nconsole.log( bar ); // ReferenceError bar is not defined\r\n```\r\n\r\n> 注:除了let与const之外,with结构,try,catch也是块级作用域.这里不做详细讨论\r\n\r\n\r\n\r\n### 垃圾回收机制\r\n块儿作用域的另一个有用之处是关于闭包和释放内存的垃圾回收。我们将简单地在这里举一个例子.\r\n获取这个例子稍稍有一些复杂,但既然你已经读到这里了,那说明你肯定能看懂.\r\n\r\n```js\r\nfunction process(data) {\r\n\t// ****\r\n}\r\n\r\nvar someReallyBigData = { .. };  //一个巨大的对象\r\n\r\nprocess( someReallyBigData );\r\n\r\nvar btn = document.getElementById( \"my_button\" );\r\n\r\nbtn.addEventListener( \"click\", function click(evt){\r\n\tconsole.log(\"button clicked\");\r\n}, /*capturingPhase=*/false );\r\n```\r\n\r\n\r\n当我们执行回调函数 click时,不需要someReallyBigData这个变量. 这意味着从理论来说,在process(..)执行后我们可以把someReallyBigData回收掉来释放内存.\r\n\r\n但是JS引擎通常会将这个someReallyBigData继续保存一段时间,因为click在整个作用域上拥有一个闭包,导致JS引擎不敢冒然将someReallyBigData回收掉.\r\n\r\n但是块级作用域可以明确的告诉JS引擎可以执行垃圾回收了.\r\n\r\n```js\r\nfunction process(data) {\r\n\t// 做些有趣的事\r\n}\r\n\r\n// 运行过后，任何定义在这个块中的东西都可以消失了\r\n{\r\n\tlet someReallyBigData = { .. };\r\n\r\n\tprocess( someReallyBigData );\r\n}\r\n\r\nvar btn = document.getElementById( \"my_button\" );\r\n\r\nbtn.addEventListener( \"click\", function click(evt){\r\n\tconsole.log(\"button clicked\");\r\n}, /*capturingPhase=*/false );\r\n```\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+      "data": {
+        "title": "【前端拾遗】JS核心知识点——关于闭包的一切(上)",
+        "date": "2020-05-25 00:44:59",
+        "tags": [
+          "前端拾遗",
+          "值得一读"
+        ],
+        "published": true,
+        "hideInList": false,
+        "feature": "/post-images/JSPoint.jpeg",
+        "isTop": false
+      },
+      "isEmpty": false,
+      "excerpt": "",
+      "abstract": "闭包作为前段封装函数，私有化变量的常用手段，几乎是出现在所有面试问题当中。虽然说闭包已经在我们的程序中无处不在，但作为一个日常面向用户写业务代码的程序员，我们总是对闭包一知半解，模棱两可，希望可以通过这篇文章详解关于闭包的一切。\r",
       "fileName": "JSPoint"
     },
     {
@@ -85,7 +120,7 @@
         "published": true,
         "hideInList": false,
         "feature": "/post-images/xiangmu.png",
-        "isTop": true
+        "isTop": false
       },
       "isEmpty": false,
       "excerpt": "",
@@ -334,7 +369,7 @@
         "published": true,
         "hideInList": false,
         "feature": "/post-images/python.jpg",
-        "isTop": true
+        "isTop": false
       },
       "isEmpty": false,
       "excerpt": "",

@@ -1,0 +1,601 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>【前端拾遗】JS核心知识点——关于闭包的一切(上) - 乌日其浪</title>
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="http://localhost:4000/media/css/tailwind.css">
+<link rel="stylesheet" href="http://localhost:4000/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="【前端拾遗】JS核心知识点——关于闭包的一切(上) - 乌日其浪 - Atom Feed" href="http://localhost:4000/atom.xml">
+
+    
+
+  <meta name="description" content="闭包作为前段封装函数，私有化变量的常用手段，几乎是出现在所有面试问题当中。虽然说闭包已经在我们的程序中无处不在，但作为一个日常面向用户写业务代码的程序员，我们总是对闭包一知半解，模棱两可，希望可以通过这篇文章详解关于闭包的一切。
+
+
+对于那..." />
+  <meta property="og:title" content="【前端拾遗】JS核心知识点——关于闭包的一切(上) - 乌日其浪">
+  <meta property="og:description" content="闭包作为前段封装函数，私有化变量的常用手段，几乎是出现在所有面试问题当中。虽然说闭包已经在我们的程序中无处不在，但作为一个日常面向用户写业务代码的程序员，我们总是对闭包一知半解，模棱两可，希望可以通过这篇文章详解关于闭包的一切。
+
+
+对于那..." />
+  <meta property="og:type" content="articles">
+  <meta property="og:url" content="http://localhost:4000/post/JSPoint/" />
+  <meta property="og:image" content="http://localhost:4000/post-images/JSPoint.jpeg">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200">
+  <meta name="twitter:title" content="【前端拾遗】JS核心知识点——关于闭包的一切(上) - 乌日其浪">
+  <meta name="twitter:description" content="闭包作为前段封装函数，私有化变量的常用手段，几乎是出现在所有面试问题当中。虽然说闭包已经在我们的程序中无处不在，但作为一个日常面向用户写业务代码的程序员，我们总是对闭包一知半解，模棱两可，希望可以通过这篇文章详解关于闭包的一切。
+
+
+对于那...">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="http://localhost:4000/post/JSPoint/">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+ 
+  
+    <link rel="stylesheet" href="http://localhost:4000/media/css/prism-synthwave84.css">
+  
+
+  
+</head>
+
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+    <a href="http://localhost:4000" class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+      乌日其浪
+    </a>
+    <div class="max-w-4xl w-full mx-auto">
+      <div class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+        <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+          【前端拾遗】JS核心知识点——关于闭包的一切(上)
+        </h1>
+        
+          <img src="http://localhost:4000/post-images/JSPoint.jpeg" alt="【前端拾遗】JS核心知识点——关于闭包的一切(上)" class="block w-full mb-8">
+        
+        <div class="mb-8 flex flex-wrap">
+          <div class="text-gray-400 text-sm mr-4">2020-05-25 · 13 min read</div>
+          
+            <a href="http://localhost:4000/tag/worth/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              值得一读
+            </a>
+          
+            <a href="http://localhost:4000/tag/FE/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              前端拾遗
+            </a>
+          
+        </div>
+        <div class="markdown mb-8" v-pre>
+          <p>闭包作为前段封装函数，私有化变量的常用手段，几乎是出现在所有面试问题当中。虽然说闭包已经在我们的程序中无处不在，但作为一个日常面向用户写业务代码的程序员，我们总是对闭包一知半解，模棱两可，希望可以通过这篇文章详解关于闭包的一切。</p>
+<!-- more -->
+<blockquote>
+<p>对于那些有一点JavaScript使用经验但从未真正理解闭包概念的人来说，理解闭包甚至可以看作是某种意义上的重生。</p>
+</blockquote>
+<h2 id="1闭包的前置知识作用域与词法作用域">1.闭包的前置知识：作用域与词法作用域</h2>
+<h3 id="什么是作用域">什么是作用域？</h3>
+<p>作用域并不是JS独有的概念，对于任何编程语言来说，只要它能够定义变量、获取变量中的内容，就需要用到作用域的概念。</p>
+<blockquote>
+<p>作用域就是一套规则,它明确<strong>程序在哪里以及如何查找变量(标识符).</strong></p>
+</blockquote>
+<p>通俗的说,作用域就是告诉你的程序,你去哪儿找变量. 我们来看一段代码.</p>
+<pre><code class="language-js">//代码片段1
+funciton foo() {
+    var a = 'i am a';
+    console.log(a); 
+}
+foo(); //程序输出 i am a
+//代码片段2
+var b = &quot;i am b&quot;;
+function foo2(){
+    console.log(b);
+}
+foo2(); //代码输出 i am b
+</code></pre>
+<p>第一段代码查找变量,在<strong>函数内部</strong>找到了a,程序就停止查找并且输出a;<br>
+第二段代码先在函数内部查找b,没有找到就到<strong>全局</strong>中查找,找到了b,停止查找并且输出b;<br>
+用程序员的黑话来说, 第一段代码在<strong>函数作用域</strong>中找到变量,第二段代码在<strong>全局作用域</strong>中找到变量</p>
+<p>聪明如你一定发现,第二段代码先从函数内部进行查找变量,没有找到后在外部查找变量. 仿佛程序沿着一条由内向外的链条来查找变量. 这个链条我们称之为:<strong>作用域链</strong></p>
+<h3 id="作用域的嵌套">作用域的嵌套</h3>
+<p>在ES6之前(ES6为了明确作用域增加了let,const关键字),只有函数作用域和全局作用域.全局作用域包含函数作用域,而函数作用域又可以嵌套函数作用域.</p>
+<figure data-type="image" tabindex="1"><img src="http://localhost:4000/post-images/1590372683410.png" alt="" loading="lazy"></figure>
+<p>用代码表示:</p>
+<figure data-type="image" tabindex="2"><img src="http://localhost:4000/post-images/1590372697520.png" alt="" loading="lazy"></figure>
+<h3 id="作用域的工作规则">作用域的工作规则</h3>
+<p>尽管JS是一种脚本语言(边编译边运行),但JS是有预编译阶段的. 这里我们不讨论复杂且精妙的JS编译过程,直接放出结论:</p>
+<p>JS在代码运行前先从上到下进行编译</p>
+<ul>
+<li>变量声明 : 遇到var声明的变量时,如果当前作用域已经存在该变量则忽略,如果不存在则在当前作用域中声明这个变量.</li>
+<li>变量取值 : 在当前作用域查找变量.如果没有找到则到父级查找,以此类推,直到全局作用域.如果还没有找到就报错: ReferenceError: XX is not defiend;</li>
+<li>变量赋值 : 同样在当前作用域中查找,如果没有找到则到父级查找,以此类推,直到全局作用域如果还没有找到**,在非严格模式下则创建一个全局变量.**</li>
+</ul>
+<h3 id="词法作用域">词法作用域</h3>
+<p>作用域是一种规则,而这种规则有两种运行模式:</p>
+<ul>
+<li>词法作用域</li>
+<li>动态作用域</li>
+</ul>
+<p>所谓词法作用域,就是在程序员编写程序的时候,根据变量定义的位置就确定了作用域.和大多数编程语言一样,JS也采用了词法作用域.</p>
+<blockquote>
+<p>相对的,动态作用域是不在乎变量定义的位置,仅关注变量时在哪里调用的.。换句话说，作用域链是基于调用栈的，而不是代码中的作用域嵌套。</p>
+</blockquote>
+<p>我们用一段代码来说明一下这两种模式的区别.</p>
+<pre><code class="language-js">var a = 2;
+function foo() {
+  console.log(a); // 会输出2还是3？
+}
+function bar() {
+  var a = 3;
+  foo();
+}
+
+bar();
+</code></pre>
+<ul>
+<li>词法作用域下:  foo() 在申明阶段,引用是全局作用域,所以该函数输出为 2</li>
+<li>动态作用域下(假设js是动态作用域): foo() 输出应该是 3</li>
+</ul>
+<p>总而言之,词法作用域实在写代码或者定义时候明确的,关注函数在哪里申明.而动态作用域是在运行时确定的,关注函数在哪里调用.</p>
+<p>这也对于词法作用域我们总是感觉很别扭,因为人类的大脑其实是习惯了动态作用域来思考问题.<br>
+我们用一段伪代码来还原大脑的&quot;作用域&quot;</p>
+<pre><code class="language-js">var 小明的学历 = &quot;文盲&quot;;
+
+function 学历( ){
+    console.log(小明的学历);
+}
+
+function 上学(){
+    var 小明的学历 = &quot;小学&quot;;
+    学历();
+}
+上学();
+</code></pre>
+<p>我们人为已经上过学的小明肯定是小学学历,但是在词法作用域看来,小明仍然是一个文盲.</p>
+<h2 id="2-为什么要有作用域">2. 为什么要有作用域?</h2>
+<p>是的,我们已经知道作用域的运行规则,但是为什么要整这么多作用域呢? 大家都全局调用不好吗? 小朋友你是否有很多问号?</p>
+<figure data-type="image" tabindex="3"><img src="http://localhost:4000/post-images/1590377477309.gif" alt="" loading="lazy"></figure>
+<p>这个问题其实不难解答.我们先写出结论:</p>
+<ol>
+<li>变量私有化</li>
+<li>避免命名冲突</li>
+</ol>
+<h3 id="变量私有化">变量私有化</h3>
+<pre><code class="language-js">function foo(a) {
+	var b = 2;
+	// 一些代码
+	function bar() {
+		// ...
+	}
+	// 更多代码
+	var c = 3;
+}
+
+bar();  //报错
+
+console.log(a,b,c); //报错
+</code></pre>
+<p>很明显,程序报错了. 因为 bar(),a,b,c 都是 foo() 函数内部的变量,这些变量在同一个函数作用域内(foo的函数作用域) 是可以互相访问的,但是外部函数想要调用他们却不行. 这种设计思想的好处显而易见 —— 变量可以根据需要来接受不同类型的值. 我们不但避免变量名称的重复,同时也能将私有化的变量在函数中隐藏起来,不至于过多的暴露到外部. (&quot;最低权限&quot;设计原则)</p>
+<p>&lt;你不懂的JS&gt; 提到了一个很好的例子:</p>
+<pre><code class="language-js">function doSomething(a) {
+	b = a + doSomethingElse( a * 2 );
+
+	console.log( b * 3 );
+}
+
+function doSomethingElse(a) {
+	return a - 1;
+}
+
+var b;
+
+doSomething( 2 ); // 15
+</code></pre>
+<p>这个代码段中，变量 b 和函数 doSomethingElse(..) 很可能是 doSomething(..) 的“私有”细节。允许外围的作用域“访问” b 和 doSomethingElse(..) 不仅没必要而且可能是“危险的”.换一种写法获取更加恰当:</p>
+<pre><code class="language-js">function doSomething(a) {
+	function doSomethingElse(a) {
+		return a - 1;
+	}
+
+	var b;
+
+	b = a + doSomethingElse( a * 2 );
+
+	console.log( b * 3 );
+}
+
+doSomething( 2 ); // 15
+</code></pre>
+<p>现在，b 和 doSomethingElse(..) 对任何外界影响都是不可访问的，而是仅仅由 doSomething(..) 控制。</p>
+<h3 id="避免变量冲突">避免变量冲突</h3>
+<p>将变量和函数隐藏在一个作用域内部就很容易避免同名变量之间发生冲突.(不要在浏览器中尝试这段代码,别问我怎么知道的.)</p>
+<pre><code class="language-js">function foo() {
+	function bar(a) {
+		i = 3; // 在外围的for循环的作用域中改变`i`
+		console.log( a + i );
+	}
+
+	for (var i=0; i&lt;10; i++) {
+		bar( i * 2 ); // 噢，无限循环！
+	}
+}
+foo();
+</code></pre>
+<p>bar(..) 内部的赋值 i = 3 地覆盖了在 foo(..) 的for循环中声明的 i。这是因为 bar作为内部函数可以访问外部作用域,i=3改变了外部函数的i,导致循环无法停止.<br>
+将 i =3; 改为 var i = 3; 就可以有效解决这个问题.</p>
+<p>试想一下,你的项目引用了很多外部的库,而这些库没有隐藏内部/私有函数变量,那么就很容易出现类似的冲突.</p>
+<h2 id="3函数作用域与块作用域">3.函数作用域与块作用域</h2>
+<p>说实在的,作为一个以解决问题为首要目的的程序员,我已经在努力把这个事情说的简单清晰. 如果你感觉很啰嗦,那就当做&quot;听妈妈的话&quot;吧..... 相信当你仔细读完之后一定会发现JS的乐趣.</p>
+<p>你已经知道,只要声明一个函数把一段代码包裹起来,就能够建立一个作用域,将内部的变量或者函数声明&quot;隐藏&quot;起来.</p>
+<pre><code class="language-js">var a = 2;
+function foo() { 
+	var a = 3;
+	console.log( a ); // 3
+} 
+foo(); 
+console.log( a ); // 2
+</code></pre>
+<p>但这样并不理想. 你看,我们为了将 a 变量隔离, 不但需要声明一个函数foo(); 还要后面引用它才能达到我们的目的. 事实上声明foo()其实也是一种命名污染.</p>
+<blockquote>
+<p>如果这个函数不需要命名(或者命名了也不会对外部作用域产生影响)并且能自动运行就好了. <sup>_</sup></p>
+</blockquote>
+<p>的确,JavaScript提供了解决方法:  立即执行函数</p>
+<pre><code class="language-js">var a = 2;
+
+(function foo(){ // &lt;-- 插入这个
+	var a = 3;
+	console.log( a ); // 3
+})(); // &lt;-- 和这个
+
+console.log( a ); // 2
+</code></pre>
+<p><strong>当function..通过(function..)的形式包裹起来后,这个函数不再是一种函数声明,而是变成了一个函数表达式.</strong></p>
+<blockquote>
+<p>简而言之,通过()包裹起来后,原来的函数foo从 &quot;定义foo()&quot;变成了 &quot;执行foo()里的代码&quot;</p>
+</blockquote>
+<p>这个时候,即使我们在立即执行函数中命名了函数名称foo, 在全局作用域中也无法调用 foo(). 它不再没有必要的污染外部作用域了.</p>
+<h3 id="匿名函数">匿名函数</h3>
+<p>当然你也可以不对函数进行命名</p>
+<pre><code class="language-js">var a = 2;
+(function(){ 
+	var a = 3;
+	console.log( a ); // 3
+})(); 
+console.log( a ); // 2
+</code></pre>
+<p>但是它有几个缺点:</p>
+<ol>
+<li>在栈轨迹上匿名函数没有有用的名称可以表示，这可能会使得调试更加困难。</li>
+<li>没有名称的情况下，如果这个函数需要为了递归等目的引用它自己，那么就需要很不幸地使用 被废弃的arguments.callee 引用。另一个需要自引用的例子是，当一个事件处理器函数在被触发后想要把自己解除绑定。</li>
+<li>名称经常对提供更易读/易懂的代码很有帮助。一个描述性的名称可以帮助代码自解释。</li>
+</ol>
+<p>所以还是建议为自己的立即执行函数进行命名.</p>
+<h3 id="块级作用域">块级作用域</h3>
+<p>虽然说函数作用域是最常见的作用域单位,但在ES6之前的JavaScript在代码书写方面并不符合程序员的思维习惯. ES6之后引入的let和const可以帮助我们写出更好的,更简洁且易于维护的代码.</p>
+<pre><code class="language-js">for (var i=0; i&lt;10; i++) {
+	console.log( i );
+}
+</code></pre>
+<p>譬如上面这段非常常见代码,我们的本意是希望定义一个 i在循环内部使用,但实际上却将i划入了外部作用域.<br>
+再譬如下面这段代码: 我们的本意是将bar作为if中使用的变量,但它依旧暴露在全局作用域中了.</p>
+<pre><code class="language-js">var foo = true;
+
+if (foo) {
+	var bar = foo * 2;
+	bar = something( bar );
+	console.log( bar );
+}
+</code></pre>
+<p>那该如何是好呢? JavaScript并将代码块作为作用域的能力呀.</p>
+<figure data-type="image" tabindex="4"><img src="http://localhost:4000/post-images/1590390075720.jpg" alt="" loading="lazy"></figure>
+<p>但是ES6已经很好的解决了这个问题:</p>
+<h3 id="let与const">let与const</h3>
+<p>let和const 关键字将变量声明附着在它所在的任何块（通常是一个 { .. }）的作用域中。换句话说，let 为它的变量声明隐含地劫持了任意块作用域。我们可以通过简单地引入一个 { .. } 来为 let 创建一个任意的可以绑定的块儿。在这个例子中，我们在 if 语句内部制造了一个明确的块儿，在以后的重构中将整个块儿四处移动可能会更容易，而且不会影响外围的 if 语句的位置和语义。</p>
+<pre><code class="language-js">var foo = true;
+
+if (foo) {
+	let bar = foo * 2;
+	bar = something( bar );
+	console.log( bar );
+}
+
+console.log( bar ); // ReferenceError bar is not defined
+</code></pre>
+<blockquote>
+<p>注:除了let与const之外,with结构,try,catch也是块级作用域.这里不做详细讨论</p>
+</blockquote>
+<h3 id="垃圾回收机制">垃圾回收机制</h3>
+<p>块儿作用域的另一个有用之处是关于闭包和释放内存的垃圾回收。我们将简单地在这里举一个例子.<br>
+获取这个例子稍稍有一些复杂,但既然你已经读到这里了,那说明你肯定能看懂.</p>
+<pre><code class="language-js">function process(data) {
+	// ****
+}
+
+var someReallyBigData = { .. };  //一个巨大的对象
+
+process( someReallyBigData );
+
+var btn = document.getElementById( &quot;my_button&quot; );
+
+btn.addEventListener( &quot;click&quot;, function click(evt){
+	console.log(&quot;button clicked&quot;);
+}, /*capturingPhase=*/false );
+</code></pre>
+<p>当我们执行回调函数 click时,不需要someReallyBigData这个变量. 这意味着从理论来说,在process(..)执行后我们可以把someReallyBigData回收掉来释放内存.</p>
+<p>但是JS引擎通常会将这个someReallyBigData继续保存一段时间,因为click在整个作用域上拥有一个闭包,导致JS引擎不敢冒然将someReallyBigData回收掉.</p>
+<p>但是块级作用域可以明确的告诉JS引擎可以执行垃圾回收了.</p>
+<pre><code class="language-js">function process(data) {
+	// 做些有趣的事
+}
+
+// 运行过后，任何定义在这个块中的东西都可以消失了
+{
+	let someReallyBigData = { .. };
+
+	process( someReallyBigData );
+}
+
+var btn = document.getElementById( &quot;my_button&quot; );
+
+btn.addEventListener( &quot;click&quot;, function click(evt){
+	console.log(&quot;button clicked&quot;);
+}, /*capturingPhase=*/false );
+</code></pre>
+
+        </div>
+        <!-- Share to Twitter, Weibo, Telegram -->
+        <div class="flex items-center">
+          <div class="mr-4 flex items-center">
+            <i class="ri-share-forward-line text-gray-500"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTwitter">
+            <i class="ri-twitter-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 inline-flex" @click="shareToWeibo">
+            <i class="ri-weibo-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTelegram">
+            <i class="ri-telegram-line"></i>
+          </div>
+        </div>
+      </div>
+
+      
+
+      
+        <div id="vlaine-comment"></div>
+      
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  备案号:蒙ICP备19002373号-1 <a href="http://beian.niit.gov.cn" target="_blank">工信部</a>
+</footer>
+    </div>
+
+    <!-- TOC Container -->
+    <div class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white dark:bg-gray-500 dark:text-gray-200 hover:shadow-lg transition-all animated fadeInRight" @click="showToc = true">
+      <i class="ri-file-list-line"></i>
+    </div>
+
+    <div class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white dark:bg-gray-800 p-4 border-l border-gray-100 dark:border-gray-600 z-10 transition-fast" :class="{ '-mr-64': !showToc }">
+      <div class="flex mb-4 justify-end">
+        <div class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast" @click="showToc = false">
+          <i class="ri-close-line text-lg"></i>
+        </div>
+      </div>
+      <div class="post-toc-container">
+        <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#1%E9%97%AD%E5%8C%85%E7%9A%84%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%B8%8E%E8%AF%8D%E6%B3%95%E4%BD%9C%E7%94%A8%E5%9F%9F">1.闭包的前置知识：作用域与词法作用域</a>
+<ul>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%BD%9C%E7%94%A8%E5%9F%9F">什么是作用域？</a></li>
+<li><a href="#%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%9A%84%E5%B5%8C%E5%A5%97">作用域的嵌套</a></li>
+<li><a href="#%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%9A%84%E5%B7%A5%E4%BD%9C%E8%A7%84%E5%88%99">作用域的工作规则</a></li>
+<li><a href="#%E8%AF%8D%E6%B3%95%E4%BD%9C%E7%94%A8%E5%9F%9F">词法作用域</a></li>
+</ul>
+</li>
+<li><a href="#2-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E6%9C%89%E4%BD%9C%E7%94%A8%E5%9F%9F">2. 为什么要有作用域?</a>
+<ul>
+<li><a href="#%E5%8F%98%E9%87%8F%E7%A7%81%E6%9C%89%E5%8C%96">变量私有化</a></li>
+<li><a href="#%E9%81%BF%E5%85%8D%E5%8F%98%E9%87%8F%E5%86%B2%E7%AA%81">避免变量冲突</a></li>
+</ul>
+</li>
+<li><a href="#3%E5%87%BD%E6%95%B0%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%B8%8E%E5%9D%97%E4%BD%9C%E7%94%A8%E5%9F%9F">3.函数作用域与块作用域</a>
+<ul>
+<li><a href="#%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0">匿名函数</a></li>
+<li><a href="#%E5%9D%97%E7%BA%A7%E4%BD%9C%E7%94%A8%E5%9F%9F">块级作用域</a></li>
+<li><a href="#let%E4%B8%8Econst">let与const</a></li>
+<li><a href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6">垃圾回收机制</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <div class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all dark:bg-gray-500 dark:text-gray-200" @click="backToUp" v-show="scrolled">
+      <i class="ri-arrow-up-line"></i>
+    </div>
+  </div>
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe. 
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg">
+  </div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter">
+        </div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip">
+        </div>
+      </div>
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+      </button>
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+      </button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="http://localhost:4000/media/scripts/main.js"></script>
+  
+  <!-- Code Highlight -->
+  
+    <script src="http://localhost:4000/media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+  <script>
+    //拿到预览框架，也就是上面的html代码
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+    //定义图片数组变量
+    var imgitems;
+    /**
+    * 用于显示预览界面
+    * @param index 图片数组下标
+    */
+    function viewImg(index) {
+      //其它选项这里不做过多阐述，详情见官网
+      var pswpoptions = {
+        index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+        bgOpacity: 0.7, // 背景透明度，0-1
+        maxSpreadZoom: 3, // 缩放级别，不要太大
+      };
+      //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, imgitems, pswpoptions);
+      gallery.init()
+    }
+    /**
+    * 用于添加图片点击事件
+    * @param img 图片元素
+    * @param index 所属下标（在imgitems中的位置）
+    */
+    function addImgClick(img, index) {
+      img.onclick = function() {
+        viewImg(index)
+      }
+    }
+    /**
+    * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+    * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+    * 异步加载图片可在图片元素创建完成后调用此方法
+    */
+    function initImg() {
+      //重置图片数组
+      imgitems = [];
+      //查找class:markdown 下的所有img元素并遍历
+      var imgs = document.querySelectorAll('.markdown img');
+      for (var i = 0; i < imgs.length; i++) {
+        var img = imgs[i];
+        //本站相册初始为loading图片，真实图片放在data-src
+        var ds = img.getAttribute("data-src");
+        //创建image对象，用于获取图片宽高
+        var imgtemp = new Image();
+        //判断是否存在data-src
+        if (ds != null && ds.length > 0) {
+          imgtemp.src = ds
+        } else {
+          imgtemp.src = img.src
+        }
+        //判断是否存在缓存
+        if (imgtemp.complete) {
+          var imgobj = {
+            "src": imgtemp.src,
+            "w": imgtemp.width,
+            "h": imgtemp.height,
+          };
+          imgitems[i] = imgobj;
+          addImgClick(img, i);
+        } else {
+          console.log('进来了2')
+          imgtemp.index = i;
+          imgtemp.img = img;
+          imgtemp.onload = function() {
+            var imgobj = {
+              "src": this.src,
+              "w": this.width,
+              "h": this.height,
+            };
+            //不要使用push，因为onload前后顺序会不同
+            imgitems[this.index] = imgobj
+            //添加点击事件
+            addImgClick(this.img, this.index);
+          }
+        }
+      }
+    }
+    //初始化
+    initImg();
+  </script>
+  
+    <script type="application/javascript" src="https://unpkg.com/valine"></script>
+<script type="application/javascript">
+  new Valine({
+    el: '#vlaine-comment',
+    appId: 'mosVKaOcHQ7SRcPdWDwRwksy-gzGzoHsz',
+    appKey: 'WtY1Jypo6oLtpBkEJKqGYIWp',
+    pageSize: 10,
+    notify: false,
+    avatar: 'mp',
+    verify: true,
+    placeholder: '评论点亮灵感',
+    visitor: true,
+    highlight: false,
+    recordIP: false,
+  })
+</script>
+  
+  
+</body>
+
+</html>

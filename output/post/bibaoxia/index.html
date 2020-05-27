@@ -1,0 +1,519 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>【前端拾遗】JS核心知识点——关于闭包的一切(下) - 乌日其浪</title>
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="http://localhost:4000/media/css/tailwind.css">
+<link rel="stylesheet" href="http://localhost:4000/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="【前端拾遗】JS核心知识点——关于闭包的一切(下) - 乌日其浪 - Atom Feed" href="http://localhost:4000/atom.xml">
+
+    
+
+  <meta name="description" content="
+之所以要分上下两个部分,是因为我实在是担心你没有耐心一口气读完全文. 但闭包之于JS,就如同麻酱之于火锅. 那是灵魂
+
+
+1.闭包的概念
+
+闭包就是函数能够记住它的词法作用域,及时它在其他地方执行时.
+
+负责任的说:如果你细细度了本文上篇..." />
+  <meta property="og:title" content="【前端拾遗】JS核心知识点——关于闭包的一切(下) - 乌日其浪">
+  <meta property="og:description" content="
+之所以要分上下两个部分,是因为我实在是担心你没有耐心一口气读完全文. 但闭包之于JS,就如同麻酱之于火锅. 那是灵魂
+
+
+1.闭包的概念
+
+闭包就是函数能够记住它的词法作用域,及时它在其他地方执行时.
+
+负责任的说:如果你细细度了本文上篇..." />
+  <meta property="og:type" content="articles">
+  <meta property="og:url" content="http://localhost:4000/post/bibaoxia/" />
+  <meta property="og:image" content="http://localhost:4000/post-images/bibaoxia.jpg">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200">
+  <meta name="twitter:title" content="【前端拾遗】JS核心知识点——关于闭包的一切(下) - 乌日其浪">
+  <meta name="twitter:description" content="
+之所以要分上下两个部分,是因为我实在是担心你没有耐心一口气读完全文. 但闭包之于JS,就如同麻酱之于火锅. 那是灵魂
+
+
+1.闭包的概念
+
+闭包就是函数能够记住它的词法作用域,及时它在其他地方执行时.
+
+负责任的说:如果你细细度了本文上篇...">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="http://localhost:4000/post/bibaoxia/">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+ 
+  
+    <link rel="stylesheet" href="http://localhost:4000/media/css/prism-synthwave84.css">
+  
+
+  
+</head>
+
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+    <a href="http://localhost:4000" class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+      乌日其浪
+    </a>
+    <div class="max-w-4xl w-full mx-auto">
+      <div class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+        <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+          【前端拾遗】JS核心知识点——关于闭包的一切(下)
+        </h1>
+        
+          <img src="http://localhost:4000/post-images/bibaoxia.jpg" alt="【前端拾遗】JS核心知识点——关于闭包的一切(下)" class="block w-full mb-8">
+        
+        <div class="mb-8 flex flex-wrap">
+          <div class="text-gray-400 text-sm mr-4">2020-05-25 · 8 min read</div>
+          
+            <a href="http://localhost:4000/tag/worth/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              值得一读
+            </a>
+          
+            <a href="http://localhost:4000/tag/FE/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              前端拾遗
+            </a>
+          
+        </div>
+        <div class="markdown mb-8" v-pre>
+          <blockquote>
+<p>之所以要分上下两个部分,是因为我实在是担心你没有耐心一口气读完全文. 但闭包之于JS,就如同麻酱之于火锅. 那是灵魂</p>
+</blockquote>
+<!-- more -->
+<h2 id="1闭包的概念">1.闭包的概念</h2>
+<blockquote>
+<p>闭包就是函数能够记住它的词法作用域,及时它在其他地方执行时.</p>
+</blockquote>
+<p>负责任的说:如果你细细度了本文上篇的内容,这句话就能让你豁然开朗.我们举个例子</p>
+<pre><code class="language-js">function foo() {
+	var a = 2;
+	function bar() {
+		console.log( a ); // 2
+	}
+	bar(); //注意这句!!!
+}
+
+foo();
+</code></pre>
+<p>从定义上来讲,因为bar()在foo()中调用了,且bar访问了foo()中的变量,我们认为<strong>bar()闭住了foo()的作用域</strong>,它形成了一个闭包.<br>
+<strong>但是!</strong><br>
+这不是我们要讨论的闭包.上面的代码虽然形成了闭包,但是bar()并没有供外部调用.</p>
+<p>我们来看一段真正的闭包:</p>
+<pre><code class="language-js">function foo() {
+	var a = 2;
+	function bar() {
+		console.log( a );
+	}
+	return bar;
+}
+var baz = foo();
+baz(); // 2 -- 哇噢，看到闭包了
+
+</code></pre>
+<p>我们来解释一下:</p>
+<ol>
+<li>函数bar()对于foo()的函数作用域拥有访问权.</li>
+<li>我们将bar()这个函数像值一样传递(return)  即 return bar;</li>
+<li>执行bar = foo()时我们就获得了返回值 bar();</li>
+<li>当我们调用baz的时候,我们本质上就调用了 bar();</li>
+</ol>
+<p>这下聪明的你隐约间有了一种说不清道不明的感. 之所以说不清楚,因为你不知道这么做有什么用.</p>
+<p>先说结论:</p>
+<blockquote>
+<p>闭包可以避免垃圾回收机制</p>
+</blockquote>
+<p>根据JS垃圾回收机制,一般来说foo()执行后,其内部作用域都将消失,被垃圾回收机制释放掉. 但是当闭包出现后,垃圾回收机制就被阻止了!<br>
+在闭包出现后,foo()内部作用域仍然存在,因为函数bar()在使用它. 通过闭包,我们依旧可以继续访问在程序编写时定义的词法作用域.</p>
+<p>所以说,我们回头再看看闭包的定义.</p>
+<blockquote>
+<p>闭包就是函数能够记住它的词法作用域,及时它在其他地方执行时.</p>
+</blockquote>
+<p>形成闭包只需要  在函数A内部嵌套一个函数B,只要函数B能够访问函数A的内容且被执行,就形成了闭包.</p>
+<h2 id="2闭包的不同形式">2.闭包的不同形式</h2>
+<p>除了通过值传递,闭包在其他位置调用也可以形成闭包.</p>
+<pre><code class="language-js">
+function foo() {
+	var a = 2;
+
+	function baz() {
+		console.log( a ); // 2
+	}
+
+	bar( baz );
+}
+
+function bar(fn) {
+	fn(); // 看妈妈，我看到闭包了！
+}
+
+foo(); //2
+</code></pre>
+<p>内部函数bar()被传递给了bar,而bar是定义在全局作用域中的函数. 这样就形成了一个闭包,且在外部bar()作用域中被调用了.</p>
+<p>这样的函数传递也可以是间接的.</p>
+<pre><code class="language-js">var fn;
+
+function foo() {
+	var a = 2;
+
+	function baz() {
+		console.log( a );
+	}
+
+	fn = baz; // 将`baz`赋值给一个全局变量
+}
+
+function bar() {
+	fn(); // 看妈妈，我看到闭包了！
+}
+
+foo();
+
+bar(); // 2
+</code></pre>
+<p>无论我们使用什么方法,只要将内部函数传送到其词法作用域外,函数都将维护一个最开始被声明时候的作用域的引用. 无论我们什么时候执行它,闭包都会运行.且运行的变量是<strong>最开始声明时候的作用域</strong></p>
+<h2 id="3无处不在的闭包">3.无处不在的闭包</h2>
+<p>其实闭包,已经被应用在你的项目中且无处不在了.</p>
+<pre><code class="language-js">function wait(message) {
+
+	setTimeout( function timer(){
+		console.log( message );
+	}, 1000 );
+
+}
+
+wait( &quot;Hello, closure!&quot; );
+</code></pre>
+<p>虽然通常我们不这样写,但这段代码能够很好的说明闭包的运行规则,</p>
+<ol>
+<li>首先setTimeout是一个JS自有的全局函数.</li>
+<li>我们将timer()传递给setTimeout(..), timer()包含着对于wait词法作用域的引用</li>
+<li>当我们执行wait()时,虽然1000ms后才执行timer(),但是它仍然记忆着message的内容</li>
+</ol>
+<p><strong>这就是闭包</strong> 就是这么简单</p>
+<p>我们再举一个循环的例子,循环被认为是解释闭包原理最好的例子.</p>
+<pre><code class="language-js">for (var i=1; i&lt;=5; i++) {
+	setTimeout( function timer(){
+		console.log( i );
+	}, i*1000 );
+}
+</code></pre>
+<p>答案是: 6 (循环五次)   我们本来的期望是1,2,3,4,5 但实际情况却事与愿违.<br>
+就定时器而言,定时器都是在循环执行结束后才执行的,此时timer()所执行的值是当前全局作用域中的 i<br>
+如何解决这样的问题?<br>
+或许我们可以通过立即执行函数在每次一生成setTimeout时给其一个单独的i</p>
+<pre><code class="language-js">for (var i=1; i&lt;=5; i++) {
+	(function(){
+		setTimeout( function timer(){
+			console.log( i );
+		}, i*1000 );
+	})();
+}
+</code></pre>
+<p>但这样不行,因为虽然我们在立即函数执行过程中新建了许多空的作用域,**但这些作用域中并没有内容,它仍然会到全局作用域中查找变量 i . **</p>
+<p>我们可以在被闭包的作用域加入内容</p>
+<pre><code class="language-js">for (var i=1; i&lt;=5; i++) {
+	(function(){
+		var j = i;
+		setTimeout( function timer(){
+			console.log( j );
+		}, j*1000 );
+	})();
+}
+</code></pre>
+<p>或者是这种形式</p>
+<pre><code class="language-js">for (var i=1; i&lt;=5; i++) {
+	(function(j){
+		setTimeout( function timer(){
+			console.log( j );
+		}, j*1000 );
+	})( i );
+}
+</code></pre>
+<p>但当我们采用块级作用域,代码会变得更加NB</p>
+<pre><code class="language-js">for (let i=1; i&lt;=5; i++) {
+	setTimeout( function timer(){
+		console.log( i );
+	}, i*1000 );
+}
+</code></pre>
+<p>在用于 for 循环头部的 let 声明被定义了一种<strong>特殊行为</strong>。这种行为说，这个变量将不是只为循环声明一次，而是为每次迭代声明一次。并且，它将在每次后续的迭代中被上一次迭代末尾的值初始化。<br>
+简而言之,采用块级作用域为每一次循环附上单独的值.</p>
+<h2 id="4闭包的用途转自阮一峰-学习javascript闭包closure">4.闭包的用途(转自<a href="https://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html">阮一峰 学习Javascript闭包（Closure）</a>)</h2>
+<p>闭包可以用在许多地方。它的最大用处有两个，一个是前面提到的可以读取函数内部的变量，另一个就是让这些变量的值始终保持在内存中。</p>
+<p>怎么来理解这句话呢？请看下面的代码。</p>
+<pre><code class="language-js">　　function f1(){
+
+　　　　var n=999;
+
+　　　　nAdd=function(){n+=1}
+
+　　　　function f2(){
+　　　　　　alert(n);
+　　　　}
+
+　　　　return f2;
+
+　　}
+
+　　var result=f1();
+
+　　result(); // 999
+
+　　nAdd();
+
+　　result(); // 1000
+</code></pre>
+<p>在这段代码中，result实际上就是闭包f2函数。它一共运行了两次，第一次的值是999，第二次的值是1000。这证明了，函数f1中的局部变量n一直保存在内存中，并没有在f1调用后被自动清除。</p>
+<p>为什么会这样呢？原因就在于f1是f2的父函数，而f2被赋给了一个全局变量，这导致f2始终在内存中，而f2的存在依赖于f1，因此f1也始终在内存中，不会在调用结束后，被垃圾回收机制（garbage collection）回收。</p>
+<p>这段代码中另一个值得注意的地方，就是&quot;nAdd=function(){n+=1}&quot;这一行，首先在nAdd前面没有使用var关键字，因此nAdd是一个全局变量，而不是局部变量。其次，nAdd的值是一个匿名函数（anonymous function），而这个匿名函数本身也是一个闭包，所以nAdd相当于是一个setter，可以在函数外部对函数内部的局部变量进行操作。</p>
+<h2 id="5使用闭包的注意点">5.使用闭包的注意点</h2>
+<p>1）由于闭包会使得函数中的变量都被保存在内存中，内存消耗很大，所以不能滥用闭包，否则会造成网页的性能问题，在IE中可能导致内存泄露。解决方法是，在退出函数之前，将不使用的局部变量全部删除。</p>
+<p>2）闭包会在父函数外部，改变父函数内部变量的值。所以，如果你把父函数当作对象（object）使用，把闭包当作它的公用方法（Public Method），把内部变量当作它的私有属性（private value），这时一定要小心，不要随便改变父函数内部变量的值。</p>
+
+        </div>
+        <!-- Share to Twitter, Weibo, Telegram -->
+        <div class="flex items-center">
+          <div class="mr-4 flex items-center">
+            <i class="ri-share-forward-line text-gray-500"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTwitter">
+            <i class="ri-twitter-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 inline-flex" @click="shareToWeibo">
+            <i class="ri-weibo-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTelegram">
+            <i class="ri-telegram-line"></i>
+          </div>
+        </div>
+      </div>
+
+      
+
+      
+        <div id="vlaine-comment"></div>
+      
+
+      <footer class="py-12 text-center px-4 md:px-0" v-pre>
+  备案号:蒙ICP备19002373号-1 <a href="http://beian.niit.gov.cn" target="_blank">工信部</a>
+</footer>
+    </div>
+
+    <!-- TOC Container -->
+    <div class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white dark:bg-gray-500 dark:text-gray-200 hover:shadow-lg transition-all animated fadeInRight" @click="showToc = true">
+      <i class="ri-file-list-line"></i>
+    </div>
+
+    <div class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white dark:bg-gray-800 p-4 border-l border-gray-100 dark:border-gray-600 z-10 transition-fast" :class="{ '-mr-64': !showToc }">
+      <div class="flex mb-4 justify-end">
+        <div class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast" @click="showToc = false">
+          <i class="ri-close-line text-lg"></i>
+        </div>
+      </div>
+      <div class="post-toc-container">
+        <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#1%E9%97%AD%E5%8C%85%E7%9A%84%E6%A6%82%E5%BF%B5">1.闭包的概念</a></li>
+<li><a href="#2%E9%97%AD%E5%8C%85%E7%9A%84%E4%B8%8D%E5%90%8C%E5%BD%A2%E5%BC%8F">2.闭包的不同形式</a></li>
+<li><a href="#3%E6%97%A0%E5%A4%84%E4%B8%8D%E5%9C%A8%E7%9A%84%E9%97%AD%E5%8C%85">3.无处不在的闭包</a></li>
+<li><a href="#4%E9%97%AD%E5%8C%85%E7%9A%84%E7%94%A8%E9%80%94%E8%BD%AC%E8%87%AA%E9%98%AE%E4%B8%80%E5%B3%B0-%E5%AD%A6%E4%B9%A0javascript%E9%97%AD%E5%8C%85closure">4.闭包的用途(转自阮一峰 学习Javascript闭包（Closure）)</a></li>
+<li><a href="#5%E4%BD%BF%E7%94%A8%E9%97%AD%E5%8C%85%E7%9A%84%E6%B3%A8%E6%84%8F%E7%82%B9">5.使用闭包的注意点</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <div class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all dark:bg-gray-500 dark:text-gray-200" @click="backToUp" v-show="scrolled">
+      <i class="ri-arrow-up-line"></i>
+    </div>
+  </div>
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe. 
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg">
+  </div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter">
+        </div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip">
+        </div>
+      </div>
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+      </button>
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+      </button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="http://localhost:4000/media/scripts/main.js"></script>
+  
+  <!-- Code Highlight -->
+  
+    <script src="http://localhost:4000/media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+  <script>
+    //拿到预览框架，也就是上面的html代码
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+    //定义图片数组变量
+    var imgitems;
+    /**
+    * 用于显示预览界面
+    * @param index 图片数组下标
+    */
+    function viewImg(index) {
+      //其它选项这里不做过多阐述，详情见官网
+      var pswpoptions = {
+        index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+        bgOpacity: 0.7, // 背景透明度，0-1
+        maxSpreadZoom: 3, // 缩放级别，不要太大
+      };
+      //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, imgitems, pswpoptions);
+      gallery.init()
+    }
+    /**
+    * 用于添加图片点击事件
+    * @param img 图片元素
+    * @param index 所属下标（在imgitems中的位置）
+    */
+    function addImgClick(img, index) {
+      img.onclick = function() {
+        viewImg(index)
+      }
+    }
+    /**
+    * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+    * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+    * 异步加载图片可在图片元素创建完成后调用此方法
+    */
+    function initImg() {
+      //重置图片数组
+      imgitems = [];
+      //查找class:markdown 下的所有img元素并遍历
+      var imgs = document.querySelectorAll('.markdown img');
+      for (var i = 0; i < imgs.length; i++) {
+        var img = imgs[i];
+        //本站相册初始为loading图片，真实图片放在data-src
+        var ds = img.getAttribute("data-src");
+        //创建image对象，用于获取图片宽高
+        var imgtemp = new Image();
+        //判断是否存在data-src
+        if (ds != null && ds.length > 0) {
+          imgtemp.src = ds
+        } else {
+          imgtemp.src = img.src
+        }
+        //判断是否存在缓存
+        if (imgtemp.complete) {
+          var imgobj = {
+            "src": imgtemp.src,
+            "w": imgtemp.width,
+            "h": imgtemp.height,
+          };
+          imgitems[i] = imgobj;
+          addImgClick(img, i);
+        } else {
+          console.log('进来了2')
+          imgtemp.index = i;
+          imgtemp.img = img;
+          imgtemp.onload = function() {
+            var imgobj = {
+              "src": this.src,
+              "w": this.width,
+              "h": this.height,
+            };
+            //不要使用push，因为onload前后顺序会不同
+            imgitems[this.index] = imgobj
+            //添加点击事件
+            addImgClick(this.img, this.index);
+          }
+        }
+      }
+    }
+    //初始化
+    initImg();
+  </script>
+  
+    <script type="application/javascript" src="https://unpkg.com/valine"></script>
+<script type="application/javascript">
+  new Valine({
+    el: '#vlaine-comment',
+    appId: 'mosVKaOcHQ7SRcPdWDwRwksy-gzGzoHsz',
+    appKey: 'WtY1Jypo6oLtpBkEJKqGYIWp',
+    pageSize: 10,
+    notify: false,
+    avatar: 'mp',
+    verify: true,
+    placeholder: '评论点亮灵感',
+    visitor: true,
+    highlight: false,
+    recordIP: false,
+  })
+</script>
+  
+  
+</body>
+
+</html>
