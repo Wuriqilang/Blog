@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>http://localhost:4000</id>
+    <id>https://www.xr1228.com/</id>
     <title>乌日其浪</title>
-    <updated>2020-05-26T06:12:52.122Z</updated>
+    <updated>2020-05-27T07:36:33.320Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="http://localhost:4000"/>
-    <link rel="self" href="http://localhost:4000/atom.xml"/>
+    <link rel="alternate" href="https://www.xr1228.com/"/>
+    <link rel="self" href="https://www.xr1228.com/atom.xml"/>
     <subtitle>我是一名专注于解决问题的全栈程序员 👨‍💻 
 &lt;h5&gt;编程只是解决问题的武器⚔️,希望我能用最简单的语言⚡告诉你如何拿起的武器🙊 ，以及如何打倒敌人👾&lt;/h5&gt;</subtitle>
-    <logo>http://localhost:4000/images/avatar.png</logo>
-    <icon>http://localhost:4000/favicon.ico</icon>
+    <logo>https://www.xr1228.com/images/avatar.png</logo>
+    <icon>https://www.xr1228.com/favicon.ico</icon>
     <rights>All rights reserved 2020, 乌日其浪</rights>
     <entry>
         <title type="html"><![CDATA[【实践数据结构与算法】开篇词:数据与算法之美]]></title>
-        <id>http://localhost:4000/post/shi-jian-shu-ju-jie-gou-yu-suan-fa-kai-pian-ci-shu-ju-yu-suan-fa-zhi-mei/</id>
-        <link href="http://localhost:4000/post/shi-jian-shu-ju-jie-gou-yu-suan-fa-kai-pian-ci-shu-ju-yu-suan-fa-zhi-mei/">
+        <id>https://www.xr1228.com/post/shi-jian-shu-ju-jie-gou-yu-suan-fa-kai-pian-ci-shu-ju-yu-suan-fa-zhi-mei/</id>
+        <link href="https://www.xr1228.com/post/shi-jian-shu-ju-jie-gou-yu-suan-fa-kai-pian-ci-shu-ju-yu-suan-fa-zhi-mei/">
         </link>
         <updated>2020-05-26T01:52:27.000Z</updated>
         <summary type="html"><![CDATA[<blockquote>
@@ -30,8 +30,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[【前端拾遗】JS核心知识点——关于闭包的一切(下)]]></title>
-        <id>http://localhost:4000/post/bibaoxia/</id>
-        <link href="http://localhost:4000/post/bibaoxia/">
+        <id>https://www.xr1228.com/post/bibaoxia/</id>
+        <link href="https://www.xr1228.com/post/bibaoxia/">
         </link>
         <updated>2020-05-25T07:22:23.000Z</updated>
         <summary type="html"><![CDATA[<blockquote>
@@ -45,8 +45,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[【前端拾遗】JS核心知识点——关于闭包的一切(上)]]></title>
-        <id>http://localhost:4000/post/JSPoint/</id>
-        <link href="http://localhost:4000/post/JSPoint/">
+        <id>https://www.xr1228.com/post/JSPoint/</id>
+        <link href="https://www.xr1228.com/post/JSPoint/">
         </link>
         <updated>2020-05-24T16:44:59.000Z</updated>
         <summary type="html"><![CDATA[<p>闭包作为前段封装函数，私有化变量的常用手段，几乎是出现在所有面试问题当中。虽然说闭包已经在我们的程序中无处不在，但作为一个日常面向用户写业务代码的程序员，我们总是对闭包一知半解，模棱两可，希望可以通过这篇文章详解关于闭包的一切。</p>
@@ -56,8 +56,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[【前端拾遗】JS的历史]]></title>
-        <id>http://localhost:4000/post/jsHistory/</id>
-        <link href="http://localhost:4000/post/jsHistory/">
+        <id>https://www.xr1228.com/post/jsHistory/</id>
+        <link href="https://www.xr1228.com/post/jsHistory/">
         </link>
         <updated>2020-05-24T00:51:05.000Z</updated>
         <summary type="html"><![CDATA[<blockquote>
@@ -71,8 +71,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[【前端拾遗】HTML相关知识点]]></title>
-        <id>http://localhost:4000/post/htmlpoint/</id>
-        <link href="http://localhost:4000/post/htmlpoint/">
+        <id>https://www.xr1228.com/post/htmlpoint/</id>
+        <link href="https://www.xr1228.com/post/htmlpoint/">
         </link>
         <updated>2020-05-23T13:06:33.000Z</updated>
         <summary type="html"><![CDATA[<p>本文将从前端面试题目出发,总结HTML必须掌握的知识点.</p>
@@ -82,8 +82,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[【前端拾遗】CSS知识点]]></title>
-        <id>http://localhost:4000/post/CSS-Point/</id>
-        <link href="http://localhost:4000/post/CSS-Point/">
+        <id>https://www.xr1228.com/post/CSS-Point/</id>
+        <link href="https://www.xr1228.com/post/CSS-Point/">
         </link>
         <updated>2020-05-21T02:55:48.000Z</updated>
         <summary type="html"><![CDATA[<p>CSS 作为构建前端页面的三驾马车,随着现代前端技术的飞速发展,已经称为描述页面样式不可或缺的部分. 本文将从前端面试题目出发,总结CSS必须掌握的知识点.</p>
@@ -93,29 +93,29 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[我做过哪些项目？]]></title>
-        <id>http://localhost:4000/post/xiangmu/</id>
-        <link href="http://localhost:4000/post/xiangmu/">
+        <id>https://www.xr1228.com/post/xiangmu/</id>
+        <link href="https://www.xr1228.com/post/xiangmu/">
         </link>
         <updated>2020-05-10T15:33:14.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[【前端拾遗】前端布局方案]]></title>
-        <id>http://localhost:4000/post/qian-duan-mian-shi-bi-kao-ti/</id>
-        <link href="http://localhost:4000/post/qian-duan-mian-shi-bi-kao-ti/">
+        <id>https://www.xr1228.com/post/qian-duan-mian-shi-bi-kao-ti/</id>
+        <link href="https://www.xr1228.com/post/qian-duan-mian-shi-bi-kao-ti/">
         </link>
         <updated>2020-05-08T17:02:17.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[【工业与大数据】流处理 —— 云计算的重要处理模式]]></title>
-        <id>http://localhost:4000/post/gong-ye-yu-da-shu-ju-liu-ji-suan-yun-ji-suan-de-chong-yao-chu-li-mo-shi/</id>
-        <link href="http://localhost:4000/post/gong-ye-yu-da-shu-ju-liu-ji-suan-yun-ji-suan-de-chong-yao-chu-li-mo-shi/">
+        <id>https://www.xr1228.com/post/gong-ye-yu-da-shu-ju-liu-ji-suan-yun-ji-suan-de-chong-yao-chu-li-mo-shi/</id>
+        <link href="https://www.xr1228.com/post/gong-ye-yu-da-shu-ju-liu-ji-suan-yun-ji-suan-de-chong-yao-chu-li-mo-shi/">
         </link>
         <updated>2020-02-19T11:28:16.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[【代码仓库】SQL -- 数据批量插入]]></title>
-        <id>http://localhost:4000/post/sqlinsert/</id>
-        <link href="http://localhost:4000/post/sqlinsert/">
+        <id>https://www.xr1228.com/post/sqlinsert/</id>
+        <link href="https://www.xr1228.com/post/sqlinsert/">
         </link>
         <updated>2020-02-14T03:37:01.000Z</updated>
     </entry>
