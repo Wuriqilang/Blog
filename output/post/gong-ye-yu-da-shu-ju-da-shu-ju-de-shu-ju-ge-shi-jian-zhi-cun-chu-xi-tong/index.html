@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>【工业与大数据】NoSql——Cassandra 键值存储系统 - 乌日其浪</title>
-<link rel="shortcut icon" href="https://www.xr1228.com//favicon.ico">
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
-<link rel="stylesheet" href="https://www.xr1228.com//media/css/tailwind.css">
-<link rel="stylesheet" href="https://www.xr1228.com//styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="【工业与大数据】NoSql——Cassandra 键值存储系统 - 乌日其浪 - Atom Feed" href="https://www.xr1228.com//atom.xml">
+<link rel="stylesheet" href="http://localhost:4000/media/css/tailwind.css">
+<link rel="stylesheet" href="http://localhost:4000/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="【工业与大数据】NoSql——Cassandra 键值存储系统 - 乌日其浪 - Atom Feed" href="http://localhost:4000/atom.xml">
 
     
 
@@ -20,21 +20,21 @@ NoSQL(NoSQL = Not Only SQL )，意即&amp;quot;不仅仅是SQL&amp;quot;。NoSQL
   <meta property="og:description" content="一、NoSQL运动与Cassandra：
 NoSQL(NoSQL = Not Only SQL )，意即&amp;quot;不仅仅是SQL&amp;quot;。NoSQL一词最早出现于1998年，是Carlo Strozzi开发的一个轻量、开源、不提供SQ..." />
   <meta property="og:type" content="articles">
-  <meta property="og:url" content="https://www.xr1228.com/post/gong-ye-yu-da-shu-ju-da-shu-ju-de-shu-ju-ge-shi-jian-zhi-cun-chu-xi-tong" />
-  <meta property="og:image" content="https://www.xr1228.com//images/avatar.png">
+  <meta property="og:url" content="http://localhost:4000/post/gong-ye-yu-da-shu-ju-da-shu-ju-de-shu-ju-ge-shi-jian-zhi-cun-chu-xi-tong/" />
+  <meta property="og:image" content="http://localhost:4000/images/avatar.png">
   <meta property="og:image:height" content="630">
   <meta property="og:image:width" content="1200">
   <meta name="twitter:title" content="【工业与大数据】NoSql——Cassandra 键值存储系统 - 乌日其浪">
   <meta name="twitter:description" content="一、NoSQL运动与Cassandra：
 NoSQL(NoSQL = Not Only SQL )，意即&amp;quot;不仅仅是SQL&amp;quot;。NoSQL一词最早出现于1998年，是Carlo Strozzi开发的一个轻量、开源、不提供SQ...">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="canonical" href="https://www.xr1228.com/post/gong-ye-yu-da-shu-ju-da-shu-ju-de-shu-ju-ge-shi-jian-zhi-cun-chu-xi-tong">
+  <link rel="canonical" href="http://localhost:4000/post/gong-ye-yu-da-shu-ju-da-shu-ju-de-shu-ju-ge-shi-jian-zhi-cun-chu-xi-tong/">
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
  
   
-    <link rel="stylesheet" href="https://www.xr1228.com//media/css/prism-synthwave84.css">
+    <link rel="stylesheet" href="http://localhost:4000/media/css/prism-synthwave84.css">
   
 
   
@@ -42,7 +42,7 @@ NoSQL(NoSQL = Not Only SQL )，意即&amp;quot;不仅仅是SQL&amp;quot;。NoSQL
 
 <body>
   <div class="antialiased flex flex-col min-h-screen" id="app">
-    <a href="https://www.xr1228.com/" class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+    <a href="http://localhost:4000" class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
       乌日其浪
     </a>
     <div class="max-w-4xl w-full mx-auto">
@@ -75,7 +75,7 @@ NoSQL(NoSQL = Not Only SQL )，意即&amp;quot;不仅仅是SQL&amp;quot;。NoSQL
 <li>Grap（图）：Allegro，Neo4J，InfiniteGraph，OrientDB，Virtuoso，Stardog</li>
 </ul>
 <h2 id="11-cassandra">1.1 Cassandra</h2>
-<figure data-type="image" tabindex="1"><img src="https://www.xr1228.com//post-images/1582083836313.PNG" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="http://localhost:4000/post-images/1582083836313.PNG" alt="" loading="lazy"></figure>
 <ul>
 <li>
 <p>Apache Cassandra 是一套开源的分布式NoSQL数据库系统</p>
@@ -113,8 +113,8 @@ NoSQL(NoSQL = Not Only SQL )，意即&amp;quot;不仅仅是SQL&amp;quot;。NoSQL
 <li>行 Row： 每一行由一个key唯一标示，由columns组成</li>
 <li>列 Column：存储的基本单元，它是一个三元组（name，value，timestamp）</li>
 </ul>
-<figure data-type="image" tabindex="2"><img src="https://www.xr1228.com//post-images/1582084090409.PNG" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="3"><img src="https://www.xr1228.com//post-images/1582084216424.PNG" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="http://localhost:4000/post-images/1582084090409.PNG" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="http://localhost:4000/post-images/1582084216424.PNG" alt="" loading="lazy"></figure>
 <h1 id="三-cassandra回归sql的理由">三、Cassandra回归SQL的理由</h1>
 <p>简单的丢弃SQL极大影响了编程效率</p>
 <ul>
@@ -322,11 +322,11 @@ NoSQL(NoSQL = Not Only SQL )，意即&amp;quot;不仅仅是SQL&amp;quot;。NoSQL
 </div>
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <script src="https://www.xr1228.com//media/scripts/main.js"></script>
+  <script src="http://localhost:4000/media/scripts/main.js"></script>
   
   <!-- Code Highlight -->
   
-    <script src="https://www.xr1228.com//media/prism.js"></script>
+    <script src="http://localhost:4000/media/prism.js"></script>
     <script>
       Prism.highlightAll()
     </script>

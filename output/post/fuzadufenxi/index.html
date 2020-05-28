@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>【实践数据结构与算法】衡量算法和数据结构的尺子：复杂度计算 - 乌日其浪</title>
-<link rel="shortcut icon" href="https://www.xr1228.com//favicon.ico">
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
-<link rel="stylesheet" href="https://www.xr1228.com//media/css/tailwind.css">
-<link rel="stylesheet" href="https://www.xr1228.com//styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="【实践数据结构与算法】衡量算法和数据结构的尺子：复杂度计算 - 乌日其浪 - Atom Feed" href="https://www.xr1228.com//atom.xml">
+<link rel="stylesheet" href="http://localhost:4000/media/css/tailwind.css">
+<link rel="stylesheet" href="http://localhost:4000/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="【实践数据结构与算法】衡量算法和数据结构的尺子：复杂度计算 - 乌日其浪 - Atom Feed" href="http://localhost:4000/atom.xml">
 
     
 
@@ -30,8 +30,8 @@
 
 ..." />
   <meta property="og:type" content="articles">
-  <meta property="og:url" content="https://www.xr1228.com/post/shi-jian-shu-ju-jie-gou-yu-suan-fa-heng-liang-suan-fa-he-shu-ju-jie-gou-de-chi-zi-fu-za-du-ji-suan" />
-  <meta property="og:image" content="https://www.xr1228.com//images/avatar.png">
+  <meta property="og:url" content="http://localhost:4000/post/fuzadufenxi/" />
+  <meta property="og:image" content="http://localhost:4000/post-images/fuzadufenxi.png">
   <meta property="og:image:height" content="630">
   <meta property="og:image:width" content="1200">
   <meta name="twitter:title" content="【实践数据结构与算法】衡量算法和数据结构的尺子：复杂度计算 - 乌日其浪">
@@ -43,13 +43,13 @@
 
 ...">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="canonical" href="https://www.xr1228.com/post/shi-jian-shu-ju-jie-gou-yu-suan-fa-heng-liang-suan-fa-he-shu-ju-jie-gou-de-chi-zi-fu-za-du-ji-suan">
+  <link rel="canonical" href="http://localhost:4000/post/fuzadufenxi/">
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
  
   
-    <link rel="stylesheet" href="https://www.xr1228.com//media/css/prism-synthwave84.css">
+    <link rel="stylesheet" href="http://localhost:4000/media/css/prism-synthwave84.css">
   
 
   
@@ -57,7 +57,7 @@
 
 <body>
   <div class="antialiased flex flex-col min-h-screen" id="app">
-    <a href="https://www.xr1228.com/" class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+    <a href="http://localhost:4000" class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
       乌日其浪
     </a>
     <div class="max-w-4xl w-full mx-auto">
@@ -66,8 +66,15 @@
           【实践数据结构与算法】衡量算法和数据结构的尺子：复杂度计算
         </h1>
         
+          <img src="http://localhost:4000/post-images/fuzadufenxi.png" alt="【实践数据结构与算法】衡量算法和数据结构的尺子：复杂度计算" class="block w-full mb-8">
+        
         <div class="mb-8 flex flex-wrap">
-          <div class="text-gray-400 text-sm mr-4">2020-05-27 · 5 min read</div>
+          <div class="text-gray-400 text-sm mr-4">2020-05-27 · 10 min read</div>
+          
+            <a href="http://localhost:4000/tag/bigData/" class="text-gray-700 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              大数据
+            </a>
           
         </div>
         <div class="markdown mb-8" v-pre>
@@ -142,11 +149,11 @@
 <p>在时间复杂度计算中，通常我们要把低阶、常量、系数省略掉，毕竟当n很大时，这些因素的影响会变得很小。更重要的是我们毕竟是一种粗略的计算。</p>
 <p>所以，第一个例子可以写作 T(n) = O(n) 第二个例子写作  T(n) = O(<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>n</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">n^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span>)</p>
 <p>确实，就是这么简单。<br>
-<img src="https://www.xr1228.com//post-images/1590597451637.png" alt="简单.png" loading="lazy"></p>
+<img src="http://localhost:4000/post-images/1590597451637.png" alt="简单.png" loading="lazy"></p>
 <h2 id="3时间复杂度分析">3.时间复杂度分析</h2>
 <p>复杂度的定义我们知道了，具体分析一段代码的时间复杂度时有以下几个技巧。</p>
 <ol>
-<li>只关注循环次数最多的代码</li>
+<li>最多法则:  只关注循环次数最多的代码</li>
 <li>加法法则：总复杂度等于量级最大的代码的复杂度</li>
 <li>乘法法则：嵌套代码的复杂度等于嵌套内外代码复杂度的乘积</li>
 </ol>
@@ -155,7 +162,7 @@
 <p>我亦无他，惟手熟尔。</p>
 </blockquote>
 <p>下面列举一些常用的复杂度量级，并一一分析。</p>
-<figure data-type="image" tabindex="1"><img src="https://www.xr1228.com//post-images/1590598066901.jpg" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="http://localhost:4000/post-images/1590598066901.jpg" alt="" loading="lazy"></figure>
 <h4 id="1-o1">1. O(1)</h4>
 <p>O(1)是常量级的时间复杂度表示方式，并不是说只有一行代码. 只要代码执行时间不随数据量增加变化而变化，即使它有成千上万行代码，其时间复杂度仍然是 O(1)</p>
 <pre><code>let i =2 ;
@@ -163,6 +170,87 @@ let j =3 ;
 let sum = i + j ;
 </code></pre>
 <h4 id="2-olognonlogn">2. <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(logn)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>,<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>∗</mo><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n*logn)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></h4>
+<p>对数阶时间复杂度很常见,但是也是最难的分析的一种. 我门通过一个例子来说明一下:</p>
+<pre><code class="language-c">i = 1 ;
+while(i &lt;= n){
+    i = i * 2;
+}
+</code></pre>
+<p>根据我们之所说的<strong>最多法则</strong>,我们只看循环次数最多的部分.第三行代码: i = i *2; 只要我们知道这行<strong>代码循环了多少次</strong>,复杂度就分析出来了.<br>
+从代码中可以看出,</p>
+<ul>
+<li>变量i的值从1开始取</li>
+<li>每循环一次就乘以2.当大于n时循环结束.<br>
+那么到底循环了多少次呢? 我门不妨穷举一下 i在每次循环中的变化:</li>
+</ul>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mn>0</mn></msup><mo separator="true">,</mo><msup><mn>2</mn><mn>1</mn></msup><mo separator="true">,</mo><msup><mn>2</mn><mn>2</mn></msup><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><msup><mn>2</mn><mi>k</mi></msup><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><msup><mn>2</mn><mi>x</mi></msup></mrow><annotation encoding="application/x-tex">2^0 , 2^1 ,  2^2  ...  2^k ... 2^x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.043548em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.849108em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span></span></span></span></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">x</span></span></span></span></span></span></span></span></span></span></span></p>
+<p>当 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mi>x</mi></msup></mrow><annotation encoding="application/x-tex">2^x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.664392em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">x</span></span></span></span></span></span></span></span></span></span></span> &gt; n时循环结束,循环次数是 x . 根据高中数学知识,我们知道 x =<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mi>o</mi><msub><mi>g</mi><mn>2</mn></msub><mi>n</mi></mrow><annotation encoding="application/x-tex">log_2 n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault">n</span></span></span></span> .所以这段代码的时间复杂度是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>l</mi><mi>o</mi><msub><mi>g</mi><mn>2</mn></msub><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(log_2n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></p>
+<p>现在我们把这段代码稍微改一下</p>
+<pre><code class="language-c">i = 1 ;
+while(i &lt;= n){
+    i = i * 3;  //这里做了修改
+}
+</code></pre>
+<p>根据我们之前的思路,不难算出它的时间复杂度是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>l</mi><mi>o</mi><msub><mi>g</mi><mn>3</mn></msub><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(log_3n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>  .但实际计算过程中不论是以2为底还是以3位底亦或是以10为底,我们把对数阶复杂度都标记为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(logn)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></p>
+<p>why?  我们再拿出高中数学知识, 对数之间是可以相互转换的</p>
+<blockquote>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mi>o</mi><msub><mi>g</mi><mn>3</mn></msub><mi>n</mi><mo>=</mo><mi>l</mi><mi>o</mi><msub><mi>g</mi><mn>3</mn></msub><mn>2</mn><mo>∗</mo><mi>l</mi><mi>o</mi><msub><mi>g</mi><mn>2</mn></msub><mi>n</mi></mrow><annotation encoding="application/x-tex">log_3n = log_3 2*log_2n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault">n</span></span></span></span></p>
+</blockquote>
+<p>在打O标记复杂度方法中,系数是可以忽略的,所以我们就粗略的认为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>l</mi><mi>o</mi><msub><mi>g</mi><mn>2</mn></msub><mi>n</mi><mo>)</mo><mo>=</mo><mi>O</mi><mo>(</mo><mi>l</mi><mi>o</mi><msub><mi>g</mi><mn>3</mn></msub><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(log_2n)=O(log_3n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>   这样在对数阶时间复杂度分析中,我们把对数的&quot;底&quot;这个概念忽略掉,统一表示为 O(logn)</p>
+<p>那么 O(nlogn) 就很容易理解了: 如果一个方法的时间复杂度是O(logn),我们把它循环n次,它的时间复杂度就是  O(nlogn) . Esay!</p>
+<blockquote>
+<p>O(nlogn) 也是一种非常常见的算法时间复杂度。比如，归并排序、快速排序的时间复杂度都是 O(nlogn)。</p>
+</blockquote>
+<h4 id="3omnomn">3.O(m+n),O(m*n)</h4>
+<p>有的时候,一个算法的时间复杂度是由两个数据共同决定的,我们再举个例子</p>
+<pre><code class="language-js">function cal(m,n){
+    let sumA =0;
+    for(let i = 0;i&lt;m;++i){
+        sumA = sumA + i;
+    }
+    let sumB =0;
+    for(let i = 0;i&lt;n;++i){
+        sumB = sumB + i;
+    }
+    return sumA+sumB;
+}
+</code></pre>
+<p>不难看出,上面代码的时间复杂度是 O(m+n)  因为m和n的数据量大小我们都是不知道的,无法忽略,就不能参考加法原则了. 类似的还有 O(m*n).</p>
+<h2 id="4空间复杂度分析">4.空间复杂度分析</h2>
+<p>掌握了时间复杂度和大O表示法,空间复杂度的计算就显得&quot;A piece of cake&quot;(这是贫道初中最喜欢用的的一个句子)</p>
+<p>前文说到, 时间复杂度其实是 <strong>算法执行时间与数据规模之间的增长关系.</strong><br>
+类似的,空间复杂度就是<strong>算法的存储空间与数据规模之间的增长关系</strong></p>
+<p>继续举个例子,毕竟,代码是工程师最擅长的语言:</p>
+<pre><code class="language-js">function print(n){
+    let arr = [];
+    let i = 0;
+    for(i;i&lt;n;++i){
+        arr.push(i*i)
+    }
+    for(i=n-1;i&gt;=0;--i){
+        console.log(arr[i]);
+    }
+}
+</code></pre>
+<p>和时间复杂度分析一样,:</p>
+<ul>
+<li>在第二行,我们申请了一个空间存储 arr,</li>
+<li>在第三行我们申请了一个空间存储变量i<br>
+除此之外所有的代码都没有占用跟多空间,所以整段代码的空间复杂度是O(n+1),省略常量阶,省略系数最后这段代码的控件复杂度是 O(n)</li>
+</ul>
+<p>我们常见的空间复杂度就是 O(1)、O(n)、O(n2 )，像 O(logn)、O(nlogn) 这样的对数阶复杂度平时都用不到。而且，空间复杂度分析比时间复杂度分析要简单很多。</p>
+<blockquote>
+<p>复杂度计算就是一把尺子,一把从时间和空间的角度共同丈量算法执行效率的尺子. 这把尺子或许很粗糙,但是其实很简单很有用.</p>
+</blockquote>
+<p>以上就是复杂度计算的基础内容了,本文是由王争的在线教程<a href="!https://time.geekbang.org/column/intro/126">&lt;数据结构与算法之美&gt;</a>总结而来,如果想了解进阶的复杂度计算知识你可以学习这门课程或者在百度搜索:</p>
+<ul>
+<li>最好情况时间复杂度（best case time complexity）</li>
+<li>最坏情况时间复杂度（worst case time complexity）</li>
+<li>平均情况时间复杂度（average case time complexity）</li>
+<li>均摊时间复杂度（amortized time complexity）</li>
+</ul>
+<p>而作为一个专注于解决问题的工程师,我认为你掌握到现在这个程度就完全满足以后的开发需求了.</p>
+<figure data-type="image" tabindex="2"><img src="http://localhost:4000/post-images/1590653100184.jpg" alt="" loading="lazy"></figure>
 
         </div>
         <!-- Share to Twitter, Weibo, Telegram -->
@@ -215,8 +303,10 @@ let sum = i + j ;
 <ul>
 <li><a href="#1-o1">1. O(1)</a></li>
 <li><a href="#2-olognonlogn">2. <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(logn)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>,<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>∗</mo><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n*logn)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></a></li>
+<li><a href="#3omnomn">3.O(m+n),O(m*n)</a></li>
 </ul>
 </li>
+<li><a href="#4%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90">4.空间复杂度分析</a></li>
 </ul>
 </li>
 </ul>
@@ -286,11 +376,11 @@ let sum = i + j ;
 </div>
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <script src="https://www.xr1228.com//media/scripts/main.js"></script>
+  <script src="http://localhost:4000/media/scripts/main.js"></script>
   
   <!-- Code Highlight -->
   
-    <script src="https://www.xr1228.com//media/prism.js"></script>
+    <script src="http://localhost:4000/media/prism.js"></script>
     <script>
       Prism.highlightAll()
     </script>
