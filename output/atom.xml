@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://localhost:4000</id>
     <title>乌日其浪</title>
-    <updated>2020-05-31T14:18:09.421Z</updated>
+    <updated>2020-05-31T16:33:29.834Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="http://localhost:4000"/>
     <link rel="self" href="http://localhost:4000/atom.xml"/>
@@ -12,7 +12,7 @@
     <icon>http://localhost:4000/favicon.ico</icon>
     <rights>All rights reserved 2020, 乌日其浪</rights>
     <entry>
-        <title type="html"><![CDATA[【实践数据结构与算法】一、几种你一定会用到的数据结构]]></title>
+        <title type="html"><![CDATA[【实践数据结构与算法】一、几种最基础的数据结构]]></title>
         <id>http://localhost:4000/post/jiegou</id>
         <link href="http://localhost:4000/post/jiegou">
         </link>
