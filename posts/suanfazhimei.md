@@ -4,7 +4,7 @@ date: 2020-05-26 09:52:27
 tags: []
 published: true
 hideInList: false
-feature: 
+feature: /post-images/suanfazhimei.jpg
 isTop: false
 ---
 > 发动机之于汽车,九阳真经之于张无忌,数据结构之于编程.
