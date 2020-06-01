@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://localhost:4000</id>
     <title>乌日其浪</title>
-    <updated>2020-05-31T16:33:29.834Z</updated>
+    <updated>2020-06-01T03:18:05.594Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="http://localhost:4000"/>
     <link rel="self" href="http://localhost:4000/atom.xml"/>
@@ -12,16 +12,27 @@
     <icon>http://localhost:4000/favicon.ico</icon>
     <rights>All rights reserved 2020, 乌日其浪</rights>
     <entry>
+        <title type="html"><![CDATA[【前端拾遗】VUE的生命周期函数——详解]]></title>
+        <id>http://localhost:4000/post/qian-duan-shi-yi-vue-de-sheng-ming-zhou-qi-han-shu-xiang-jie/</id>
+        <link href="http://localhost:4000/post/qian-duan-shi-yi-vue-de-sheng-ming-zhou-qi-han-shu-xiang-jie/">
+        </link>
+        <updated>2020-06-01T01:38:11.000Z</updated>
+        <summary type="html"><![CDATA[<p>除了数据双向绑定、virtual Dom等偏向于底层实现的知识点外，vue的生命周期函数作为应用层层面里最核心的问题，其重要程度随着你的能力提升会不断提高。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>除了数据双向绑定、virtual Dom等偏向于底层实现的知识点外，vue的生命周期函数作为应用层层面里最核心的问题，其重要程度随着你的能力提升会不断提高。</p>
+]]></content>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[【实践数据结构与算法】一、几种最基础的数据结构]]></title>
-        <id>http://localhost:4000/post/jiegou</id>
-        <link href="http://localhost:4000/post/jiegou">
+        <id>http://localhost:4000/post/jiegou/</id>
+        <link href="http://localhost:4000/post/jiegou/">
         </link>
         <updated>2020-05-28T09:33:35.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[【实践数据结构与算法】衡量算法和数据结构的尺子：复杂度计算]]></title>
-        <id>http://localhost:4000/post/fuzadufenxi</id>
-        <link href="http://localhost:4000/post/fuzadufenxi">
+        <id>http://localhost:4000/post/fuzadufenxi/</id>
+        <link href="http://localhost:4000/post/fuzadufenxi/">
         </link>
         <updated>2020-05-27T15:22:48.000Z</updated>
         <summary type="html"><![CDATA[<p>凌晨时分，你写出一段代码，实现了某个算法，优雅如诗。默默在心底说一声：“NB！” 但你知道这注定无人知晓，因为身边早已寂静无声。<br>
@@ -33,8 +44,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[【实践数据结构与算法】开篇词:数据与算法之美]]></title>
-        <id>http://localhost:4000/post/suanfazhimei</id>
-        <link href="http://localhost:4000/post/suanfazhimei">
+        <id>http://localhost:4000/post/suanfazhimei/</id>
+        <link href="http://localhost:4000/post/suanfazhimei/">
         </link>
         <updated>2020-05-26T01:52:27.000Z</updated>
         <summary type="html"><![CDATA[<blockquote>
@@ -50,8 +61,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[【前端拾遗】JS核心知识点——关于闭包的一切(下)]]></title>
-        <id>http://localhost:4000/post/bibaoxia</id>
-        <link href="http://localhost:4000/post/bibaoxia">
+        <id>http://localhost:4000/post/bibaoxia/</id>
+        <link href="http://localhost:4000/post/bibaoxia/">
         </link>
         <updated>2020-05-25T07:22:23.000Z</updated>
         <summary type="html"><![CDATA[<blockquote>
@@ -65,8 +76,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[【前端拾遗】JS核心知识点——关于闭包的一切(上)]]></title>
-        <id>http://localhost:4000/post/JSPoint</id>
-        <link href="http://localhost:4000/post/JSPoint">
+        <id>http://localhost:4000/post/JSPoint/</id>
+        <link href="http://localhost:4000/post/JSPoint/">
         </link>
         <updated>2020-05-24T16:44:59.000Z</updated>
         <summary type="html"><![CDATA[<p>闭包作为前段封装函数，私有化变量的常用手段，几乎是出现在所有面试问题当中。虽然说闭包已经在我们的程序中无处不在，但作为一个日常面向用户写业务代码的程序员，我们总是对闭包一知半解，模棱两可，希望可以通过这篇文章详解关于闭包的一切。</p>
@@ -76,8 +87,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[【前端拾遗】JS的历史]]></title>
-        <id>http://localhost:4000/post/jsHistory</id>
-        <link href="http://localhost:4000/post/jsHistory">
+        <id>http://localhost:4000/post/jsHistory/</id>
+        <link href="http://localhost:4000/post/jsHistory/">
         </link>
         <updated>2020-05-24T00:51:05.000Z</updated>
         <summary type="html"><![CDATA[<blockquote>
@@ -91,8 +102,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[【前端拾遗】HTML相关知识点]]></title>
-        <id>http://localhost:4000/post/htmlpoint</id>
-        <link href="http://localhost:4000/post/htmlpoint">
+        <id>http://localhost:4000/post/htmlpoint/</id>
+        <link href="http://localhost:4000/post/htmlpoint/">
         </link>
         <updated>2020-05-23T13:06:33.000Z</updated>
         <summary type="html"><![CDATA[<p>本文将从前端面试题目出发,总结HTML必须掌握的知识点.</p>
@@ -102,8 +113,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[【前端拾遗】CSS知识点]]></title>
-        <id>http://localhost:4000/post/CSS-Point</id>
-        <link href="http://localhost:4000/post/CSS-Point">
+        <id>http://localhost:4000/post/CSS-Point/</id>
+        <link href="http://localhost:4000/post/CSS-Point/">
         </link>
         <updated>2020-05-21T02:55:48.000Z</updated>
         <summary type="html"><![CDATA[<p>CSS 作为构建前端页面的三驾马车,随着现代前端技术的飞速发展,已经称为描述页面样式不可或缺的部分. 本文将从前端面试题目出发,总结CSS必须掌握的知识点.</p>
@@ -113,16 +124,9 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[我做过哪些项目？]]></title>
-        <id>http://localhost:4000/post/xiangmu</id>
-        <link href="http://localhost:4000/post/xiangmu">
+        <id>http://localhost:4000/post/xiangmu/</id>
+        <link href="http://localhost:4000/post/xiangmu/">
         </link>
         <updated>2020-05-10T15:33:14.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[【前端拾遗】前端布局方案]]></title>
-        <id>http://localhost:4000/post/qian-duan-mian-shi-bi-kao-ti</id>
-        <link href="http://localhost:4000/post/qian-duan-mian-shi-bi-kao-ti">
-        </link>
-        <updated>2020-05-08T17:02:17.000Z</updated>
     </entry>
 </feed>
