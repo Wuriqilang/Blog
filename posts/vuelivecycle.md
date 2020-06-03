@@ -1,10 +1,10 @@
 ---
 title: '【前端拾遗】VUE的生命周期函数——详解'
 date: 2020-06-01 09:38:11
-tags: []
+tags: [前端拾遗,vue]
 published: true
 hideInList: false
-feature: 
+feature: /post-images/vuelivecycle.jpg
 isTop: false
 ---
 除了数据双向绑定、virtual Dom等偏向于底层实现的知识点外，vue的生命周期函数作为应用层层面里最核心的问题，其重要程度随着你的能力提升会不断提高。
