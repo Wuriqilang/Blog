@@ -25,7 +25,7 @@ meta有两个属性：
 - name：用于描述网页，它是metadata“名值对”数据中的“名”，name属性确定需要描述的项目后，content填入其具体描述。
 - http-equiv：equivalent是“相当于”的意思，http-equiv相当于http文件头，其定义项会加入到http请头中，实现一些特定的效果。
 
-那么，meta有哪些好的应用场景呢？（本文仅会对常用的meta属性进行说明与列举，力求以解决问题为主要目的，如果想了解更多，请穿越这座传送门：[html头部meta标签汇总](https://www.jianshu.com/p/8d28e5130ab2)
+那么，meta有哪些好的应用场景呢？（本问仅会对常用的meta属性进行说明与列举，力求以解决问题为主要目的，如果想了解更多，请穿越这座传送门：[html头部meta标签汇总](https://www.jianshu.com/p/8d28e5130ab2)
 
 ## 1.移动端适配
 ```html
@@ -60,40 +60,18 @@ window.devicePixelRatio = 物理像素 / dip。
 ## 2.网页内容说明
 我们可以将网页的主要内容进行定义，提供给搜索引擎，便于SEO。
 ```html
-//标题
+<!-- 标题 -->
 <meta name="title" content="优酷-这世界很酷" />
-//关键词
+<!-- 关键词 -->
 <meta name="keywords" content="视频,视频分享,视频搜索,视频播放" />
-//描述
+<!-- 描述 -->
 <meta name="description" content="京东JD.COM-专业的综合网上购物商城,销售家电、数码通讯、电脑、家居百货、服装服饰、母婴、图书、食品等数万个品牌优质商品.便捷、诚信的服务，<br>为您提供愉悦的网上购物体验!" />
-//作者
+<!-- 作者 -->
 <meta name = "author" content = "Wuriqilang" />
-//版权信息
+<!-- 版权信息 -->
 <meta name="copyright" content="本页版权 www.qidian.com 起点中文网所有。All Rights Reserved" />
 ```
 
 注意这里title,keywords,descripiton几个属性对于搜索引擎来说权重是逐渐减小的。
-至于这几个属性在搜索引擎中优化SEO的原理那就又是一个故事了,以后有空时候可以聊一聊.
 
 
-## 3.字体编码
-字体编码这个属性就像纸质现金,它很重要,在以前最重要,但是随着在线支付的兴起,它仍旧很重要,但是人们不再需要时刻都把它带在身上了.
-我们知道字体编码是用来规范html文档编码的就行了
-```html
-<meta charset="UTF-8">
-```
-
-## 4.禁止识别数字为电话号码
-
-
-```html
-<meta name="format-detection" content="telephone=no" />  
-```
-
-## 5.指定渲染内核(有些国产浏览器会使用双核)
-```html
-<meta name="renderer" content="webkit">
-```
-
-
-本文仅会对常用的meta属性进行说明与列举，力求以解决问题为主要目的，如果想了解更多，请穿越这座传送门：[html头部meta标签汇总](https://www.jianshu.com/p/8d28e5130ab2)
