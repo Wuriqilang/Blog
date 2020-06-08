@@ -244,19 +244,127 @@ function MyVue (data,el,exp){
     },
     ele,'name');
 
+    console.log('当前的name:'+myVue.name);
+
     window.setTimeout(()=>{
-        console.log('name值改变了');
+        console.log('2000毫秒后,name值改变了');
         myVue.data.name = 'hello me!'
     },2000)
 </script>
 </html>
 ```
 
+这样我们就新建了一个自己的Vue实例,在新建实例时传入数据,Observer遍历传入的数据,为其绑定Set和Get方法,之后为我们指定的 exp 属性建立Watcher来监听Observer传过来的数据变化消息.
 
 
+**截止现在,我们已经成功了一大半**
+
+![](https://www.xr1228.com//post-images/1591597132057.gif)
+
+这里我们再添加一个细节处理，我们修改data中数据需要通过这样的代码
+```
+myVue.data.name = 'XXXXX'
+```
+但我们希望赋值代码是这样的
+```
+myVue.name = 'XXXXX'
+```
+为了实现这样的效果,我们需要对myVue再做一个处理处理,将访问myVue属性代理为myVue.data.其实现原理也是通过Object.defineProtperty();  
+
+``
+
+让我们看一看效果:
+
+![](https://www.xr1228.com//post-images/1591608819475.PNG)
+
+注: 你可以点击这里获取源代码 [传送门](https://github.com/Wuriqilang/PlayGround/tree/master/%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A)
+
+你也可以访问这个仓库,这个仓库将数据绑定的实现过程用不同版本代码展现出来了 [传送门](https://github.com/canfoo/self-vue/tree/master/v1)
 
 
+### 3.实现Compile
+
+我们已经实现了数据的双向绑定. 但是对于View层的渲染,我们采用的是这样的方式
+
+```html
+<h1 id="name">{{name}}</h1>
+```
+```js
+var ele = document.querySelector('#name');
+el.innerHTML = value;
+```
+这就导致我们定义的数据必须指定一个写死的 el(元素)来展示数据. 而Vue中这种数据是这样实现的:
+```html
+<h1>{{name}}</h1>
+```
+```js
+//js里根本不用写代码
+```
+
+Vue这种数据同步的方式就是模板,为了实现模板语法,我们需要去实现一个解析器. 解析器解析dom节点,实现元素与数据的绑定.
+
+解析器工作有两个步骤:
+1. 解析模板指令,将其替换为模板数据,初始化View层
+2. 将模板指令对应的节点绑定对应的更新函数,初始化相关的订阅器
 
 
+首先定义一个解析器
+```js
+function Compile(el,vm){
+    this.vm = vm;
+    this.el = document.querySelector(el);
+    this.fragment = null;
+    this.init();
+}
+
+```
+
+为了解析模板首先需要获取dom元素,然后对dom元素上含有指令的节点进行处理. 因为这个环节需要对dom进行频繁操作,所以可以先建立一个fragment片段,将需要解析的节点存入fragment片段中:
+
+```js
+function nodeToFragment(el){
+    var fragment = document.createDocumentFragment();
+    var child = el.firstChild;
+    while(child){
+        //将Dom元素移入frament中
+        fragment.appendChild(child);
+        child = el.firstChild;
+    }
+    return fragment;
+}
+```
+
+接下来需要遍历每一个节点,将含有指令的节点进行处理. 我们先只考虑 '{{值}}' 这种情况:
+
+```js
+function compileElement(el){
+    var childNodes = el.childNodes;
+    var my = this;
+    [].slice.call(childNodes).forEach(node=>{
+        var reg = /\{\{(.*)\}\}/;  //正则规则
+        var test = node.textContent;
+
+        if(my.isTestNode(node)&&reg.text(text)){ //判断是符合{{}}的指令
+            my.compileText(node,reg.exec(text)[1]);
+        }
+
+        if(node.childNodes&& node.childNodes.length){
+            my.compileElement(node); //继续递归遍历子节点
+        }
+    })
+}
 
 
+function compileText(node,exp){
+    var my = this;
+    var initText = this.vm[exp];
+    this.updateText(node,initText);   //将初始化的数据初始化到视图中
+    new Watcher(this.vm,exp,function(value){
+        my.updateText(node,value);
+    })
+}
+
+function updateText(node,value){
+    node.textContent = typeof value == 'undefined'?'':value
+}
+```
