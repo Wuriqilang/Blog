@@ -337,34 +337,151 @@ function nodeToFragment(el){
 接下来需要遍历每一个节点,将含有指令的节点进行处理. 我们先只考虑 '{{值}}' 这种情况:
 
 ```js
-function compileElement(el){
+function Compile(el, vm) {
+  this.vm = vm;
+  this.el = document.querySelector(el);
+  this.fragment = null;
+  this.init();
+}
+
+Compile.prototype = {
+  init() {
+    if (this.el) {
+      this.fragment = this.nodeToFragment(this.el);
+      this.compileElement(this.fragment);
+      this.el.appendChild(this.fragment);
+    } else {
+      console.log("Dom元素不存在");
+    }
+  },
+  nodeToFragment(el) {
+    var fragment = document.createDocumentFragment();
+    var child = el.firstChild;
+    while (child) {
+      //将Dom元素移入frament中
+      fragment.appendChild(child);
+      child = el.firstChild;
+    }
+    return fragment;
+  },
+
+  compileElement(el) {
     var childNodes = el.childNodes;
     var my = this;
-    [].slice.call(childNodes).forEach(node=>{
-        var reg = /\{\{(.*)\}\}/;  //正则规则
-        var test = node.textContent;
+    [].slice.call(childNodes).forEach(node => {
+      var reg = /\{\{(.*)\}\}/;
+      var text = node.textContent;
 
-        if(my.isTestNode(node)&&reg.text(text)){ //判断是符合{{}}的指令
-            my.compileText(node,reg.exec(text)[1]);
-        }
+      if (my.isTextNode(node) && reg.test(text)) {
+        //判断是符合{{}}的指令
+        my.compileText(node, reg.exec(text)[1]);
+      }
 
-        if(node.childNodes&& node.childNodes.length){
-            my.compileElement(node); //继续递归遍历子节点
-        }
-    })
-}
+      if (node.childNodes && node.childNodes.length) {
+        my.compileElement(node); //继续递归遍历子节点
+      }
+    });
+  },
 
-
-function compileText(node,exp){
+  compileText(node, exp) {
     var my = this;
     var initText = this.vm[exp];
-    this.updateText(node,initText);   //将初始化的数据初始化到视图中
-    new Watcher(this.vm,exp,function(value){
-        my.updateText(node,value);
-    })
+    this.updateText(node, initText); //将初始化的数据初始化到视图中
+    new Watcher(this.vm, exp, function(value) {
+      my.updateText(node, value);
+    });
+  },
+
+  updateText(node, value) {
+    node.textContent = typeof value == "undefined" ? "" : value;
+  },
+  isTextNode: function(node) {
+    return node.nodeType == 3;
+  }
+};
+
+```
+
+这个时候我们将index中的代码稍作修改，去掉手动添加Watcher的操作，让解析器自己在 id=app的div中遍历递归查找所有'{{值}}' 的模板指令吧。
+
+```js
+//index.js
+function MyVue(options) {
+  var my = this;
+  this.vm = this;
+  this.data = options.data;
+
+  Object.keys(this.data).forEach(function(key) {
+    my.proxyKeys(key); //绑定代理属性
+  });
+
+  obverve(this.data);
+  // el.innerHTML = this.data[exp];
+  // new Wathcher(this,exp,function(value){
+  //     el.innerHTML = value;
+  // })
+  new Compile(options.el, this.vm);
+  return this;
 }
 
-function updateText(node,value){
-    node.textContent = typeof value == 'undefined'?'':value
-}
+MyVue.prototype = {
+  proxyKeys(key) {
+    var my = this;
+    Object.defineProperty(this, key, {
+      enumerable: false,
+      configurable: true,
+      get: function proxyGetter() {
+        return my.data[key];
+      },
+      set: function proxySetter(newVal) {
+        my.data[key] = newVal;
+      }
+    });
+  }
+};
 ```
+html也要做相应的修改（有Vue的味道了）
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的数据双向绑定系统</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2>{{title}}</h2>
+        <h1>{{name}}</h1>
+    </div>
+
+</body>
+<script src="js/Watcher.js"></script>
+<script src="js/Observer.js"></script>
+<script src="js/Compile.js"></script>
+<script src="js/Index.js"></script>
+<script>
+    var myVue = new MyVue({
+        el: '#app',
+        data:{
+            title: 'Compile is Working!',
+            name: ''
+        }
+    });
+
+    console.log('当前的name:' + myVue.name);
+
+    window.setTimeout(() => {
+        console.log('2000毫秒后,name值改变了');
+        myVue.title = 'hello me!'
+    }, 2000)
+</script>
+
+</html>
+```
+
+到这里，我们就会发现以前vue的一些设定的来源，譬如为什么vue的html需要包裹在一个div中，譬如什么声明vue实例时会有一个 el = '#app' 。
+
+接下来我们完善解析器，使其能够判断更多的指令
