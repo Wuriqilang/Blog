@@ -1,17 +1,19 @@
 ---
 title: '【前端拾遗】不写一遍总是记不住——Vue数据双向绑定'
 date: 2020-06-05 16:22:23
-tags: []
+tags: [vue,前端拾遗]
 published: true
 hideInList: false
-feature: 
+feature: /post-images/databind.PNG
 isTop: false
 ---
-数据双向绑定，作为三大前端框架的重要特性，总是被人们津津乐道（尤其是面试官），defineProperty啦，proxy啦，digest循环检查啦（AngularJS）……
-数据绑定的相关文章看了很多，但总是感觉差点意思，别人问起VUE数据绑定的原理,表面我口若悬河，内心却空虚且寂寞，还是自己亲自实现一个数据绑定吧。
-注:本文主要观点与思路学习了 [前端攻城狮-vue的双向绑定原理及实现](https://www.cnblogs.com/canfoo/p/6891868.html)
+数据双向绑定，作为三大前端框架的重要特性，总是被人们津津乐道（尤其是面试官），defineProperty啦，proxy啦，digest循环检查啦（AngularJS）……数据绑定的相关文章看了很多，但总是感觉差点意思,还是自己亲自实现一个数据绑定吧
+
 
 <!-- more -->
+
+
+注:本文主要观点与思路学习了 [前端攻城狮-vue的双向绑定原理及实现](https://www.cnblogs.com/canfoo/p/6891868.html)
 
 
 ## Object.defineProperty  方式
@@ -28,9 +30,12 @@ Object.defineProperty 是Vue 2.X的实现方式，其原理就是在Vue实例中
 - 实现一个订阅者Wathcer，收到Observer传来的变化通知，执行相应函数来更新View页面.(为了统一管理Watcher,我们还会实现一个Dep——订阅器)
 - 实现一个解析器Compile，可以扫描View中每个节点上的相关指令（如v-model）从而初始化watcher和模板数据。
 
-
 ![](https://www.xr1228.com//post-images/1591348688902.PNG)
 
+
+### 0.最终效果演示
+
+![](https://www.xr1228.com//post-images/1591757508655.gif)
 ### 1.实现一个Observer
 
 Observer是一个数据监听器，其实现的核心方法就是Object.defineProperty() 如果要对所有属性都进行监听的话，可以通过递归来遍历所有属性。
@@ -484,4 +489,324 @@ html也要做相应的修改（有Vue的味道了）
 
 到这里，我们就会发现以前vue的一些设定的来源，譬如为什么vue的html需要包裹在一个div中，譬如什么声明vue实例时会有一个 el = '#app' 。
 
-接下来我们完善解析器，使其能够判断更多的指令
+接下来我们完善解析器，使其能够判断更多的指令. (例如: v-    on: 等指令);
+
+首先将 compile的compileElement 方法进行改造
+
+```js
+  compileElement(el) {
+    var childNodes = el.childNodes;
+    var my = this;
+    [].slice.call(childNodes).forEach(node => {
+      var reg = /\{\{(.*)\}\}/;
+      var text = node.textContent;  //获取node中内容
+
+      if(my.isElementNode(node)){  //如果是node属性中的指令
+        self.compile(node); //node属性指令调用compile来解析
+      }
+      else if (my.isTextNode(node) && reg.test(text)) {  //如果是模板指令
+        //判断是符合{{}}的指令
+        my.compileText(node, reg.exec(text)[1]);
+      }
+      
+      if (node.childNodes && node.childNodes.length) {
+        my.compileElement(node); //继续递归遍历子节点
+      }
+    });
+  }
+
+  //判断是否是node属性中的指令
+    isElementNode:function(node){
+    return node.nodeType == 1;
+  }
+  ```
+
+  接下来我们来编写compile方法,使其可以解析不同指令. 这部分就不详细说明了, 直接看一下代码.
+  ```js
+  function Compile(el, vm) {
+  this.vm = vm;
+  this.el = document.querySelector(el);
+  this.fragment = null;
+  this.init();
+}
+
+Compile.prototype = {
+  init() {
+    if (this.el) {
+      this.fragment = this.nodeToFragment(this.el);
+      this.compileElement(this.fragment);
+      this.el.appendChild(this.fragment);
+    } else {
+      console.log("Dom元素不存在");
+    }
+  },
+  nodeToFragment(el) {
+    var fragment = document.createDocumentFragment();
+    var child = el.firstChild;
+    while (child) {
+      //将Dom元素移入frament中
+      fragment.appendChild(child);
+      child = el.firstChild;
+    }
+    return fragment;
+  },
+
+  compileElement(el) {
+    var childNodes = el.childNodes;
+    var my = this;
+    [].slice.call(childNodes).forEach(node => {
+      var reg = /\{\{(.*)\}\}/;
+      var text = node.textContent;  //获取node中内容
+
+      if (my.isElementNode(node)) {  //如果是node属性中的指令
+        my.compile(node); //node属性指令调用compile来解析
+      }
+      else if (my.isTextNode(node) && reg.test(text)) {  //如果是模板指令
+        //判断是符合{{}}的指令
+        my.compileText(node, reg.exec(text)[1]);
+      }
+
+      if (node.childNodes && node.childNodes.length) {
+        my.compileElement(node); //继续递归遍历子节点
+      }
+    });
+  },
+  compile(node) {
+    var nodeAttrs = node.attributes;
+    var my = this;
+    Array.prototype.forEach.call(nodeAttrs, attr => {
+      var attrName = attr.name;
+      if (my.isDirective(attrName)) {
+        var exp = attr.value;
+        var dir = attrName.substring(2);
+        if (my.isEventDirective(dir)) {  //事件指令
+          my.compileEvent(node, my.vm, exp, dir);
+        } else {  //v-mode 指令
+          my.compileModel(node, my.vm, exp, dir);
+        }
+        node.removeAttribute(attrName);
+      }
+    })
+  },
+  compileText(node, exp) {
+    var my = this;
+    var initText = this.vm[exp];
+    my.updateText(node, initText); //将初始化的数据初始化到视图中
+    new Watcher(this.vm, exp, function (value) {
+      my.updateText(node, value);
+    });
+  },
+  compileEvent: function (node, vm, exp, dir) {
+    var eventType = dir.split(':')[1];
+    var cb = vm.methods && vm.methods[exp];
+
+    if (eventType && cb) {
+      node.addEventListener(eventType, cb.bind(vm), false);
+    }
+  },
+  compileModel: function (node, vm, exp, dir) {
+    var my = this;
+    var val = this.vm[exp];
+    this.modelUpdater(node, val);
+    new Watcher(this.vm, exp, function (value) {
+      my.modelUpdater(node, value);
+    })
+
+    node.addEventListener('input', function (e) {
+      var newValue = e.target.value;
+      if (val === newValue) {
+        return;
+      }
+      my.vm[exp] = newValue;
+      val = newValue;
+    })
+  },
+  modelUpdater: function (node, value, oldValue) {
+    node.value = typeof value == 'undefined' ? '' : value;
+  },
+  //是否为v-model指令
+  isDirective: function (attr) {
+    return attr.indexOf('v-') == 0;
+  },
+  //是否为事件指令
+  isEventDirective: function (dir) {
+    return dir.indexOf('on:') === 0;
+  },
+
+
+  updateText(node, value) {
+    node.textContent = typeof value == "undefined" ? "" : value;
+  },
+  //判断是否为testNode类型
+  isTextNode: function (node) {
+    return node.nodeType == 3;
+  },
+  //判断是否是node属性中的指令
+  isElementNode: function (node) {
+    return node.nodeType == 1;
+  }
+};
+
+```
+这部分代码还请查看原作者的github  [传送门](https://github.com/canfoo/self-vue/tree/master/v3)
+
+接下里我们对index文件进行改造,使其具有 methdos的属性,可以执行mounted函数
+
+```js
+function MyVue(options) {
+  var my = this;
+  this.data = options.data;
+  this.methods = options.methods;
+
+  Object.keys(this.data).forEach(function(key) {
+    my.proxyKeys(key); //绑定代理属性
+  });
+
+  obverve(this.data);
+  // el.innerHTML = this.data[exp];
+  // new Wathcher(this,exp,function(value){
+  //     el.innerHTML = value;
+  // })
+  new Compile(options.el, this);
+  options.mounted.call(this); //所有事情处理好后执行mounted函数
+}
+```
+
+OK! 大功告成!!!!  我们测试一下吧
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的数据双向绑定系统</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{title}}</h1>
+        <h2>{{name}}</h2>
+        <input v-mode="keywords"></input>
+        <select v-mode="keywords">
+            <option value="volvo">Volvo</option>
+            <option value="saab">Saab</option>
+            <option value="mercedes">Mercedes</option>
+            <option value="audi">Audi</option>
+        </select>
+        <h2>{{keywords}}</h2>
+        <button v-on:click="clickMe">click me!</button>
+    </div>
+
+</body>
+<script src="js/Watcher.js"></script>
+<script src="js/Observer.js"></script>
+<script src="js/Compile.js"></script>
+<script src="js/Index.js"></script>
+<script>
+    new MyVue({
+        el: '#app',
+        data: {
+            title: 'Title',
+            name: 'Wuriqilang',
+            keywords:'myVue'
+        },
+        mounted(){
+            window.setTimeout(() => {
+                console.log('2000毫秒后,title值改变了');
+                this.title = 'Compile is Working!'
+            }, 2000)
+
+
+            window.setTimeout(() => {
+                console.log('5000毫秒后,name值改变了');
+                this.name = 'you complete it!Congratulation!'
+            }, 5000)
+        },
+        methods:{
+            clickMe(){
+                this.title = 'i click the button!'
+            }
+        }
+    });
+</script>
+
+</html>
+```
+![](https://www.xr1228.com//post-images/1591755182754.PNG)
+
+接下来,我们发挥切图仔的功力,对这个页面样式做一个简单的美化吧.
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=0, initial-scale=1.0">
+    <title>我的数据双向绑定系统</title>
+    <style>
+        html{height:100%}
+        body{
+            height:100%;
+            display:flex;
+            justify-content : center;  
+            align-items : center;   
+        }
+        #app{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <img src="./assest/image/logo.png" alt="logo">
+        <h1>{{title}}</h1>
+        <h2>{{name}}</h2>
+        <input v-mode="keywords"></input>
+        <select v-mode="keywords">
+            <option value="volvo">Volvo</option>
+            <option value="saab">Saab</option>
+            <option value="mercedes">Mercedes</option>
+            <option value="audi">Audi</option>
+        </select>
+        <h2>{{keywords}}</h2>
+        <button v-on:click="clickMe">click me!</button>
+    </div>
+</body>
+<script src="js/Watcher.js"></script>
+<script src="js/Observer.js"></script>
+<script src="js/Compile.js"></script>
+<script src="js/Index.js"></script>
+<script>
+    new MyVue({
+        el: '#app',
+        data: {
+            title: 'Title',
+            name: 'Wuriqilang',
+            keywords:'myVue'
+        },
+        mounted(){
+            window.setTimeout(() => {
+                console.log('2000毫秒后,title值改变了');
+                this.title = 'Compile is Working!'
+            }, 2000)
+
+
+            window.setTimeout(() => {
+                console.log('5000毫秒后,name值改变了');
+                this.name = 'you complete it!Congratulation!'
+            }, 5000)
+        },
+        methods:{
+            clickMe(){
+                this.title = 'i click the button!'
+            }
+        }
+    });
+</script>
+</html>
+```
+以下是最终效果:
+
+![](https://www.xr1228.com//post-images/1591757508655.gif)
+
