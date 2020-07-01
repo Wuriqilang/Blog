@@ -38,7 +38,7 @@ isTop: false
 视频展示了 2009年到2020年各浏览器的市场占用情况，风云变幻，百家争鸣。[视频来源-bilibli Data_Fun](https://www.bilibili.com/video/BV1iK41157eK?from=search&seid=8186579024934449220)
 
 <div class="aspect-ratio">
-<iframe src="http://player.bilibili.com/player.html?aid=498000935&bvid=BV1iK41157eK&cid=187449223&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"> </iframe></div>
+<iframe src="https://player.bilibili.com/player.html?aid=498000935&bvid=BV1iK41157eK&cid=187449223&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"> </iframe></div>
 
 作为一名以解决问题为核心的工程师，我们不必关心浏览器战争背后的故事，我们知道就目前而言，对于前端开发者来说我们主要需要对Blink与Webkit内核的浏览器做适配就足够了（该结论写于2020.7.1）
 
