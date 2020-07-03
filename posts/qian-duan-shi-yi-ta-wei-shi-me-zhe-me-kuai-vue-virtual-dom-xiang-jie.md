@@ -284,8 +284,89 @@ export default createElement;
 #### 3.2.2 将模拟DOM树渲染到页面中
 
 上面的例子我们将DOM改造为一个 自定义的element对象,那么如何将这个对象渲染成真实的DOM结构呢?
-让我们对 element对象进行改造.
+让我们对 element对象进行改造.  其实就是对Element对象的原型增加一个render函数. 改造后的Element.js 如下
 
+```js
+/**
+ * Element Virtual-dom 对象定义
+ * @param {String} tagName - dom元素名称
+ * @param {Object} props - dom属性
+ * @param {Array<ELEMENT|String>} -子节点
+ */
+function Element(tagName,props,children){
+    this.tagName = tagName;
+    this.props = props;
+    this.children = children;
+    //dom元素的key值,用作唯一标识符
+    if(props.key){
+        this.key = props.key
+    }
+    var count = 0 ;
+    children.forEach((child,i) => {
+        if(child instanceof Element){
+            count += child.count;
+        }else{
+            children[i] = '' + child;
+        }
+        count ++;
+    });
+    //子元素的个数
+    this.count = count;
+}
+/**
+ * render 将virdual-dom对象渲染为真实DOM元素
+ */
+ Element.prototype.render = function(){
+     var el = document.createElement(this.tagName);
+     var props = this.props;
+     //设置节点DOM属性
+     for(var propName in props){
+         var propValue = props[propName];
+         el.setAttribute(propName,propValue);
+     }
+
+     var children = this.children||[];
+     children.forEach(child=>{
+         var childEl = (child instanceof Element)
+         ?child.render() //如果子节点也是虚拟DOM,递归构建DOM节点
+         :document.createTextNode(child);  //如果是字符串,只构建文本节点
+         el.appendChild(childEl);
+     })
+     return el;
+ }
+function createElement(tagName,props,children){
+    return new Element(tagName,props,children);
+}
+export default createElement;
+```
+
+接下来,我们只需在 html中调用一下这个函数生成一个真实DOM树,添加到页面中即可
+在html中加入下面两行代码
+```js
+        //渲染虚拟DOM
+        var ulRoot = virtualDom.render();
+        document.body.appendChild(ulRoot);
+```
+
+bingo! 页面body中加入了一个DOM结构,效果如图所示:
+
+![](https://www.xr1228.com//post-images/1593765774653.png)
+
+#### 3.2.3 计算两棵Virtual DOM树的算法实现 diff
+
+接下来,当我们修改Virtual DOM之后,需要比较修改前后的DOM树的差异,然后返回一个patch对象,即补丁对象,再通过特定的解析patch对象,完成页面的渲染.  
+
+大概流程是这样的: 
+
+![](https://www.xr1228.com//post-images/1593768412866.PNG)
+
+到这里,聪明的你一定会问 : 为啥要对比呢? 我把新的Virtual Dom渲染出来不就行了吗? 向上一节一样 调用document.CreateElement不就OK了吗? 何必多次一举?
+
+这是因为document.CreateElement这个操作开销也很大,它本质就是新建一个DOM结构,对于性能是一个巨大的浪费. 为了减少性能损耗, 我们需要通过 diff + patch 的方式实现DOM结构的更新.
+
+接下来我们实现一个 diff算法.
+
+**diff算法**
 
 
 
