@@ -1,10 +1,10 @@
 ---
 title: '【前端拾遗】它为什么这么快？—— Vue Virtual DOM详解'
 date: 2020-07-01 15:15:18
-tags: []
+tags: [vue,前端拾遗,值得一读]
 published: true
 hideInList: false
-feature: 
+feature: /post-images/virtualDom.jpg
 isTop: false
 ---
 面试京东和阿里的时候，面试官都问到了虚拟Dom与页面渲染的相关问题，鄙人支支吾吾，颠三倒四的回答了一个大概，引以为耻。
@@ -379,9 +379,232 @@ bingo! 页面body中加入了一个DOM结构,效果如图所示:
 在深度优先遍历的同时,每遍历到一个节点就把这个节点和新的树进行对比,如果有差异的话就记录到一个对象中.
 我们新建一个diff.js文件来存放diff方法的代码:
 ```js
+/**
+ * diff函数,对比两颗树
+ * @param {Element} oldTree - 之前的树
+ * @param {Element} newTree - 新的Virtual DOM树
+ */
+function diff(oldTree, newTree) {
+    var index = 0; //当前节点的标志
+    var patches = {}; // 用来记录每个节点差异的对象
+    dfsWalk(oldTree, newTree, index, patches);
+    return patches;
+}
 
+//对两棵树进行深度优先遍历
+function dfsWalk(oldNode, newNode, index, patches) {
+    var currentPatch = [];
+    if (typeof (oldNode) === "string" && typeof (newNode) === "string") {
+        //文本内容改变
+        if (newNode !== oldNode) {
+            currentPatch.push({ type: patch.TEXT, context: newNode })
+        }
+    } else if (newNode != null && oldNode.tagName === newNode.tagName && oldNode.key === newNode.key) {
+        //节点相同,比较属性
+        var propsPathes = diffProps(oldNode, newNode);
+        if (propsPathes) {
+            currentPatch.push({ type: patch.PROPS, props: propsPathes });
+        }
+        //比较子节点,如果子节点有'ignore'属性,则不需要比较
+        if (!isIgnoreChildren(newNode)) {
+            diffChildren(oldNode.children, newNode.children, index, patches, currentPatch);
+        }
+    } else if (newNode !== null) {
+        //新旧节点不相同,用replace替换
+        currentPatch.push({ type: patch.REPLACE, node: newNode });
+    }
 
+    if (currentPatch.length) {
+        patches[index] = currentPatch;
+    }
+}
+
+// 遍历子节点
+function diffChildren(oldChildren, newChildren, index, patches, currentPatch) {
+    var diffs = listDiff(oldChildren, newChildren, 'key')
+    newChildren = diffs.children
+
+    if (diffs.moves.length) {
+        var reorderPatch = { type: patch.REORDER, moves: diffs.moves }
+        currentPatch.push(reorderPatch)
+    }
+
+    var leftNode = null
+    var currentNodeIndex = index
+    oldChildren.forEach((child, i) => {
+        var newChild = newChildren[i]
+        currentNodeIndex = (leftNode && leftNode.count)
+            ? currentNodeIndex + leftNode.count + 1
+            : currentNodeIndex + 1
+        dfsWalk(child, newChild, currentNodeIndex, patches)
+        leftNode = child
+    })
+}
+
+// 比较节点属性
+function diffProps(oldNode, newNode) {
+    var count = 0
+    var oldProps = oldNode.props
+    var newProps = newNode.props
+    var propsPatches = {}
+    // 查找属性值不同的属性
+    for (var key in oldProps) {
+        if (newProps[key] !== oldProps[key]) {
+            count++
+            propsPatches[key] = newProps[key]
+        }
+    }
+    // 查找新属性
+    for (var key in newProps) {
+        if (!oldProps.hasOwnProperty(key)) {
+            count++
+            propsPatches[key] = newProps[key]
+        }
+    }
+    // 没有属性改变
+    if (count === 0) {
+        return null
+    }
+    return propsPatches
+}
+
+function isIgnoreChildren(node) {
+    return (node.props && node.props.hasOwnProperty('ignore'))
+}
 ```
+这样我们就实现了对两个Virtual DOM树的比较，并且返回一个patches对象，记录了节点之间的差异。当然，你马上会发现这段代码还无法使用，因为其中有一个对象patch和一个方法listDiff没有实现。接下来对其进行详细说明。
+
+
+**(2) 标记节点之间的差异类型**
+当我们对DOM节点进行对比的时候，需要对差异进行标记，这样就能告诉程序两个节点之间的差异类型，以便程序根据不同类型执行不同的操作。
+
+DOM操作导致的差异类型主要包括以下几点：
+- 节点替换：节点改变了，例如将上面的 div 换成 h1;
+- 顺序互换：移动、删除、新增子节点，例如上面 div 的子节点，把 p 和 ul 顺序互换；
+- 属性更改：修改了节点的属性，例如把上面 li 的 class 样式类删除；
+- 文本改变：改变文本节点的文本内容，例如将上面 p 节点的文本内容更改为 “Virtual DOM2”；
+
+为了描述上述的差异，我们新建一个 patch.js(之所以要新建一个文件是因为在patch.js中我们还要实现操作真是DOM的操作)
+```js
+var REPLACE = 0 // 替换原先的节点
+var REORDER = 1 // 重新排序
+var PROPS = 2 // 修改了节点的属性
+var TEXT = 3 // 文本内容改变 
+
+function patch(node, patches) {
+    //实现操作真实DOM的代码,暂时不写
+}
+patch.REPLACE = REPLACE
+patch.REORDER = REORDER
+patch.PROPS = PROPS
+patch.TEXT = TEXT
+
+export default patch;
+```
+
+**（3）列表对比算法(性能优化)**
+到此为止,一切都显得自然而简单,我们对比两颗Virtual DOM树,生成差异对象,再通过差异对象来操作真实DOM.  但是其有很大的性能优化空间:
+**列表对比**: 
+我们先看一下这两棵Virtual DOM:
+```js
+        var virtualDom = el('div', { id: 'virtual-dom' }, [
+            el('p', {}, ['Virtual DOM']),
+            el('ul', { id: 'list' }, [
+                el('li', { class: 'item' }, ['Item 1']),
+                el('li', { class: 'item' }, ['Item 2']),
+                el('li', { class: 'item' }, ['Item 3'])
+            ]),
+            el('div', {}, ['Hello World'])
+        ])
+
+        //再新建一颗Virtual-Dom
+        var virtualDom2 = el('div', { id: 'virtual-dom' }, [
+            el('ul', { id: 'list' }, [
+                el('li', { class: 'item' }, ['Item 1']),
+                el('li', { class: 'item' }, ['Item 2']),
+                el('li', { class: 'item' }, ['Item 3'])
+            ]),
+            el('div', {}, ['Hello World']),
+            el('p', {}, ['Virtual DOM'])
+        ])
+```
+在这两棵树中,子节点的顺序从 p,ul,div 变成了 ul,div,p .如果我们按照同层级进行顺序对比的话,他们都会标记为 replace.进而都被替换掉.这样一来DOM操作的开销就会很大 . 实际上我们无需进行替换节点,只要通过移动节点就可以了.
+
+上面这个问题抽象出来其实就是 字符串的最小编辑问题([EditionDistance](https://blog.csdn.net/zp1996323/article/details/51702991))   
+
+对于一个解决问题为主的工程师来说没,了解Edition Distance其实没什么用,而且你也很快会忘掉.所以这里先放结论 :  为了解决列表对比的问题, 我们采用了插件 [list-diff2](https://github.com/livoras/list-diff) 算法.   我这个算法的核心文件引用到了项目的 list-diff.js 中, EditionDistance的算法原理在本文最后,时间多的用不完的你可以看一看.
+
+list-diff2 的代码如下, 你可以新建一个 list-diff.js    篇幅所限, 本文代码在 [virtual-DOM中](https://github.com/Wuriqilang/PlayGround/tree/master/Virtual%20Dom)
+
+接下来只需要将写好的 patch.js和list-diff.js 引入到  diff.js中即可. 再次郑重说明,本文项目采用了ES Module引用方式,无需nodejs环境,引用时注意import语法
+
+```js
+import patch from './patch.js';  //存放差异类型
+import listDiff from './uilts/list-diff.js'; //实现列表对比算法
+```
+
+现在我们测试一下效果吧. 改写 html页面如下:
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual DOM实现</title>
+</head>
+
+<body>
+    <div id="virtual-dom">
+        <p>Practical DOM</p>
+        <ul id="list">
+            <li class="item">Item 1</li>
+            <li class="item">Item 2</li>
+            <li class="item">Item 3</li>
+        </ul>
+        <div>Hello World</div>
+    </div>
+    <script type="module">
+        import el from './Element.js';
+        import diff from './diff.js';
+
+        var virtualDom = el('div', { id: 'virtual-dom' }, [
+            el('p', {}, ['Virtual DOM']),
+            el('ul', { id: 'list' }, [
+                el('li', { class: 'item' }, ['Item 1']),
+                el('li', { class: 'item' }, ['Item 2']),
+                el('li', { class: 'item' }, ['Item 3'])
+            ]),
+            el('div', {}, ['Hello World'])
+        ])
+        console.log("Virtual Dom:");
+        console.log(virtualDom);
+        console.log("Practical Dom:");
+        console.log(document.getElementById("virtual-dom"));
+        //渲染虚拟DOM
+        var ulRoot = virtualDom.render();
+        document.body.appendChild(ulRoot);
+
+        //再新建一颗Virtual-Dom
+        var virtualDom2 = el('div', { id: 'virtual-dom2' }, [
+            el('p', {}, ['Virtual DOM2']),
+            el('ul', { id: 'list' }, [
+                el('li', { class: 'item' }, ['Item 21']),
+                el('li', { class: 'item' }, ['Item 23'])
+            ]),
+            el('p', {}, ['Hello World'])
+        ])
+
+        //对比两棵树差异
+        var patches = diff(virtualDom, virtualDom2);
+        console.log('patches:', patches);
+    </script>
+</body>
+
+</html>
+```
+在这个例子中,我们写了两个 Virtual DOM, 调用 diff.js 来比较两棵树的差异,生成 patches
+![](https://www.xr1228.com//post-images/1594286825417.PNG)
 
 
 
@@ -389,3 +612,4 @@ bingo! 页面body中加入了一个DOM结构,效果如图所示:
 [chrome浏览器页面渲染工作原理浅析-知乎大金](chrome浏览器页面渲染工作原理浅析)
 [浏览器内核-渲染引擎、js引擎](https://blog.csdn.net/BonJean/article/details/78453547)
 [浏览器之渲染引擎-掘金26000步](https://juejin.im/post/5c903e23e51d45656442c5e2)
+[EditionDistance](https://blog.csdn.net/zp1996323/article/details/51702991)
