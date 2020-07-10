@@ -603,8 +603,70 @@ import listDiff from './uilts/list-diff.js'; //实现列表对比算法
 
 </html>
 ```
-在这个例子中,我们写了两个 Virtual DOM, 调用 diff.js 来比较两棵树的差异,生成 patches
+在这个例子中,我们写了两个 Virtual DOM, 调用 diff.js 来比较两棵树的差异,生成 patches.这样我们就可以通过这个差异对象来更改真实DOM结构. 从而在尽量少的DOM操作前提下,完成DOM树的更新.
+
 ![](https://www.xr1228.com//post-images/1594286825417.PNG)
+
+#### 3.2.3 将差异对象(patches) 应用到真实DOM树
+
+因为3.2.1中我们通过Virtual DOM构建出的真实DOM树与Virtual DOM信息、结构是完全相同的.所以我们对真实DOM也进行深度优先遍历,遍历的过程中与patches相互对比: 
+
+我们在 path.js中写出相关代码:
+
+```js
+function patch(node, patches) {
+    var walker = { index: 0 };  //记录节点位置
+    dfsWalk(node, walker, patches); //深度优先遍历真实DOM
+}
+
+function dfsWalk(node,walker,patches){
+    //从patches中拿出差异
+    var currentPatches = patches[walker.index];
+
+    var len = node.childNodes?node.childNodes.length:0;
+    //深度遍历子节点
+    for(var i=0;i<len;i++){
+        var child = node.childNodes[i];
+        walker.index ++;
+        dfsWalk(child,walker,patches);
+    }
+    //对当前节点进行DOM操作
+    if(currentPatches){
+        applyPatches(node,currentPatches);
+    }
+}
+```
+在这个递归函数中,我们每一次递归都会调用applyPatches函数,这个函数就是用操作真实DOM的函数.其核心代码如下，详细代码请参照: [virtual-DOM中](https://github.com/Wuriqilang/PlayGround/tree/master/Virtual%20Dom)
+
+```js
+function applyPatches(node, currentPatches) {
+    currentPatches.forEach(currentPatch => {
+        switch (currentPatch.type) {
+            case REPLACE:
+                var newNode = (typeof currentPatch.node === "string")
+                    ? document.createTextNode(currentPatch.node) : currentPatch.node.render();
+                node.parentNode.replaceChild(newNode, node);
+                break;
+            case REORDER:
+                reorderChildren(node, currentPatch.moves);
+                break;
+            case PROPS:
+                setProps(node, currentPatch.props);
+                break;
+            case TEXT:
+                node.textContent = currentPatch.content;
+                break;
+            default:
+                throw new Error("Unknown patch type" + currentPatch.type);
+        }
+    })
+}
+```
+这样，Vitural DOM核心功能就完成了啦。 接下来我们对html做一些修改，让我们的Virtual DOM系统更加直观。
+
+
+
+
 
 
 
