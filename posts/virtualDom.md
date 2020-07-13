@@ -662,16 +662,161 @@ function applyPatches(node, currentPatches) {
     })
 }
 ```
-这样，Vitural DOM核心功能就完成了啦。 接下来我们对html做一些修改，让我们的Virtual DOM系统更加直观。
+这样，Vitural DOM核心功能就完成了啦。 接下来我们对html做一些修改，让我们的Virtual DOM系统更加直观,并且能够反应Vitural Dom系统的性能.
+这段为了实现浏览器原生ES Module(脱离nodejs webpack) 加载模块的方式,对于代码进了一些设计,你可以结合ES Module相关知识理解一下.
 
+```html
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual DOM实现</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
 
+        #Practical-dom,#virtual-dom,#virtual-dom2 {
+            width: 300px;
+            border: 1px solid red;
+            border-radius: 10px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .button{
+            width:300px;
+            padding:10px;
+        }
+    </style>
+</head>
 
+<body>
+    <h1>virtual-dom系统</h1>
+    <div id="Practical-dom">
+        <p>Practical DOM（一个真实DOM）</p>
+        <ul id="list">
+            <li class="item">Item 1</li>
+            <li class="item">Item 2</li>
+            <li class="item">Item 3</li>
+        </ul>
+        <div>Hello World</div>
+    </div>
+    <br>
+    <br>
 
+    <button class="button" onclick="renderDom1()">渲染virtualDOM1</button>
+    <button class="button" onclick="renderDom2()">直接渲染virtualDOM2</button>
+    <button class="button" onclick="diff()">通过diff算法对比后更新真实DOM1</button>
 
+    <script type="module">
+        import el from './Element.js';
+        import diff from './diff.js';
+        import patch from "./patch.js";
+
+        console.log("Practical Dom:");
+        console.log(document.getElementById("Practical-dom"));
+        window.vd = { el, diff, patch };  //将el diff patch放入全局作用域中
+    </script>
+
+    <script>
+        var ulRoot;//定义一个对象存放生成的真实DOM对象
+        var ulRoot2;///定义一个对象存放生成的真实DOM对象
+        var virtualDom;
+        var virtualDom2;
+        var patches;
+        window.onload = function () {  //这里需要使用onload包裹起来,否则无法等待异步es module执行完毕
+            var el = window.vd.el;
+            //定义一颗Virtual Dom
+            virtualDom = el('div', { id: 'virtual-dom' }, [
+                el('p', {}, ['Virtual DOM']),
+                el('ul', { id: 'list' }, [
+                    el('li', { class: 'item' }, ['Item 1']),
+                    el('li', { class: 'item' }, ['Item 2']),
+                    el('li', { class: 'item' }, ['Item 3'])
+                ]),
+                el('div', {}, ['Hello World'])
+            ])
+            //再新建一颗Virtual-Dom
+            virtualDom2 = el('div', { id: 'virtual-dom2' }, [
+                el('p', {}, ['Virtual DOM2']),
+                el('ul', { id: 'list' }, [
+                    el('li', { class: 'item' }, ['Item 21']),
+                    el('li', { class: 'item' }, ['Item 23'])
+                ]),
+                el('p', {}, ['Hello World'])
+            ])
+        }
+        //渲染虚拟DOM
+        function renderDom1() {
+            console.log("Virtual Dom:");
+            console.log(virtualDom);
+            console.time("直接渲染耗时");
+            ulRoot = virtualDom.render();
+            document.body.appendChild(ulRoot);
+            console.timeEnd("直接渲染耗时");
+        }
+        //渲染虚拟DOM2
+        function renderDom2() {
+            console.log("Virtual Dom2:");
+            console.log(virtualDom2);
+            console.time("直接渲染耗时");
+            ulRoot2 = virtualDom2.render();
+            document.body.appendChild(ulRoot2);
+            console.timeEnd("直接渲染耗时");
+        }
+        function diff(){
+            console.time("diff算法后渲染耗时");
+            //对比两棵树差异
+            patches = window.vd.diff(virtualDom, virtualDom2);
+            // console.log('差异对象patches:', patches);
+            window.vd.patch(ulRoot, patches);
+            console.timeEnd("diff算法后渲染耗时");
+        }
+    </script>
+
+</body>
+
+</html>
+```
+
+Virtual Dom 效果如下:
+
+![](https://www.xr1228.com//post-images/1594607533007.gif)
+
+你会发现使用diff再进行渲染的方法似乎比直接渲染真实Dom更加耗时,这是因为我们例子中的Virtual-Dom简单十分简单导致的, 随着页面DOM结构复杂程度的增加,diff算法的优势也会越明显.
+
+**本文源代码** [virtual-DOM中](https://github.com/Wuriqilang/PlayGround/tree/master/Virtual%20Dom)  请参考
 
 - 参考文献：
 [chrome浏览器页面渲染工作原理浅析-知乎大金](chrome浏览器页面渲染工作原理浅析)
 [浏览器内核-渲染引擎、js引擎](https://blog.csdn.net/BonJean/article/details/78453547)
 [浏览器之渲染引擎-掘金26000步](https://juejin.im/post/5c903e23e51d45656442c5e2)
 [EditionDistance](https://blog.csdn.net/zp1996323/article/details/51702991)
+[字符串相似度算法——Levenshtein Distance算法](https://www.cnblogs.com/xiaoyulong/p/8846745.html)
+
+
+- 附:diff算法原理
+
+列表对比问题抽象出来其实就是字符串的最小编辑距离问题（Edition Distance），所谓最小编辑距离问题, 就是假设有两个字符串A与B, 怎样通过字符的插入、删除或者替换手段，用最少的步骤让B改变为A的问题.
+
+这个问题最常见的解决方法是 Levenshtein Distance ,Levenshtein Distance 是1965年由苏联数学家 Vladimir Levenshtein 发明的。Levenshtein Distance 也被称为编辑距离（Edit Distance），其原理是通过动态规划求解，时间复杂度为 O(M*N)。
+
+定义：对于两个字符串 a、b，则他们的 Levenshtein Distance 为：
+
+![](https://www.xr1228.com//post-images/1594608157829.PNG)
+
+示例：字符串 a 和 b，a=“abcde” ，b=“cabef”，根据上面给出的计算公式，则他们的 Levenshtein Distance 的计算过程如下：
+
+![](https://www.xr1228.com//post-images/1594608194253.PNG)
+
+因为篇幅所限，对于该算法你可以看一下这篇文章，写的非常详细 
+[字符串相似度算法——Levenshtein Distance算法](https://www.cnblogs.com/xiaoyulong/p/8846745.html)
+
