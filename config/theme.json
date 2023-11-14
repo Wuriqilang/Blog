@@ -5,7 +5,7 @@
     "dateFormat": "YYYY-MM-DD",
     "feedCount": 10,
     "feedFullText": false,
-    "footerInfo": "备案号:蒙ICP备19002373号-1 <a href=\"http://beian.niit.gov.cn\" target=\"_blank\">工信部</a>",
+    "footerInfo": "备案号: <a href=\"http://beian.niit.gov.cn\" target=\"_blank\">蒙ICP备19002373号-1</a>",
     "postPageSize": 10,
     "postPath": "post",
     "postUrlFormat": "SLUG",
